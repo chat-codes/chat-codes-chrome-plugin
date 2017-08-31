@@ -1,0 +1,14 @@
+#big-container{
+	width: 600px;
+}
+#code-editor-container{
+	height: 300px;
+}
+
+#showcode-button-container{
+	text-align:right;
+}
+
+#channel-name-container{
+	vertical-align: middle;
+}
