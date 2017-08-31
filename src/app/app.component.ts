@@ -85,6 +85,7 @@ export class AppComponent implements OnInit{
 
   constructor() {
      this.setName('remote,123');
+
   };
 
   ngAfterContentInit() {
@@ -135,7 +136,7 @@ export class AppComponent implements OnInit{
 
    //for test
   requestForCodeMirrorElement(){ 
-    var response = {chosenCodeMirrorText: "<!-- Create a simple CodeMirror instance -->"};
+    var response = {chosenCodeMirrorText: "For test"};
     this.getDOMFlag = true;
     if(response !== undefined){
       this.hasCodeMirrorFlag = true;

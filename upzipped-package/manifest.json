@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "chat-codes-chrome-plugin",
+    "description": "chat-codes service in a Google Chrome extension",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.html"
+    },
+    //always need an injection
+    "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            //"matches": ["://*/*"],
+            "css": ["codemirror.css"],
+            //"js": ["codemirror.js", "underscore.js", "content_script.js"],
+            "js": ["codemirror.js", "content_script.js"],
+            //"js": ["content_script.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "permissions" : ["tabs"],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

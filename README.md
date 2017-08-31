@@ -6,6 +6,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## For Chrome extension development
+
+1. Run `ng build --output-path=/xxx/xxx/chat-codes-chrome-plugin/upzipped-package --delete-output-path false --watch`. 
+2. Load `unzipped-package` in `chrome://extensions/`.
+
+The chrome extension will be updated every time files are saved.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
