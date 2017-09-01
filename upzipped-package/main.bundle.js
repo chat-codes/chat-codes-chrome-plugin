@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#big-container{\n\twidth: 600px;\n}\n#code-editor-container{\n\theight: 300px;\n}\n\n#showcode-button-container{\n\ttext-align:right;\n}\n\n#channel-name-container{\n\tvertical-align: middle;\n}", ""]);
+exports.push([module.i, "#size-controller{\n\twidth: 450px;\n\theight: 500px;\n}\n\n#showcode-button-container{\n\ttext-align:right;\n}\n\n#channel-name-container{\n}\n\n#channel-name-text{\n\tpadding: 4px 8px 5px;\n}\n\n#list_row {\n    height: 30px;\n    margin-top: 0px;\n}\n\n#code-editor-row{\n\theight: 300px;\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-messages-row{\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-input-row{\n\theight: 48px;\n}\n", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div>\n  <name-entry *ngIf=\"!hasName\" (onEnter)=\"setName($event)\"></name-entry>\n</div>\n<!-- <div>\n  <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n\n<div *ngIf=\"!getDOMFlag && hasName\">\n  <h1>Opening.</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && !hasCodeMirrorFlag && hasName\">\n  <h1>No CodeMirror Editor In This Page...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && hasCodeMirrorFlag && hasName\" class=\"container\">\n    <div class = 'row' id = \"big-container\">\n        <div class = \"col-8\">\n        \n            <div class=\"row\">\n                <div class=\"col-8\" id = \"channel-name-container\">\n                    <div id=\"content\">Channel: {{channelName}}</div>\n                </div>\n                <div class=\"col-4\" id = \"showcode-button-container\">\n                    <button (click)=\"showCode()\">ShowCode</button>\n                </div>\n            </div>\n        \t<div class=\"row\">\n        \t\t<div class=\"col-12\">\n                    Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                        <user-display [user]='user'></user-display>\n                    </i>\n                </div>\n            </div>\n             <div class=\"row\">\n             \t<div class=\"col-12\">\n                    <ul class='files nav nav-tabs'>\n                        <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                            <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' (click)=\"codeEditor.selectFile(editorState)\">\n                                {{editorState.getTitle()}}\n                                <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"row\">\n            \t<div class=\"col-12\" id=\"code-editor-container\">\n                    <code-editor [commLayer]='commLayer' \n                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            \t</div>\n            </div>\n        \n        </div>\n\n\n        <div class=\"col-4\">\n            <div class=\"row\">\n            \t<div class=\"col-12\">\n                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n                </div>\n            </div>\n            <div class=\"row\">\n            \t<div class=\"col-12\">\n                    <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                    (typing)='updateTypingStatus($event)' (messageChanged)='chatinputMessageChanged($event)' #chatinput></chat-input>\n                 </div>\n            </div>\n        </div>\n\n    </div>\n</div>\n\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div>\n  <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div>\n<!-- <div>\n  <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n\n<div *ngIf=\"!getDOMFlag && hasName\">\n  <h1>Opening...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && !hasCodeMirrorFlag && hasName\">\n  <h1>Selected No CodeMirror Editor...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && hasCodeMirrorFlag && hasName\" class=\"container\" id=\"size-controller\">\n            <div class=\"row\">\n                <div class=\"col-8\" id = \"channel-name-container\">\n                    <div id=\"content channel-name-text\">Channel: {{channelName}}</div>\n                </div>\n                <div class=\"col-4\" id = \"showcode-button-container\">\n                    <button (click)=\"showCode()\">ShowCode</button>\n                </div>\n            </div>\n        \t<div class=\"row\" >\n        \t\t<div class=\"col-12\">\n                    Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                        <user-display [user]='user'></user-display>\n                    </i>\n                </div>\n            </div>\n             <div class=\"row\" id=\"list-row\">\n             \t<div class=\"col-12\">\n                    <ul class='files nav nav-tabs'>\n                        <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                            <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' (click)=\"codeEditor.selectFile(editorState)\">\n                                {{editorState.getTitle()}}\n                                <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"row\" id=\"code-editor-row\">\n            \t<div class=\"col-12\" >\n                    <code-editor [commLayer]='commLayer' \n                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            \t</div>\n            </div>\n\n            <div class=\"row\" id=\"chat-messages-row\">\n            \t<div class=\"col-12\">\n                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n                </div>\n            </div>\n\n            <div class=\"row\" id='chat-input-row'>\n            \t<div class=\"col-12\">\n                    <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                    (typing)='updateTypingStatus($event)' (messageChanged)='chatinputMessageChanged($event)' #chatinput></chat-input>\n                 </div>\n            </div>\n        \n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -90,7 +90,7 @@ var AppComponent = (function () {
         this.connected = false;
         this.members = false;
         this.channelName = 'example_channel';
-        this.setName('remote,123');
+        //this.setName('remote,123');
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.showCode = function () {
@@ -127,11 +127,11 @@ var AppComponent = (function () {
     AppComponent.prototype.ngAfterContentInit = function () {
         this.requestForCodeMirrorElement();
     };
-    AppComponent.prototype.setName = function (name) {
+    AppComponent.prototype.setName = function (event) {
+        console.log(event);
         this.hasName = true;
-        var res = name.split(",");
-        this.name = res[0];
-        this.channelName = res[1];
+        this.name = event.userValue;
+        this.channelName = event.channelValue;
         this.setNewWebCommunicationService();
     };
     ;
@@ -166,14 +166,32 @@ var AppComponent = (function () {
         }, false);
         this.commLayer.channelService.emitEditorChanged(openDelta, false);
     };
-    //for test
+    //  //for test
+    // requestForCodeMirrorElement(){ 
+    //   var response = {chosenCodeMirrorText: "For test123"};
+    //   this.getDOMFlag = true;
+    //   if(response !== undefined){
+    //     this.hasCodeMirrorFlag = true;
+    //     this.codeMirrorText = response.chosenCodeMirrorText;
+    //   }     
+    // }
+    //for chrome
     AppComponent.prototype.requestForCodeMirrorElement = function () {
-        var response = { chosenCodeMirrorText: "For test" };
-        this.getDOMFlag = true;
-        if (response !== undefined) {
-            this.hasCodeMirrorFlag = true;
-            this.codeMirrorText = response.chosenCodeMirrorText;
-        }
+        var _this = this;
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            _this.getDOMFlag = true;
+            chrome.tabs.sendMessage(tabs[0].id, { name: "GetChosenCodeMirrorText" }, function (response) {
+                console.log(response);
+                if (response !== undefined) {
+                    _this.hasCodeMirrorFlag = true;
+                    _this.codeMirrorText = response.chosenCodeMirrorText;
+                    console.log(_this.codeMirrorText);
+                }
+                else {
+                    _this.hasCodeMirrorFlag = false;
+                }
+            });
+        });
     };
     AppComponent.prototype.getChatURL = function () {
         return 'chat.codes/' + this.channelName;
@@ -293,19 +311,18 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chat_codes_web_src_app_name_entry_name_entry_component__ = __webpack_require__("../../../../chat-codes-web/src/app/name-entry/name-entry.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chat_codes_web_src_app_user_user_display_component__ = __webpack_require__("../../../../chat-codes-web/src/app/user/user-display.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_chat_codes_web_src_app_editor_editor_component__ = __webpack_require__("../../../../chat-codes-web/src/app/editor/editor.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chat_codes_web_src_app_chat_messages_chat_messages_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/chat-messages.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chat_codes_web_src_app_chat_messages_single_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/single-message.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chat_codes_web_src_app_user_user_display_component__ = __webpack_require__("../../../../chat-codes-web/src/app/user/user-display.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chat_codes_web_src_app_editor_editor_component__ = __webpack_require__("../../../../chat-codes-web/src/app/editor/editor.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_chat_codes_web_src_app_chat_messages_chat_messages_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/chat-messages.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chat_codes_web_src_app_chat_messages_single_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/single-message.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chat_codes_web_src_app_chat_messages_edit_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/edit-message.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_chat_codes_web_src_app_chat_input_chat_input_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-input/chat-input.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timeline_timeline_component__ = __webpack_require__("../../../../chat-codes-web/src/app/timeline/timeline.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__channel_entry_channel_entry_component__ = __webpack_require__("../../../../../src/app/channel-entry/channel-entry.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_chat_codes_web_src_app_chat_messages_edit_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/edit-message.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor__ = __webpack_require__("../../../../ng2-ace-editor/ng2-ace-editor.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_moment__ = __webpack_require__("../../../../angular2-moment/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_angular2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__name_channel_entry_name_channel_entry_component__ = __webpack_require__("../../../../../src/app/name-channel-entry/name-channel-entry.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor__ = __webpack_require__("../../../../ng2-ace-editor/ng2-ace-editor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angular2_moment__ = __webpack_require__("../../../../angular2-moment/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_angular2_moment__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -313,7 +330,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -337,21 +353,20 @@ AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_4_chat_codes_web_src_app_name_entry_name_entry_component__["a" /* NameEntry */],
-            __WEBPACK_IMPORTED_MODULE_5_chat_codes_web_src_app_user_user_display_component__["a" /* UserDisplay */],
-            __WEBPACK_IMPORTED_MODULE_6_chat_codes_web_src_app_editor_editor_component__["a" /* EditorDisplay */],
-            __WEBPACK_IMPORTED_MODULE_7_chat_codes_web_src_app_chat_messages_chat_messages_component__["a" /* ChatMessagesDisplay */],
-            __WEBPACK_IMPORTED_MODULE_12_chat_codes_web_src_app_chat_messages_edit_message_component__["a" /* EditMessageDisplay */],
-            __WEBPACK_IMPORTED_MODULE_8_chat_codes_web_src_app_chat_messages_single_message_component__["a" /* ChatMessageDisplay */],
+            __WEBPACK_IMPORTED_MODULE_4_chat_codes_web_src_app_user_user_display_component__["a" /* UserDisplay */],
+            __WEBPACK_IMPORTED_MODULE_5_chat_codes_web_src_app_editor_editor_component__["a" /* EditorDisplay */],
+            __WEBPACK_IMPORTED_MODULE_6_chat_codes_web_src_app_chat_messages_chat_messages_component__["a" /* ChatMessagesDisplay */],
+            __WEBPACK_IMPORTED_MODULE_8_chat_codes_web_src_app_chat_messages_edit_message_component__["a" /* EditMessageDisplay */],
+            __WEBPACK_IMPORTED_MODULE_7_chat_codes_web_src_app_chat_messages_single_message_component__["a" /* ChatMessageDisplay */],
             __WEBPACK_IMPORTED_MODULE_9_chat_codes_web_src_app_chat_input_chat_input_component__["a" /* ChatInput */],
             __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timeline_timeline_component__["a" /* TimelineDisplay */],
-            __WEBPACK_IMPORTED_MODULE_11__channel_entry_channel_entry_component__["a" /* ChannelEntry */]
+            __WEBPACK_IMPORTED_MODULE_11__name_channel_entry_name_channel_entry_component__["a" /* NameChannelEntry */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_14_angular2_moment__["MomentModule"],
-            __WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor__["AceEditorModule"]
+            __WEBPACK_IMPORTED_MODULE_13_angular2_moment__["MomentModule"],
+            __WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor__["AceEditorModule"]
         ],
         providers: [],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
@@ -362,19 +377,19 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/channel-entry/channel-entry.component.html":
+/***/ "../../../../../src/app/name-channel-entry/name-channel-entry.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<input [class]=\"feedbackClass\" placeholder=\"Channel Name\" type='text' \n(ngModelChange)=\"valueChange($event)\" [(ngModel)]=\"value\" (keydown)=\"onKeydown($event)\"/>\n{{feedback}}"
+module.exports = "\n<input [class]=\"feedbackClass\" placeholder=\"Channel Name\" type='text' \n(ngModelChange)=\"channelValueChange($event)\" [(ngModel)]=\"channelValue\" \n(keydown)=\"onKeydown($event)\"/> \n\n<br />\n\n\n<input [class]=\"feedbackClass\" placeholder=\"User Name\" type='text' \n(ngModelChange)=\"userValueChange($event)\" [(ngModel)]=\"userValue\" (keydown)=\"onKeydown($event)\"/> \n\n{{feedback}}\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/channel-entry/channel-entry.component.ts":
+/***/ "../../../../../src/app/name-channel-entry/name-channel-entry.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChannelEntry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NameChannelEntry; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -385,14 +400,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ChannelEntry = (function () {
-    function ChannelEntry() {
+var NameChannelEntry = (function () {
+    function NameChannelEntry() {
         this.channelOnEnter = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.feedback = '';
         this.feedbackClass = '';
         this.MAX_LENGTH = 20;
     }
-    ChannelEntry.prototype.valueChange = function (name) {
+    NameChannelEntry.prototype.channelValueChange = function (name) {
         var value = name.trim();
         if (value.length === 0) {
             this.feedback = 'Must be more than 0 characters';
@@ -407,30 +422,47 @@ var ChannelEntry = (function () {
             this.feedbackClass = '';
         }
     };
-    ChannelEntry.prototype.onKeydown = function (event) {
+    NameChannelEntry.prototype.userValueChange = function (name) {
+        var value = name.trim();
+        if (value.length === 0) {
+            this.feedback = 'Must be more than 0 characters';
+            this.feedbackClass = 'error';
+        }
+        else if (value.length > this.MAX_LENGTH) {
+            this.feedback = 'Must be ' + this.MAX_LENGTH + ' characters or fewer';
+            this.feedbackClass = 'error';
+        }
+        else {
+            this.feedback = '';
+            this.feedbackClass = '';
+        }
+    };
+    NameChannelEntry.prototype.onKeydown = function (event) {
         if (event.keyCode === 13) {
-            var value = this.value.trim();
-            if (value.length > 0 && value.length < this.MAX_LENGTH) {
-                this.channelOnEnter.emit(value);
+            var userValue = this.userValue.trim();
+            var channelValue = this.channelValue.trim();
+            if (userValue.length > 0 && userValue.length < this.MAX_LENGTH
+                && channelValue.length > 0 && channelValue.length < this.MAX_LENGTH) {
+                this.channelOnEnter.emit({ userValue: userValue, channelValue: channelValue });
             }
         }
     };
-    return ChannelEntry;
+    return NameChannelEntry;
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === "function" && _a || Object)
-], ChannelEntry.prototype, "channelOnEnter", void 0);
-ChannelEntry = __decorate([
+], NameChannelEntry.prototype, "channelOnEnter", void 0);
+NameChannelEntry = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'channel-entry',
-        template: __webpack_require__("../../../../../src/app/channel-entry/channel-entry.component.html"),
+        selector: 'name-channel-entry',
+        template: __webpack_require__("../../../../../src/app/name-channel-entry/name-channel-entry.component.html"),
         styleUrls: [],
     })
-], ChannelEntry);
+], NameChannelEntry);
 
 var _a;
-//# sourceMappingURL=channel-entry.component.js.map
+//# sourceMappingURL=name-channel-entry.component.js.map
 
 /***/ }),
 

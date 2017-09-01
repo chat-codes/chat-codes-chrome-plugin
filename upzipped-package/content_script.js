@@ -2,9 +2,9 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
 
     if (request.name == "GetChosenCodeMirrorText"){
-
         var codeMirrorContent='empty';
-
+        
+        console.log('asdfasdfASDF');
         document.addEventListener('GetContent', function (e){
             codeMirrorContent =e.detail.content;
             sendResponse({chosenCodeMirrorText: codeMirrorContent});
@@ -34,8 +34,6 @@ chrome.runtime.onMessage.addListener(
 
     if(request.name == "ShowCode"){
         var content = request.content;
-        //var setContentCode = 'var content = ' + JSON.stringify(content) + ';';
-        //console.log(setContentCode);
 
         var actualCode = [
         'var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");',
@@ -54,12 +52,12 @@ chrome.runtime.onMessage.addListener(
         var script = document.createElement('script');
         script.textContent = actualCode;
         (document.head||document.documentElement).appendChild(script);
+        script.remove();
         sendResponse("Show Code Runs");
     }
 });
 
  // var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");
-
  //        Array.prototype.forEach.call(codeMirrorElementArray, function(codeMirrorElement){
  //            console.log(codeMirrorElement);
  //            codeMirrorEditor = codeMirrorElement.CodeMirror;

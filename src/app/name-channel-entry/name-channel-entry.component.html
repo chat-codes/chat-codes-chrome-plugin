@@ -1,0 +1,12 @@
+
+<input [class]="feedbackClass" placeholder="Channel Name" type='text' 
+(ngModelChange)="channelValueChange($event)" [(ngModel)]="channelValue" 
+(keydown)="onKeydown($event)"/> 
+
+<br />
+
+
+<input [class]="feedbackClass" placeholder="User Name" type='text' 
+(ngModelChange)="userValueChange($event)" [(ngModel)]="userValue" (keydown)="onKeydown($event)"/> 
+
+{{feedback}}

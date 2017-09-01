@@ -1,39 +1,36 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <name-entry *ngIf="!hasName" (onEnter)="setName($event)"></name-entry>
+  <name-channel-entry *ngIf="!hasName" (channelOnEnter)="setName($event)"></name-channel-entry>
 </div>
 <!-- <div>
   <channel-entry *ngIf="!hasName && !hasChannelName" (onEnter)="setChannelName($event)"></channel-entry>
 </div> -->
 
 <div *ngIf="!getDOMFlag && hasName">
-  <h1>Opening.</h1>
+  <h1>Opening...</h1>
 </div>
 
 <div *ngIf="getDOMFlag && !hasCodeMirrorFlag && hasName">
-  <h1>No CodeMirror Editor In This Page...</h1>
+  <h1>Selected No CodeMirror Editor...</h1>
 </div>
 
-<div *ngIf="getDOMFlag && hasCodeMirrorFlag && hasName" class="container">
-    <div class = 'row' id = "big-container">
-        <div class = "col-8">
-        
+<div *ngIf="getDOMFlag && hasCodeMirrorFlag && hasName" class="container" id="size-controller">
             <div class="row">
                 <div class="col-8" id = "channel-name-container">
-                    <div id="content">Channel: {{channelName}}</div>
+                    <div id="content channel-name-text">Channel: {{channelName}}</div>
                 </div>
                 <div class="col-4" id = "showcode-button-container">
                     <button (click)="showCode()">ShowCode</button>
                 </div>
             </div>
-        	<div class="row">
+        	<div class="row" >
         		<div class="col-12">
                     Members:<i class='member' *ngFor="let user of commLayer.userList.activeUsers">
                         <user-display [user]='user'></user-display>
                     </i>
                 </div>
             </div>
-             <div class="row">
+             <div class="row" id="list-row">
              	<div class="col-12">
                     <ul class='files nav nav-tabs'>
                         <li class='nav-item' *ngFor="let editorState of getActiveEditors()">
@@ -45,31 +42,26 @@
                     </ul>
                 </div>
             </div>
-            <div class="row">
-            	<div class="col-12" id="code-editor-container">
+            <div class="row" id="code-editor-row">
+            	<div class="col-12" >
                     <code-editor [commLayer]='commLayer' 
                     (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>
             	</div>
             </div>
-        
-        </div>
 
-
-        <div class="col-4">
-            <div class="row">
+            <div class="row" id="chat-messages-row">
             	<div class="col-12">
                     <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row" id='chat-input-row'>
             	<div class="col-12">
                     <chat-input  [message]="message" (send)='sendTextMessage($event)'
                     (typing)='updateTypingStatus($event)' (messageChanged)='chatinputMessageChanged($event)' #chatinput></chat-input>
                  </div>
             </div>
-        </div>
-
-    </div>
+        
 </div>
 
 

@@ -1,8 +1,6 @@
-#big-container{
-	width: 600px;
-}
-#code-editor-container{
-	height: 300px;
+#size-controller{
+	width: 450px;
+	height: 500px;
 }
 
 #showcode-button-container{
@@ -10,5 +8,26 @@
 }
 
 #channel-name-container{
-	vertical-align: middle;
+}
+
+#channel-name-text{
+	padding: 4px 8px 5px;
+}
+
+#list_row {
+    height: 30px;
+    margin-top: 0px;
+}
+
+#code-editor-row{
+	height: 300px;
+	flex-grow: 1;
+}
+
+#chat-messages-row{
+	flex-grow: 1;
+}
+
+#chat-input-row{
+	height: 48px;
 }

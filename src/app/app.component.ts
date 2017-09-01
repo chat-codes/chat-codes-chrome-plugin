@@ -84,20 +84,19 @@ export class AppComponent implements OnInit{
   private codeMirrorText;
 
   constructor() {
-     this.setName('remote,123');
-
+     //this.setName('remote,123');
   };
 
   ngAfterContentInit() {
     this.requestForCodeMirrorElement();
   }
 
-  setName(name: string): void {
-    this.hasName = true;
-    var res = name.split(",");
-    this.name = res[0];
-    this.channelName = res[1];
-    this.setNewWebCommunicationService();
+  setName(event): void {
+    console.log(event);
+     this.hasName = true;
+     this.name = event.userValue;
+     this.channelName = event.channelValue;
+     this.setNewWebCommunicationService();
   };
 
   setNewWebCommunicationService(){
@@ -134,29 +133,32 @@ export class AppComponent implements OnInit{
     this.commLayer.channelService.emitEditorChanged(openDelta, false);
   }
 
-   //for test
-  requestForCodeMirrorElement(){ 
-    var response = {chosenCodeMirrorText: "For test"};
-    this.getDOMFlag = true;
-    if(response !== undefined){
-      this.hasCodeMirrorFlag = true;
-      this.codeMirrorText = response.chosenCodeMirrorText;
-    }     
-  }
-
-  //   //for chrome
+  //  //for test
   // requestForCodeMirrorElement(){ 
-  //   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-  //     this.getDOMFlag = true;
-  //     chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
-  //       if(response !== undefined){
-  //         this.hasCodeMirrorFlag = true;
-  //         this.codeMirrorText = response.chosenCodeMirrorText;
-  //         console.log(this.codeMirrorText);
-  //       }
-  //     });
-  //   });
+  //   var response = {chosenCodeMirrorText: "For test123"};
+  //   this.getDOMFlag = true;
+  //   if(response !== undefined){
+  //     this.hasCodeMirrorFlag = true;
+  //     this.codeMirrorText = response.chosenCodeMirrorText;
+  //   }     
   // }
+
+    //for chrome
+  requestForCodeMirrorElement(){ 
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      this.getDOMFlag = true;
+      chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
+        console.log(response);
+        if(response !== undefined){
+          this.hasCodeMirrorFlag = true;
+          this.codeMirrorText = response.chosenCodeMirrorText;
+          console.log(this.codeMirrorText);
+        }else{
+          this.hasCodeMirrorFlag = false;
+        }
+      });
+    });
+  }
 
   private commLayer: WebCommunicationService;
   private at_bottom: boolean = false;
