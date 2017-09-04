@@ -99,7 +99,7 @@ export class AppComponent implements OnInit{
   private codeMirrorText;
 
   constructor() {
-     //this.setName({userValue:"remote",channelValue:123});
+     this.setName({userValue:"remote",channelValue:123});
   };
 
   ngAfterContentInit() {

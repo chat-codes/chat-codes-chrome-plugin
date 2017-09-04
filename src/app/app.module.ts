@@ -9,7 +9,7 @@ import { ChatMessagesDisplay } from 'chat-codes-web/src/app/chat-messages/chat-m
 import { ChatMessageDisplay } from 'chat-codes-web/src/app/chat-messages/single-message.component';
 import { EditMessageDisplay } from 'chat-codes-web/src/app/chat-messages/edit-message.component';
 import { ChatInput } from 'chat-codes-web/src/app/chat-input/chat-input.component';
-import { TimelineDisplay } from 'chat-codes-web/src/app/timeline/timeline.component';
+import { TimestampDisplay } from 'chat-codes-web/src/app/timestamp/timestamp.component';
 import { NameChannelEntry } from './name-channel-entry/name-channel-entry.component';
 
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -25,7 +25,7 @@ import { MomentModule } from 'angular2-moment';
     EditMessageDisplay,
     ChatMessageDisplay,
     ChatInput,
-    TimelineDisplay,
+    TimestampDisplay,
     NameChannelEntry
   ],
   imports: [

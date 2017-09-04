@@ -90,7 +90,7 @@ var AppComponent = (function () {
         this.connected = false;
         this.members = false;
         this.channelName = 'example_channel';
-        //this.setName({userValue:"remote",channelValue:123});
+        this.setName({ userValue: "remote", channelValue: 123 });
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.showCode = function () {
@@ -323,7 +323,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chat_codes_web_src_app_chat_messages_single_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/single-message.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chat_codes_web_src_app_chat_messages_edit_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/edit-message.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_chat_codes_web_src_app_chat_input_chat_input_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-input/chat-input.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timeline_timeline_component__ = __webpack_require__("../../../../chat-codes-web/src/app/timeline/timeline.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timestamp_timestamp_component__ = __webpack_require__("../../../../chat-codes-web/src/app/timestamp/timestamp.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__name_channel_entry_name_channel_entry_component__ = __webpack_require__("../../../../../src/app/name-channel-entry/name-channel-entry.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor__ = __webpack_require__("../../../../ng2-ace-editor/ng2-ace-editor.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_ng2_ace_editor__);
@@ -365,7 +365,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8_chat_codes_web_src_app_chat_messages_edit_message_component__["a" /* EditMessageDisplay */],
             __WEBPACK_IMPORTED_MODULE_7_chat_codes_web_src_app_chat_messages_single_message_component__["a" /* ChatMessageDisplay */],
             __WEBPACK_IMPORTED_MODULE_9_chat_codes_web_src_app_chat_input_chat_input_component__["a" /* ChatInput */],
-            __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timeline_timeline_component__["a" /* TimelineDisplay */],
+            __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timestamp_timestamp_component__["a" /* TimestampDisplay */],
             __WEBPACK_IMPORTED_MODULE_11__name_channel_entry_name_channel_entry_component__["a" /* NameChannelEntry */]
         ],
         imports: [
@@ -775,6 +775,13 @@ webpackContext.id = "../../../../moment/locale recursive ^\\.\\/.*$";
 
 module.exports = __webpack_require__("../../../../../src/main.ts");
 
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 
