@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(
     if(request.name == "GetOldCodeAndShowNewCode"){
         var newContent = request.content;
         var oldContent='empty';
-        
+
         document.addEventListener('GetContent', function (e){
             oldContent =e.detail.content;
             sendResponse({oldCodeMirrorText: oldContent});
@@ -62,7 +62,6 @@ chrome.runtime.onMessage.addListener(
         script.textContent = actualCode;
         (document.head||document.documentElement).appendChild(script);
         script.remove();
-
     }
 });
 

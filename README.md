@@ -2,16 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
 
+## How to develop
+
+1. `npm install .`. chat-codes-web and chat-codes-services need to be put in the same foldler.
+2. Run `ng build --output-path=/xxx/xxx/chat-codes-chrome-plugin/upzipped-package --delete-output-path false --watch`. 
+3. Open `chrome://extensions/` in Google Chrome
+4. Enable `Developer Mode` and `Load unpacked extension`, choose folder `unzipped-package`
+
+The Chrome extension popup will be updated whenever files are saved.
+If `content_script.js` in folder `unzipped-package` is changed, Chrome needs to be restarted.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## For Chrome extension development
-
-1. Run `ng build --output-path=/xxx/xxx/chat-codes-chrome-plugin/upzipped-package --delete-output-path false --watch`. 
-2. Load `unzipped-package` in `chrome://extensions/`.
-
-The chrome extension will be updated every time files are saved.
 
 ## Code scaffolding
 
