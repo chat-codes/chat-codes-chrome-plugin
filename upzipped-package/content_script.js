@@ -4,7 +4,6 @@ chrome.runtime.onMessage.addListener(
     if (request.name == "GetChosenCodeMirrorText"){
         var codeMirrorContent='empty';
         
-        console.log('asdfasdfASDF');
         document.addEventListener('GetContent', function (e){
             codeMirrorContent =e.detail.content;
             sendResponse({chosenCodeMirrorText: codeMirrorContent});
@@ -32,19 +31,29 @@ chrome.runtime.onMessage.addListener(
         script.remove();
     }
 
-    if(request.name == "ShowCode"){
-        var content = request.content;
+    if(request.name == "GetOldCodeAndShowNewCode"){
+        var newContent = request.content;
+        var oldContent='empty';
+        
+        document.addEventListener('GetContent', function (e){
+            oldContent =e.detail.content;
+            sendResponse({oldCodeMirrorText: oldContent});
+        });
 
         var actualCode = [
         'var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");',
-        'var content = ' + JSON.stringify(content) + ';',
+        'var oldContent;',
+        'var newContent = ' + JSON.stringify(newContent) + ';',
 
         'Array.prototype.forEach.call(codeMirrorElementArray, function(codeMirrorElement){',
             'codeMirrorEditor = codeMirrorElement.CodeMirror;',
-            'console.log("lol");',
             //if has focus
             'if(codeMirrorEditor.hasFocus()){',
-             'codeMirrorContent = codeMirrorEditor.setValue(content);',
+             'oldContent = codeMirrorEditor.getValue();',
+             //send content by Event
+             'var event = new CustomEvent("GetContent", {detail: {content: oldContent}});',
+             'codeMirrorEditor.setValue(newContent)',
+             'document.dispatchEvent(event);',
             '}',
         '});'
         ].join('\n');
@@ -53,7 +62,7 @@ chrome.runtime.onMessage.addListener(
         script.textContent = actualCode;
         (document.head||document.documentElement).appendChild(script);
         script.remove();
-        sendResponse("Show Code Runs");
+
     }
 });
 

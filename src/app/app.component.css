@@ -1,13 +1,27 @@
 #size-controller{
 	width: 450px;
 	height: 500px;
+	margin-top: 3px;
+}
+
+#first-row{
+
 }
 
 #showcode-button-container{
 	text-align:right;
 }
 
+#showcode-button-container{
+	text-align:right;
+}
+
+#undoshow-button-container{
+	text-align:right;
+}
+
 #channel-name-container{
+
 }
 
 #channel-name-text{
@@ -15,8 +29,7 @@
 }
 
 #list_row {
-    height: 30px;
-    margin-top: 0px;
+
 }
 
 #code-editor-row{
@@ -30,4 +43,5 @@
 
 #chat-input-row{
 	height: 48px;
+	margin-bottom: 6px;
 }

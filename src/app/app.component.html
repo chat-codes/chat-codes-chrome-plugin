@@ -24,17 +24,21 @@
                 </div>
             </div>
         	<div class="row" >
-        		<div class="col-12">
+        		<div class="col-8">
                     Members:<i class='member' *ngFor="let user of commLayer.userList.activeUsers">
                         <user-display [user]='user'></user-display>
                     </i>
+                </div>
+                <div class="col-4" id = "undoshow-button-container">
+                    <button (click)="undoShow()">UndoShow</button>
                 </div>
             </div>
              <div class="row" id="list-row">
              	<div class="col-12">
                     <ul class='files nav nav-tabs'>
                         <li class='nav-item' *ngFor="let editorState of getActiveEditors()">
-                            <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);' (click)="codeEditor.selectFile(editorState)">
+                            <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);' 
+                            (click)="codeEditor.selectFile(editorState)">
                                 {{editorState.getTitle()}}
                                 <span class='modifiedFlag' [ngClass]="{'modified':editorState.getIsModified()}"></span>
                             </a>
@@ -58,7 +62,7 @@
             <div class="row" id='chat-input-row'>
             	<div class="col-12">
                     <chat-input  [message]="message" (send)='sendTextMessage($event)'
-                    (typing)='updateTypingStatus($event)' (messageChanged)='chatinputMessageChanged($event)' #chatinput></chat-input>
+                    (typing)='updateTypingStatus($event)'  #chatinput></chat-input>
                  </div>
             </div>
         

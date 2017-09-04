@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#size-controller{\n\twidth: 450px;\n\theight: 500px;\n}\n\n#showcode-button-container{\n\ttext-align:right;\n}\n\n#channel-name-container{\n}\n\n#channel-name-text{\n\tpadding: 4px 8px 5px;\n}\n\n#list_row {\n    height: 30px;\n    margin-top: 0px;\n}\n\n#code-editor-row{\n\theight: 300px;\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-messages-row{\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-input-row{\n\theight: 48px;\n}\n", ""]);
+exports.push([module.i, "#size-controller{\n\twidth: 450px;\n\theight: 500px;\n\tmargin-top: 3px;\n}\n\n#first-row{\n\n}\n\n#showcode-button-container{\n\ttext-align:right;\n}\n\n#showcode-button-container{\n\ttext-align:right;\n}\n\n#undoshow-button-container{\n\ttext-align:right;\n}\n\n#channel-name-container{\n\n}\n\n#channel-name-text{\n\tpadding: 4px 8px 5px;\n}\n\n#list_row {\n\n}\n\n#code-editor-row{\n\theight: 300px;\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-messages-row{\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 6px;\n}\n", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div>\n  <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div>\n<!-- <div>\n  <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n\n<div *ngIf=\"!getDOMFlag && hasName\">\n  <h1>Opening...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && !hasCodeMirrorFlag && hasName\">\n  <h1>Selected No CodeMirror Editor...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && hasCodeMirrorFlag && hasName\" class=\"container\" id=\"size-controller\">\n            <div class=\"row\">\n                <div class=\"col-8\" id = \"channel-name-container\">\n                    <div id=\"content channel-name-text\">Channel: {{channelName}}</div>\n                </div>\n                <div class=\"col-4\" id = \"showcode-button-container\">\n                    <button (click)=\"showCode()\">ShowCode</button>\n                </div>\n            </div>\n        \t<div class=\"row\" >\n        \t\t<div class=\"col-12\">\n                    Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                        <user-display [user]='user'></user-display>\n                    </i>\n                </div>\n            </div>\n             <div class=\"row\" id=\"list-row\">\n             \t<div class=\"col-12\">\n                    <ul class='files nav nav-tabs'>\n                        <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                            <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' (click)=\"codeEditor.selectFile(editorState)\">\n                                {{editorState.getTitle()}}\n                                <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"row\" id=\"code-editor-row\">\n            \t<div class=\"col-12\" >\n                    <code-editor [commLayer]='commLayer' \n                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            \t</div>\n            </div>\n\n            <div class=\"row\" id=\"chat-messages-row\">\n            \t<div class=\"col-12\">\n                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n                </div>\n            </div>\n\n            <div class=\"row\" id='chat-input-row'>\n            \t<div class=\"col-12\">\n                    <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                    (typing)='updateTypingStatus($event)' (messageChanged)='chatinputMessageChanged($event)' #chatinput></chat-input>\n                 </div>\n            </div>\n        \n</div>\n\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div>\n  <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div>\n<!-- <div>\n  <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n\n<div *ngIf=\"!getDOMFlag && hasName\">\n  <h1>Opening...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && !hasCodeMirrorFlag && hasName\">\n  <h1>Selected No CodeMirror Editor...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && hasCodeMirrorFlag && hasName\" class=\"container\" id=\"size-controller\">\n            <div class=\"row\">\n                <div class=\"col-8\" id = \"channel-name-container\">\n                    <div id=\"content channel-name-text\">Channel: {{channelName}}</div>\n                </div>\n                <div class=\"col-4\" id = \"showcode-button-container\">\n                    <button (click)=\"showCode()\">ShowCode</button>\n                </div>\n            </div>\n        \t<div class=\"row\" >\n        \t\t<div class=\"col-8\">\n                    Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                        <user-display [user]='user'></user-display>\n                    </i>\n                </div>\n                <div class=\"col-4\" id = \"undoshow-button-container\">\n                    <button (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n             <div class=\"row\" id=\"list-row\">\n             \t<div class=\"col-12\">\n                    <ul class='files nav nav-tabs'>\n                        <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                            <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' \n                            (click)=\"codeEditor.selectFile(editorState)\">\n                                {{editorState.getTitle()}}\n                                <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"row\" id=\"code-editor-row\">\n            \t<div class=\"col-12\" >\n                    <code-editor [commLayer]='commLayer' \n                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            \t</div>\n            </div>\n\n            <div class=\"row\" id=\"chat-messages-row\">\n            \t<div class=\"col-12\">\n                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n                </div>\n            </div>\n\n            <div class=\"row\" id='chat-input-row'>\n            \t<div class=\"col-12\">\n                    <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                    (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n                 </div>\n            </div>\n        \n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -90,17 +90,29 @@ var AppComponent = (function () {
         this.connected = false;
         this.members = false;
         this.channelName = 'example_channel';
-        //this.setName('remote,123');
+        //this.setName({userValue:"remote",channelValue:123});
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.showCode = function () {
         var codeContent = this.editorDisplay.getEditorValue();
+        this.chromeQueryGetOldCodeAndShowCode(codeContent);
+    };
+    AppComponent.prototype.undoShow = function () {
+        if (this.lastShownContent) {
+            var codeContent = this.lastShownContent;
+            this.chromeQueryGetOldCodeAndShowCode(codeContent);
+        }
+    };
+    AppComponent.prototype.chromeQueryGetOldCodeAndShowCode = function (codeContent) {
+        var _this = this;
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { name: "ShowCode", content: codeContent }, function (response) {
-                console.log('done!');
-                console.log(response);
+            chrome.tabs.sendMessage(tabs[0].id, { name: "GetOldCodeAndShowNewCode", content: codeContent }, function (response) {
+                _this.lastShownContent = response.oldCodeMirrorText;
             });
         });
+    };
+    AppComponent.prototype.navBarChooseFile = function (data) {
+        console.log(data);
     };
     // chatinputMessageChanged(message):void{
     //   this.message = message;
@@ -143,12 +155,6 @@ var AppComponent = (function () {
             _this.createNewEditorState();
         });
     };
-    // setChannelName(channelName: string): void{
-    //   this.hasChannelName = true
-    //   this.channelName = channelName;
-    //   this.setNewWebCommunicationService();
-    // }
-    //private hasChannelName = true;
     AppComponent.prototype.createNewEditorState = function () {
         var openDelta = {
             type: 'open',

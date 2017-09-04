@@ -21,18 +21,33 @@ export class AppComponent implements OnInit{
   ngOnInit() { }
 
   @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
+
+  lastShownContent: String;
+
   showCode(){
     var codeContent = this.editorDisplay.getEditorValue();
+    this.chromeQueryGetOldCodeAndShowCode(codeContent);
+  }
+  undoShow(){
+    if(this.lastShownContent){
+      var codeContent = this.lastShownContent;
+      this.chromeQueryGetOldCodeAndShowCode(codeContent);
+    }
+  }
+  chromeQueryGetOldCodeAndShowCode(codeContent:String){
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {name: "ShowCode", content: codeContent},(response)=>{
-        console.log('done!');
-        console.log(response);
+      chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
+        this.lastShownContent = response.oldCodeMirrorText;
       });
     });
   }
 
   private message: String;
   @ViewChild('chatinput') private chatinput;
+
+  navBarChooseFile(data){
+    console.log(data);
+  }
 
 
   // chatinputMessageChanged(message):void{
@@ -84,7 +99,7 @@ export class AppComponent implements OnInit{
   private codeMirrorText;
 
   constructor() {
-     //this.setName('remote,123');
+     //this.setName({userValue:"remote",channelValue:123});
   };
 
   ngAfterContentInit() {
@@ -92,7 +107,7 @@ export class AppComponent implements OnInit{
   }
 
   setName(event): void {
-    console.log(event);
+     console.log(event);
      this.hasName = true;
      this.name = event.userValue;
      this.channelName = event.channelValue;
@@ -107,12 +122,6 @@ export class AppComponent implements OnInit{
       });
   }
 
-  // setChannelName(channelName: string): void{
-  //   this.hasChannelName = true
-  //   this.channelName = channelName;
-  //   this.setNewWebCommunicationService();
-  // }
-  //private hasChannelName = true;
   
   createNewEditorState(){
     const openDelta =  {
