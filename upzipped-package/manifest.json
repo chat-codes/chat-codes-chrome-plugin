@@ -12,14 +12,13 @@
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
-            //"matches": ["://*/*"],
             "css": ["codemirror.css"],
-            //"js": ["codemirror.js", "underscore.js", "content_script.js"],
             "js": ["codemirror.js", "content_script.js"],
             //"js": ["content_script.js"],
             "run_at": "document_end"
         }
     ],
+    "web_accessible_resources": ["get_codemirror_script.js"],
     "permissions" : ["tabs"],
     "content_security_policy": "script-src 'self' https://stats.pusher.com/timeline/v2/jsonp/1?session=NjkyNzc5NjE2&bundle=MQ%3D%3D&key=NDRmNTIyYjhkZjVhOGEzY2NmNzQ%3D&lib=anM%3D&version=NC4xLjA%3D&cluster=dXMy&features=WyJ3cyJd&timeline=W3siaW5zdGFuY2VzIjoxLCJ0aW1lc3RhbXAiOjE1MDQ1NTA2MTUxMTh9LHsic3RhdGUiOiJjb25uZWN0aW5nIiwidGltZXN0YW1wIjoxNTA0NTUwNjE1MTE4fSx7ImNhY2hlZCI6dHJ1ZSwidHJhbnNwb3J0Ijoid3MiLCJsYXRlbmN5IjoxOTcsInRpbWVzdGFtcCI6MTUwNDU1MDYxNTExOX0seyJjaWQiOjEsInRyYW5zcG9ydCI6IndzcyIsInRpbWVzdGFtcCI6MTUwNDU1MDYxNTExOX0seyJjaWQiOjEsInN0YXRlIjoiaW5pdGlhbGl6ZWQiLCJ0aW1lc3RhbXAiOjE1MDQ1NTA2MTUxMTl9LHsiY2lkIjoxLCJzdGF0ZSI6ImNvbm5lY3RpbmciLCJ0aW1lc3RhbXAiOjE1MDQ1NTA2MTUxMjF9LHsiY2lkIjoxLCJzdGF0ZSI6Im9wZW4iLCJ0aW1lc3RhbXAiOjE1MDQ1NTA2MTUyOTB9LHsic3RhdGUiOiJjb25uZWN0ZWQiLCJwYXJhbXMiOnsic29ja2V0X2lkIjoiMzA0LjczODM5NiJ9LCJ0aW1lc3RhbXAiOjE1MDQ1NTA2MTUyOTJ9XQ%3D%3D 'unsafe-eval'; object-src 'self'"
 }

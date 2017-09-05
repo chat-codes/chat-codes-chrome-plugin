@@ -3,32 +3,18 @@ chrome.runtime.onMessage.addListener(
 
     if (request.name == "GetChosenCodeMirrorText"){
         var codeMirrorContent='empty';
-        
+
         document.addEventListener('GetContent', function (e){
-            codeMirrorContent =e.detail.content;
-            sendResponse({chosenCodeMirrorText: codeMirrorContent});
+            console.log(e.detail);
+            chrome.runtime.sendMessage({name: "initialPageInfo", detail: e.detail});
         });
 
-        var actualCode = [
-        'var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");',
-        'var codeMirrorContent;',
-
-        'Array.prototype.forEach.call(codeMirrorElementArray, function(codeMirrorElement){',
-            'codeMirrorEditor = codeMirrorElement.CodeMirror;',
-            //if has focus
-            'if(codeMirrorEditor.hasFocus()){',
-             'codeMirrorContent = codeMirrorEditor.getValue();',
-             //send content by Event
-             'var event = new CustomEvent("GetContent", {detail: {content: codeMirrorContent}});',
-             'document.dispatchEvent(event);',
-            '}',
-        '});'
-        ].join('\n');
-
-        var script = document.createElement('script');
-        script.textContent = actualCode;
-        (document.head||document.documentElement).appendChild(script);
-        script.remove();
+        var s = document.createElement('script');
+        s.src = chrome.extension.getURL('get_codemirror_script.js');
+        (document.head||document.documentElement).appendChild(s);
+        s.onload = function() {
+            s.parentNode.removeChild(s);
+        };       
     }
 
     if(request.name == "GetOldCodeAndShowNewCode"){
@@ -37,7 +23,7 @@ chrome.runtime.onMessage.addListener(
 
         document.addEventListener('GetContent', function (e){
             oldContent =e.detail.content;
-            sendResponse({oldCodeMirrorText: oldContent});
+            sendResponse({type: true, oldCodeMirrorText: oldContent});
         });
 
         var actualCode = [
@@ -72,3 +58,26 @@ chrome.runtime.onMessage.addListener(
  //            var line = codeMirrorEditor.getValue();
  //            console.log(line);
  //        });
+
+
+
+  // var actualCode = [
+        // 'var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");',
+        // 'var codeMirrorContent;',
+
+        // 'Array.prototype.forEach.call(codeMirrorElementArray, function(codeMirrorElement){',
+        //     'codeMirrorEditor = codeMirrorElement.CodeMirror;',
+        //     //if has focus
+        //     'if(codeMirrorEditor.hasFocus()){',
+        //      'codeMirrorContent = codeMirrorEditor.getValue();',
+        //      //send content by Event
+        //      'var event = new CustomEvent("GetContent", {detail: {content: codeMirrorContent}});',
+        //      'document.dispatchEvent(event);',
+        //     '}',
+        // '});'
+        // ].join('\n');
+
+        // var script = document.createElement('script');
+        // script.textContent = actualCode;
+        // (document.head||document.documentElement).appendChild(script);
+        // script.remove();

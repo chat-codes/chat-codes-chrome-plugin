@@ -18,38 +18,6 @@ declare let ace: any;
 })
 
 export class AppComponent implements OnInit{
-  ngOnInit() { }
-
-  @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
-
-  lastShownContent: String;
-
-  showCode(){
-    var codeContent = this.editorDisplay.getEditorValue();
-    this.chromeQueryGetOldCodeAndShowCode(codeContent);
-  }
-  undoShow(){
-    if(this.lastShownContent){
-      var codeContent = this.lastShownContent;
-      this.chromeQueryGetOldCodeAndShowCode(codeContent);
-    }
-  }
-  chromeQueryGetOldCodeAndShowCode(codeContent:String){
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
-        this.lastShownContent = response.oldCodeMirrorText;
-      });
-    });
-  }
-
-  private message: String;
-  @ViewChild('chatinput') private chatinput;
-
-  navBarChooseFile(data){
-    console.log(data);
-  }
-
-
   // chatinputMessageChanged(message):void{
   //   this.message = message;
   // }
@@ -94,16 +62,64 @@ export class AppComponent implements OnInit{
   //   })
   //   return title;
   // }
-  private getDOMFlag: boolean = true;
-  private hasCodeMirrorFlag: boolean = true;
-  private codeMirrorText;
 
-  constructor() {
+  ngOnInit(){ }
+  public detail = {
+    hasEditor: false,
+    editorNumber: -1,
+    hasFocus: false,
+    focusedEditorNumber: -1,
+    content: ''
+  }
+
+  constructor(){
      this.setName({userValue:"remote",channelValue:123});
   };
 
-  ngAfterContentInit() {
+  ngAfterContentInit(){
     this.requestForCodeMirrorElement();
+  }
+
+    //for chrome
+  requestForCodeMirrorElement(){ 
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
+
+      });
+    });
+    chrome.runtime.onMessage.addListener( (message, sender)=>{
+      if(message.name == "initialPageInfo"){
+        this.detail = message.detail;
+      }
+    });
+  }
+
+
+  @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
+  lastShownContent: String;
+  showCode(){
+    var codeContent = this.editorDisplay.getEditorValue();
+    this.chromeQueryGetOldCodeAndShowCode(codeContent);
+  }
+  undoShow(){
+    if(this.lastShownContent){
+      var codeContent = this.lastShownContent;
+      this.chromeQueryGetOldCodeAndShowCode(codeContent);
+    }
+  }
+  chromeQueryGetOldCodeAndShowCode(codeContent:String){
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
+        this.lastShownContent = response.oldCodeMirrorText;
+      });
+    });
+  }
+
+  private message: String;
+  @ViewChild('chatinput') private chatinput;
+
+  navBarChooseFile(data){
+    console.log(data);
   }
 
   setName(event): void {
@@ -127,7 +143,8 @@ export class AppComponent implements OnInit{
     const openDelta =  {
       type: 'open',
       id: 12,
-      contents: this.codeMirrorText,
+      contents: this.detail.content,
+      //contents:'   asdf',
       grammarName:  "Null Grammar",
       title: 'WebsiteCode',
       modified: false
@@ -142,6 +159,9 @@ export class AppComponent implements OnInit{
     this.commLayer.channelService.emitEditorChanged(openDelta, false);
   }
 
+  
+
+
   //  //for test
   // requestForCodeMirrorElement(){ 
   //   var response = {chosenCodeMirrorText: "For test123"};
@@ -151,23 +171,6 @@ export class AppComponent implements OnInit{
   //     this.codeMirrorText = response.chosenCodeMirrorText;
   //   }     
   // }
-
-    //for chrome
-  requestForCodeMirrorElement(){ 
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      this.getDOMFlag = true;
-      chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
-        console.log(response);
-        if(response !== undefined){
-          this.hasCodeMirrorFlag = true;
-          this.codeMirrorText = response.chosenCodeMirrorText;
-          console.log(this.codeMirrorText);
-        }else{
-          this.hasCodeMirrorFlag = false;
-        }
-      });
-    });
-  }
 
   private commLayer: WebCommunicationService;
   private at_bottom: boolean = false;
@@ -190,6 +193,8 @@ export class AppComponent implements OnInit{
   members: any = false;
   channelName = 'example_channel';
 }
+
+
 
 
 

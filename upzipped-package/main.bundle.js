@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".jumbotron-fluid {\n  padding-top: 5px;\n  padding-bottom: 5px;\n  background: rgb(234,236,239);\n}\n\n#width-controller{\n\twidth: 450px;\n\t\n}\n\n\n#showcode-button-container{\n\ttext-align:right;\n\tmargin-bottom: 1px;\n}\n\n#undoshow-button-container{\n\ttext-align:right;\n}\n\n#channel-name-container{\n\tmargin-top: 3px;\n}\n\n#channel-name-text{\n\t\n}\n\n#list_row {\n\n}\n\n#code-editor-row{\n\theight: 300px;\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-messages-row{\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 5px;\n}\n", ""]);
+exports.push([module.i, ".jumbotron-fluid {\n  padding-top: 5px;\n  padding-bottom: 5px;\n  background: rgb(234,236,239);\n}\n\n#width-controller{\n\twidth: 450px;\n\t\n}\n\n\n#showcode-button-container{\n\ttext-align:right;\n\tmargin-bottom: 1px;\n}\n\n#undoshow-button-container{\n\ttext-align:right;\n}\n\n#channel-name-container{\n\tmargin-top: 3px;\n}\n\n#channel-name-text{\n\t\n}\n\n#list_row {\n\n}\n\n#code-editor-row{\n\theight: 300px;\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-messages-row{\n\t-webkit-box-flex: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 5px;\n}\n\n\n.remoteCursor {\n    position: absolute;\n    z-index: 5;\n    opacity: 0.3;\n}\n\n.remoteCursor.user-1 { background-color: #007bff; }\n.remoteCursor.user-2 { background-color: #dc3545; }\n.remoteCursor.user-3 { background-color: #fd7e14; }\n.remoteCursor.user-4 { background-color: #ffc107; }\n.remoteCursor.user-5 { background-color: #28a745; }\n\n.remoteCursor.carret.user-1 { border-left-color: #007bff; }\n.remoteCursor.carret.user-2 { border-left-color: #dc3545; }\n.remoteCursor.carret.user-3 { border-left-color: #fd7e14; }\n.remoteCursor.carret.user-4 { border-left-color: #ffc107; }\n.remoteCursor.carret.user-5 { border-left-color: #28a745; }\n\n.remoteCursor.carret {\n    position: absolute;\n    border-left-width: 2px;\n    border-left-style: solid;\n    z-index: 6;\n    opacity: 0.9;\n}\n\n\n.d2h-diff-table {\n    position: relative;\n}", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div>\n  <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div>\n<!-- <div>\n  <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n\n<div *ngIf=\"!getDOMFlag && hasName\">\n  <h1>Opening...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && !hasCodeMirrorFlag && hasName\">\n  <h1>Selected No CodeMirror Editor...</h1>\n</div>\n\n<div *ngIf=\"getDOMFlag && hasCodeMirrorFlag && hasName\" class=\"jumbotron-fluid\">\n<div class=\"container-fluid\" id=\"width-controller\">\n            <div class=\"row\" id=\"first-Row\">\n                <div class=\"col-8\" id = \"channel-name-container\">\n                    <div id=\"content channel-name-text\">Channel: {{channelName}}</div>\n                </div>\n                <div class=\"col-4\" id = \"showcode-button-container\">\n                    <button class='btn btn-secondary btn-sm'(click)=\"showCode()\">ShowCode</button>\n                </div>\n            </div>\n        \t<div class=\"row\" id=\"second-Row\">\n        \t\t<div class=\"col-8\">\n                    Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                        <user-display [user]='user'></user-display>\n                    </i>\n                </div>\n                <div class=\"col-4\" id = \"undoshow-button-container\">\n                    <button class='btn btn-secondary btn-sm' (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n             <div class=\"row\" id=\"list-row\">\n             \t<div class=\"col-12\">\n                    <ul class='files nav nav-tabs'>\n                        <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                            <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' \n                            (click)=\"codeEditor.selectFile(editorState)\">\n                                {{editorState.getTitle()}}\n                                <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"row\" id=\"code-editor-row\">\n            \t<div class=\"col-12\" >\n                    <code-editor [commLayer]='commLayer' \n                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            \t</div>\n            </div>\n\n            <div class=\"row\" id=\"chat-messages-row\">\n            \t<div class=\"col-12\">\n                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n                </div>\n            </div>\n\n            <div class=\"row\" id='chat-input-row'>\n                <div class=\"col-12\">\n                    <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                    (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n                 </div>\n            </div>\n            \n</div>\n</div>\n\n\n\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div>\n  <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div>\n<!-- <div>\n  <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n\n<!-- <div *ngIf=\"!detail.hasEditor && hasName\">\n  <h1>Has No CodeMirror Editor In This Page...</h1>\n</div>\n\n<div *ngIf=\"detail.hasEditor && !detail.hasFocus && hasName\">\n  <h1>Selected No CodeMirror Editor...</h1>\n</div> -->\n\n<div class=\"jumbotron-fluid\" *ngIf=\" hasName \">\n<div class=\"container-fluid\" id=\"width-controller\">\n            <div class=\"row\" id=\"first-Row\">\n                <div class=\"col-8\" id = \"channel-name-container\">\n                    <div id=\"content channel-name-text\">Channel: {{channelName}}</div>\n                </div>\n                <div class=\"col-4\" id = \"showcode-button-container\">\n                    <button class='btn btn-secondary btn-sm'(click)=\"showCode()\">ShowCode</button>\n                </div>\n            </div>\n        \t<div class=\"row\" id=\"second-Row\">\n        \t\t<div class=\"col-8\">\n                    Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                        <user-display [user]='user'></user-display>\n                    </i>\n                </div>\n                <div class=\"col-4\" id = \"undoshow-button-container\">\n                    <button class='btn btn-secondary btn-sm' (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n            <div class=\"row\" id=\"third-Row\">\n                <div class=\"col-12\">\n                    <p *ngIf=\"!detail.hasEditor\">This page has no CodeMirror Editor</p>\n                    <p *ngIf=\"detail.hasEditor\">This page has {{detail.editorNumber}} CodeMirror Editors</p>\n                    <p *ngIf=\"detail.hasEditor && !detail.hasFocus\">You are choosing no editor</p>\n                    <p *ngIf=\"detail.hasEditor && detail.hasFocus\">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>\n                </div>\n            </div>\n\n             <div class=\"row\" id=\"list-row\">\n             \t<div class=\"col-12\">\n                    <ul class='files nav nav-tabs'>\n                        <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                            <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' \n                            (click)=\"codeEditor.selectFile(editorState)\">\n                                {{editorState.getTitle()}}\n                                <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                            </a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"row\" id=\"code-editor-row\">\n            \t<div class=\"col-12\" >\n                    <code-editor [commLayer]='commLayer' \n                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            \t</div>\n            </div>\n\n            <div class=\"row\" id=\"chat-messages-row\">\n            \t<div class=\"col-12\">\n                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n                </div>\n            </div>\n\n            <div class=\"row\" id='chat-input-row'>\n                <div class=\"col-12\">\n                    <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                    (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n                 </div>\n            </div>\n            \n</div>\n</div>\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -60,31 +60,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var AppComponent = (function () {
     function AppComponent() {
-        // getTypeMessage(message):String{
-        //   if(message != undefined){
-        //     var start = message.indexOf("[");
-        //     var end = message.indexOf("]");
-        //     if(start!=-1 && end!=-1 && start<end){
-        //       return message.substring(start+1, end);
-        //     }else{
-        //       return message;
-        //     }
-        //   }else{
-        //     return("This is a link!")
-        //   }
-        // }
-        // getOpenFileTitle():String{
-        //   var editorStates = this.getActiveEditors();
-        //   var title;
-        //   _.each(editorStates, (editorstate)=>{
-        //     if(editorstate.selected == true){
-        //       title = editorstate.title;
-        //     }
-        //   })
-        //   return title;
-        // }
-        this.getDOMFlag = true;
-        this.hasCodeMirrorFlag = true;
+        this.detail = {
+            hasEditor: false,
+            editorNumber: -1,
+            hasFocus: false,
+            focusedEditorNumber: -1,
+            content: ''
+        };
         this.at_bottom = false;
         this.hasName = false;
         this.connected = false;
@@ -92,28 +74,6 @@ var AppComponent = (function () {
         this.channelName = 'example_channel';
         this.setName({ userValue: "remote", channelValue: 123 });
     }
-    AppComponent.prototype.ngOnInit = function () { };
-    AppComponent.prototype.showCode = function () {
-        var codeContent = this.editorDisplay.getEditorValue();
-        this.chromeQueryGetOldCodeAndShowCode(codeContent);
-    };
-    AppComponent.prototype.undoShow = function () {
-        if (this.lastShownContent) {
-            var codeContent = this.lastShownContent;
-            this.chromeQueryGetOldCodeAndShowCode(codeContent);
-        }
-    };
-    AppComponent.prototype.chromeQueryGetOldCodeAndShowCode = function (codeContent) {
-        var _this = this;
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, { name: "GetOldCodeAndShowNewCode", content: codeContent }, function (response) {
-                _this.lastShownContent = response.oldCodeMirrorText;
-            });
-        });
-    };
-    AppComponent.prototype.navBarChooseFile = function (data) {
-        console.log(data);
-    };
     // chatinputMessageChanged(message):void{
     //   this.message = message;
     // }
@@ -135,9 +95,67 @@ var AppComponent = (function () {
         //   this.message = messageTemp;
         // }
     };
+    // getTypeMessage(message):String{
+    //   if(message != undefined){
+    //     var start = message.indexOf("[");
+    //     var end = message.indexOf("]");
+    //     if(start!=-1 && end!=-1 && start<end){
+    //       return message.substring(start+1, end);
+    //     }else{
+    //       return message;
+    //     }
+    //   }else{
+    //     return("This is a link!")
+    //   }
+    // }
+    // getOpenFileTitle():String{
+    //   var editorStates = this.getActiveEditors();
+    //   var title;
+    //   _.each(editorStates, (editorstate)=>{
+    //     if(editorstate.selected == true){
+    //       title = editorstate.title;
+    //     }
+    //   })
+    //   return title;
+    // }
+    AppComponent.prototype.ngOnInit = function () { };
     ;
     AppComponent.prototype.ngAfterContentInit = function () {
         this.requestForCodeMirrorElement();
+    };
+    //for chrome
+    AppComponent.prototype.requestForCodeMirrorElement = function () {
+        var _this = this;
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { name: "GetChosenCodeMirrorText" }, function (response) {
+            });
+        });
+        chrome.runtime.onMessage.addListener(function (message, sender) {
+            if (message.name == "initialPageInfo") {
+                _this.detail = message.detail;
+            }
+        });
+    };
+    AppComponent.prototype.showCode = function () {
+        var codeContent = this.editorDisplay.getEditorValue();
+        this.chromeQueryGetOldCodeAndShowCode(codeContent);
+    };
+    AppComponent.prototype.undoShow = function () {
+        if (this.lastShownContent) {
+            var codeContent = this.lastShownContent;
+            this.chromeQueryGetOldCodeAndShowCode(codeContent);
+        }
+    };
+    AppComponent.prototype.chromeQueryGetOldCodeAndShowCode = function (codeContent) {
+        var _this = this;
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { name: "GetOldCodeAndShowNewCode", content: codeContent }, function (response) {
+                _this.lastShownContent = response.oldCodeMirrorText;
+            });
+        });
+    };
+    AppComponent.prototype.navBarChooseFile = function (data) {
+        console.log(data);
     };
     AppComponent.prototype.setName = function (event) {
         console.log(event);
@@ -159,7 +177,8 @@ var AppComponent = (function () {
         var openDelta = {
             type: 'open',
             id: 12,
-            contents: this.codeMirrorText,
+            contents: this.detail.content,
+            //contents:'   asdf',
             grammarName: "Null Grammar",
             title: 'WebsiteCode',
             modified: false
@@ -171,33 +190,6 @@ var AppComponent = (function () {
             id: 12
         }, false);
         this.commLayer.channelService.emitEditorChanged(openDelta, false);
-    };
-    //  //for test
-    // requestForCodeMirrorElement(){ 
-    //   var response = {chosenCodeMirrorText: "For test123"};
-    //   this.getDOMFlag = true;
-    //   if(response !== undefined){
-    //     this.hasCodeMirrorFlag = true;
-    //     this.codeMirrorText = response.chosenCodeMirrorText;
-    //   }     
-    // }
-    //for chrome
-    AppComponent.prototype.requestForCodeMirrorElement = function () {
-        var _this = this;
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            _this.getDOMFlag = true;
-            chrome.tabs.sendMessage(tabs[0].id, { name: "GetChosenCodeMirrorText" }, function (response) {
-                console.log(response);
-                if (response !== undefined) {
-                    _this.hasCodeMirrorFlag = true;
-                    _this.codeMirrorText = response.chosenCodeMirrorText;
-                    console.log(_this.codeMirrorText);
-                }
-                else {
-                    _this.hasCodeMirrorFlag = false;
-                }
-            });
-        });
     };
     AppComponent.prototype.getChatURL = function () {
         return 'chat.codes/' + this.channelName;

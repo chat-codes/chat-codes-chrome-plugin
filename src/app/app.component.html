@@ -6,15 +6,15 @@
   <channel-entry *ngIf="!hasName && !hasChannelName" (onEnter)="setChannelName($event)"></channel-entry>
 </div> -->
 
-<div *ngIf="!getDOMFlag && hasName">
-  <h1>Opening...</h1>
+<!-- <div *ngIf="!detail.hasEditor && hasName">
+  <h1>Has No CodeMirror Editor In This Page...</h1>
 </div>
 
-<div *ngIf="getDOMFlag && !hasCodeMirrorFlag && hasName">
+<div *ngIf="detail.hasEditor && !detail.hasFocus && hasName">
   <h1>Selected No CodeMirror Editor...</h1>
-</div>
+</div> -->
 
-<div *ngIf="getDOMFlag && hasCodeMirrorFlag && hasName" class="jumbotron-fluid">
+<div class="jumbotron-fluid" *ngIf=" hasName ">
 <div class="container-fluid" id="width-controller">
             <div class="row" id="first-Row">
                 <div class="col-8" id = "channel-name-container">
@@ -34,6 +34,15 @@
                     <button class='btn btn-secondary btn-sm' (click)="undoShow()">UndoShow</button>
                 </div>
             </div>
+            <div class="row" id="third-Row">
+                <div class="col-12">
+                    <p *ngIf="!detail.hasEditor">This page has no CodeMirror Editor</p>
+                    <p *ngIf="detail.hasEditor">This page has {{detail.editorNumber}} CodeMirror Editors</p>
+                    <p *ngIf="detail.hasEditor && !detail.hasFocus">You are choosing no editor</p>
+                    <p *ngIf="detail.hasEditor && detail.hasFocus">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>
+                </div>
+            </div>
+
              <div class="row" id="list-row">
              	<div class="col-12">
                     <ul class='files nav nav-tabs'>
