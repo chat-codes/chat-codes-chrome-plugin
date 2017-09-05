@@ -1,19 +1,18 @@
-#size-controller{
+.jumbotron-fluid {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: rgb(234,236,239);
+}
+
+#width-controller{
 	width: 450px;
-	height: 500px;
-	margin-top: 3px;
+	
 }
 
-#first-row{
-
-}
 
 #showcode-button-container{
 	text-align:right;
-}
-
-#showcode-button-container{
-	text-align:right;
+	margin-bottom: 1px;
 }
 
 #undoshow-button-container{
@@ -21,11 +20,11 @@
 }
 
 #channel-name-container{
-
+	margin-top: 3px;
 }
 
 #channel-name-text{
-	padding: 4px 8px 5px;
+	
 }
 
 #list_row {
@@ -43,5 +42,5 @@
 
 #chat-input-row{
 	height: 48px;
-	margin-bottom: 6px;
+	margin-bottom: 5px;
 }

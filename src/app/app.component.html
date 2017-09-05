@@ -14,23 +14,24 @@
   <h1>Selected No CodeMirror Editor...</h1>
 </div>
 
-<div *ngIf="getDOMFlag && hasCodeMirrorFlag && hasName" class="container" id="size-controller">
-            <div class="row">
+<div *ngIf="getDOMFlag && hasCodeMirrorFlag && hasName" class="jumbotron-fluid">
+<div class="container-fluid" id="width-controller">
+            <div class="row" id="first-Row">
                 <div class="col-8" id = "channel-name-container">
                     <div id="content channel-name-text">Channel: {{channelName}}</div>
                 </div>
                 <div class="col-4" id = "showcode-button-container">
-                    <button (click)="showCode()">ShowCode</button>
+                    <button class='btn btn-secondary btn-sm'(click)="showCode()">ShowCode</button>
                 </div>
             </div>
-        	<div class="row" >
+        	<div class="row" id="second-Row">
         		<div class="col-8">
                     Members:<i class='member' *ngFor="let user of commLayer.userList.activeUsers">
                         <user-display [user]='user'></user-display>
                     </i>
                 </div>
                 <div class="col-4" id = "undoshow-button-container">
-                    <button (click)="undoShow()">UndoShow</button>
+                    <button class='btn btn-secondary btn-sm' (click)="undoShow()">UndoShow</button>
                 </div>
             </div>
              <div class="row" id="list-row">
@@ -60,13 +61,15 @@
             </div>
 
             <div class="row" id='chat-input-row'>
-            	<div class="col-12">
+                <div class="col-12">
                     <chat-input  [message]="message" (send)='sendTextMessage($event)'
                     (typing)='updateTypingStatus($event)'  #chatinput></chat-input>
                  </div>
             </div>
-        
+            
 </div>
+</div>
+
 
 
 
