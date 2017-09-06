@@ -1,11 +1,9 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-
     if (request.name == "GetChosenCodeMirrorText"){
         var codeMirrorContent='empty';
 
         document.addEventListener('GetContent', function (e){
-            console.log(e.detail);
             chrome.runtime.sendMessage({name: "initialPageInfo", detail: e.detail});
         });
 
@@ -16,6 +14,7 @@ chrome.runtime.onMessage.addListener(
             s.parentNode.removeChild(s);
         };       
     }
+
 
     if(request.name == "GetOldCodeAndShowNewCode"){
         var newContent = request.content;

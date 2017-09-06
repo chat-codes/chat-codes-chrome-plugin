@@ -64,6 +64,7 @@ export class AppComponent implements OnInit{
   // }
 
   ngOnInit(){ }
+
   public detail = {
     hasEditor: false,
     editorNumber: -1,
@@ -84,7 +85,6 @@ export class AppComponent implements OnInit{
   requestForCodeMirrorElement(){ 
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
-
       });
     });
     chrome.runtime.onMessage.addListener( (message, sender)=>{
@@ -93,7 +93,6 @@ export class AppComponent implements OnInit{
       }
     });
   }
-
 
   @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
   lastShownContent: String;

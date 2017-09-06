@@ -14,8 +14,8 @@
             "matches": ["http://*/*", "https://*/*"],
             "css": ["codemirror.css"],
             "js": ["codemirror.js", "content_script.js"],
-            //"js": ["content_script.js"],
-            "run_at": "document_end"
+            "run_at": "document_end",
+            "all_frames": true
         }
     ],
     "web_accessible_resources": ["get_codemirror_script.js"],
