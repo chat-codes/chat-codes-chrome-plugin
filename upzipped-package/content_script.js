@@ -30,17 +30,19 @@ chrome.runtime.onMessage.addListener(
         'var oldContent;',
         'var newContent = ' + JSON.stringify(newContent) + ';',
 
-        'Array.prototype.forEach.call(codeMirrorElementArray, function(codeMirrorElement){',
-            'codeMirrorEditor = codeMirrorElement.CodeMirror;',
-            //if has focus
-            'if(codeMirrorEditor.hasFocus()){',
-             'oldContent = codeMirrorEditor.getValue();',
-             //send content by Event
-             'var event = new CustomEvent("GetContent", {detail: {content: oldContent}});',
-             'codeMirrorEditor.setValue(newContent)',
-             'document.dispatchEvent(event);',
-            '}',
-        '});'
+        'if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml") {',
+            'Array.prototype.forEach.call(codeMirrorElementArray, function(codeMirrorElement){',
+              'codeMirrorEditor = codeMirrorElement.CodeMirror;',
+                //if has focus
+                'if(codeMirrorEditor.hasFocus()){',
+                'oldContent = codeMirrorEditor.getValue();',
+                //send content by Event
+                'var event = new CustomEvent("GetContent", {detail: {content: oldContent}});',
+                'codeMirrorEditor.setValue(newContent)',
+                'document.dispatchEvent(event);',
+                '}',
+            '});',
+        '}'
         ].join('\n');
 
         var script = document.createElement('script');

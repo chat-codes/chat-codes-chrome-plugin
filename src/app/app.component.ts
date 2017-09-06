@@ -90,6 +90,7 @@ export class AppComponent implements OnInit{
     chrome.runtime.onMessage.addListener( (message, sender)=>{
       if(message.name == "initialPageInfo"){
         this.detail = message.detail;
+        console.log(this.detail);
       }
     });
   }

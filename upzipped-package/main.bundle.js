@@ -133,6 +133,7 @@ var AppComponent = (function () {
         chrome.runtime.onMessage.addListener(function (message, sender) {
             if (message.name == "initialPageInfo") {
                 _this.detail = message.detail;
+                console.log(_this.detail);
             }
         });
     };
