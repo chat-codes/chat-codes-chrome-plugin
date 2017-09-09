@@ -1,0 +1,52 @@
+<div class="row" id="first-row">
+	<div class="input-group col-4" id="user-name-input-container">
+		<input type="text" class="form-control" id= "user-name-input"
+		placeholder="Your name" [(ngModel)]="userName" (ngModelChange)="userNameChange($event)">
+	</div>
+
+	<div class="col-4" id="page-editor-info-container">
+		<button type="button" *ngIf="detail.hasEditor" class="btn btn-secondary nav-button">{{detail.focusedEditorNumber}}+1/{{detail.editorNumber}}</button>
+
+		<button type="button" *ngIf="!detail.hasEditor" class="btn btn-secondary nav-button">None</button>
+
+	</div>
+	
+	<div class="col-4" id="nav-button-container">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<button type="button" class="btn btn-secondary nav-button" (click)="searchUp($event)">⬆︎</button>
+			<button type="button" class="btn btn-secondary nav-button" (click)="searchDown($event)">⬇︎</button>
+		</div>
+	</div>
+</div>
+<div class="row" id="editor-Row">
+	<div class="col-12">
+	<ace-editor #editor></ace-editor>
+</div>
+</div>
+<div class="row" id="input-channel-row">
+<div class="col-6">
+	<div class="input-group">
+		<input type="text" class="form-control" id= "channel-name-input"
+		placeholder="Created Channel"  [(ngModel)]="channelNameInput">
+		<span class="input-group-btn" id="go-button-container">
+			<button class="btn btn-sm btn-secondary" type="button" id = "go-button"
+			(click)="goButtonClick($event)">Go!</button>
+		</span>
+	</div>
+</div>
+<div class="col-6" id="new-channel-container">
+	<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel()">Create New Channel</button>
+</div>
+</div>
+<div class="row" id="recent-channel-row">
+<!-- <span id="recent-channels">Recent Channels</span>
+-->
+<div class="col-12">
+	<span *ngFor="let channel of channelQueue">
+		<button type="button" class="btn btn-sm btn-outline-dark" id="recent-channel-button"
+		(click)=goToChannel(channel)>#{{channel}}</button>
+		<!-- <a class="btn btn-link" href="#" role="button">#{{channel}}</a> -->
+		<!-- <button type="button" class="btn btn-link">#{{channel}}</button> -->
+	</span>
+</div>
+</div>

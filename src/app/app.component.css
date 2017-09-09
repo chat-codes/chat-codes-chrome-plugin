@@ -1,14 +1,18 @@
+html{
+  width: 410px;
+}
+
 .jumbotron-fluid {
   padding-top: 5px;
   padding-bottom: 5px;
   background: rgb(234,236,239);
+  
 }
 
 #width-controller{
-	width: 450px;
-	
+	width: 400px;
+  /*box-shadow: 0px 0px 10px #888888;*/
 }
-
 
 #showcode-button-container{
 	text-align:right;

@@ -1,85 +1,79 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <name-channel-entry *ngIf="!hasName" (channelOnEnter)="setName($event)"></name-channel-entry>
-</div>
 <!-- <div>
-  <channel-entry *ngIf="!hasName && !hasChannelName" (onEnter)="setChannelName($event)"></channel-entry>
+    <name-channel-entry *ngIf="!hasName" (channelOnEnter)="setName($event)"></name-channel-entry>
 </div> -->
-
+<!-- <div>
+    <channel-entry *ngIf="!hasName && !hasChannelName" (onEnter)="setChannelName($event)"></channel-entry>
+</div> -->
 <!-- <div *ngIf="!detail.hasEditor && hasName">
-  <h1>Has No CodeMirror Editor In This Page...</h1>
+    <h1>Has No CodeMirror Editor In This Page...</h1>
 </div>
-
 <div *ngIf="detail.hasEditor && !detail.hasFocus && hasName">
-  <h1>Selected No CodeMirror Editor...</h1>
+    <h1>Selected No CodeMirror Editor...</h1>
 </div> -->
 
 <div class="jumbotron-fluid" *ngIf=" hasName ">
-<div class="container-fluid" id="width-controller">
-            <div class="row" id="first-Row">
-                <div class="col-8" id = "channel-name-container">
-                    <div id="content channel-name-text">Channel: {{channelName}}</div>
-                </div>
-                <div class="col-4" id = "showcode-button-container">
-                    <button class='btn btn-secondary btn-sm'(click)="showCode()">ShowCode</button>
-                </div>
+    <div *ngIf='!channelGeneratedFlag' class="container-fluid" id="width-controller" >
+        <welcome-page></welcome-page>
+    </div>
+    
+    <div *ngIf='channelGeneratedFlag' class="container-fluid" id="width-controller">
+        <div class="row" id="first-Row">
+            <div class="col-8" id = "channel-name-container">
+                <div id="content channel-name-text">Channel: {{channelName}}</div>
             </div>
-        	<div class="row" id="second-Row">
-        		<div class="col-8">
-                    Members:<i class='member' *ngFor="let user of commLayer.userList.activeUsers">
-                        <user-display [user]='user'></user-display>
-                    </i>
-                </div>
-                <div class="col-4" id = "undoshow-button-container">
-                    <button class='btn btn-secondary btn-sm' (click)="undoShow()">UndoShow</button>
-                </div>
+            <div class="col-4" id = "showcode-button-container">
+                <button class='btn btn-secondary btn-sm'(click)="showCode()">ShowCode</button>
             </div>
-            <div class="row" id="third-Row">
-                <div class="col-12">
-                    <p *ngIf="!detail.hasEditor">This page has no CodeMirror Editor</p>
-                    <p *ngIf="detail.hasEditor">This page has {{detail.editorNumber}} CodeMirror Editors</p>
-                    <p *ngIf="detail.hasEditor && !detail.hasFocus">You are choosing no editor</p>
-                    <p *ngIf="detail.hasEditor && detail.hasFocus">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>
-                </div>
+        </div>
+        <div class="row" id="second-Row">
+            <div class="col-8">
+                Members:<i class='member' *ngFor="let user of commLayer.userList.activeUsers">
+                <user-display [user]='user'></user-display>
+                </i>
             </div>
-
-             <div class="row" id="list-row">
-             	<div class="col-12">
-                    <ul class='files nav nav-tabs'>
-                        <li class='nav-item' *ngFor="let editorState of getActiveEditors()">
-                            <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);' 
+            <div class="col-4" id = "undoshow-button-container">
+                <button class='btn btn-secondary btn-sm' (click)="undoShow()">UndoShow</button>
+            </div>
+        </div>
+        <div class="row" id="third-Row">
+            <div class="col-12">
+                <p *ngIf="!detail.hasEditor">This page has no CodeMirror Editor</p>
+                <p *ngIf="detail.hasEditor">This page has {{detail.editorNumber}} CodeMirror Editors</p>
+                <p *ngIf="detail.hasEditor && !detail.hasFocus">You are choosing no editor</p>
+                <p *ngIf="detail.hasEditor && detail.hasFocus">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>
+            </div>
+        </div>
+        <div class="row" id="list-row">
+            <div class="col-12">
+                <ul class='files nav nav-tabs'>
+                    <li class='nav-item' *ngFor="let editorState of getActiveEditors()">
+                        <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);'
                             (click)="codeEditor.selectFile(editorState)">
-                                {{editorState.getTitle()}}
-                                <span class='modifiedFlag' [ngClass]="{'modified':editorState.getIsModified()}"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            {{editorState.getTitle()}}
+                            <span class='modifiedFlag' [ngClass]="{'modified':editorState.getIsModified()}"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="row" id="code-editor-row">
-            	<div class="col-12" >
-                    <code-editor [commLayer]='commLayer' 
-                    (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>
-            	</div>
+        </div>
+        <div class="row" id="code-editor-row">
+            <div class="col-12" >
+                <code-editor [commLayer]='commLayer'
+                (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>
             </div>
-
-            <div class="row" id="chat-messages-row">
-            	<div class="col-12">
-                    <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>
-                </div>
+        </div>
+        <div class="row" id="chat-messages-row">
+            <div class="col-12">
+                <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>
             </div>
-
-            <div class="row" id='chat-input-row'>
-                <div class="col-12">
-                    <chat-input  [message]="message" (send)='sendTextMessage($event)'
-                    (typing)='updateTypingStatus($event)'  #chatinput></chat-input>
-                 </div>
+        </div>
+        <div class="row" id='chat-input-row'>
+            <div class="col-12">
+                <chat-input  [message]="message" (send)='sendTextMessage($event)'
+                (typing)='updateTypingStatus($event)'  #chatinput></chat-input>
             </div>
-            
+        </div>
+        
+    </div>
 </div>
-</div>
-
-
-
-
-

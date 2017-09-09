@@ -73,6 +73,8 @@ export class AppComponent implements OnInit{
     content: ''
   }
 
+  channelGeneratedFlag = false;
+
   constructor(){
      this.setName({userValue:"remote",channelValue:123});
   };
@@ -81,18 +83,30 @@ export class AppComponent implements OnInit{
     this.requestForCodeMirrorElement();
   }
 
-    //for chrome
+  //   //for chrome
+  // requestForCodeMirrorElement(){ 
+  //   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+  //     chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
+  //     });
+  //   });
+  //   chrome.runtime.onMessage.addListener( (message, sender)=>{
+  //     if(message.name == "initialPageInfo"){
+  //       this.detail = message.detail;
+  //       console.log(this.detail);
+  //     }
+  //   });
+  // }
+
+
+   //for test
   requestForCodeMirrorElement(){ 
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
-      });
-    });
-    chrome.runtime.onMessage.addListener( (message, sender)=>{
-      if(message.name == "initialPageInfo"){
-        this.detail = message.detail;
-        console.log(this.detail);
-      }
-    });
+    this.detail = {
+      hasEditor: true,
+      editorNumber: 3,
+      hasFocus: true,
+      focusedEditorNumber: 2,
+      content: 'For test'
+    };
   }
 
   @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
@@ -131,7 +145,7 @@ export class AppComponent implements OnInit{
   };
 
   setNewWebCommunicationService(){
-      this.commLayer = new WebCommunicationService(this.name, this.channelName, true);
+      this.commLayer = new WebCommunicationService(this.name, this.channelName, false);
       this.commLayer.ready().then((channel) => {
         this.connected = true;
         this.createNewEditorState();
@@ -159,18 +173,6 @@ export class AppComponent implements OnInit{
     this.commLayer.channelService.emitEditorChanged(openDelta, false);
   }
 
-  
-
-
-  //  //for test
-  // requestForCodeMirrorElement(){ 
-  //   var response = {chosenCodeMirrorText: "For test123"};
-  //   this.getDOMFlag = true;
-  //   if(response !== undefined){
-  //     this.hasCodeMirrorFlag = true;
-  //     this.codeMirrorText = response.chosenCodeMirrorText;
-  //   }     
-  // }
 
   private commLayer: WebCommunicationService;
   private at_bottom: boolean = false;

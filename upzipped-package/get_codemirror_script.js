@@ -1,6 +1,6 @@
-console.log(document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml");
+//console.log(document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml");
 
-if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml") {
+// if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml") {
     var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");
     var detail = {
         hasEditor: codeMirrorElementArray.length == 0 ? false : true,
@@ -34,4 +34,4 @@ if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xh
         detail: detail
     });
     document.dispatchEvent(event);
-}
+// }
