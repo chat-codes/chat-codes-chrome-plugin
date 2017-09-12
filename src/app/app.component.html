@@ -12,38 +12,46 @@
     <h1>Selected No CodeMirror Editor...</h1>
 </div> -->
 
-<div class="jumbotron-fluid" *ngIf=" hasName ">
+<div class="jumbotron-fluid" >
     <div *ngIf='!channelGeneratedFlag' class="container-fluid" id="width-controller" >
-        <welcome-page></welcome-page>
+        <welcome-page (channelClick)="channelClick($event)"></welcome-page>
     </div>
     
     <div *ngIf='channelGeneratedFlag' class="container-fluid" id="width-controller">
         <div class="row" id="first-Row">
-            <div class="col-8" id = "channel-name-container">
-                <div id="content channel-name-text">Channel: {{channelName}}</div>
+            <div class="col-12">
+                <button type="button" class="btn btn-sm btn-outline-dark" id="channel-button">#{{channelName}}</button>
+                <!-- <div id="content channel-name-text">{{channelName}}</div> -->
+            
+         
+                <i class='member' *ngFor="let user of commLayer.userList.activeUsers">
+                <user-display [user]='user'></user-display>
+                </i>
+
             </div>
-            <div class="col-4" id = "showcode-button-container">
+
+            <!-- <div class="col-4" id = "showcode-button-container">
                 <button class='btn btn-secondary btn-sm'(click)="showCode()">ShowCode</button>
-            </div>
+            </div> -->
         </div>
         <div class="row" id="second-Row">
-            <div class="col-8">
+            <!-- <div class="col-8">
                 Members:<i class='member' *ngFor="let user of commLayer.userList.activeUsers">
                 <user-display [user]='user'></user-display>
                 </i>
-            </div>
-            <div class="col-4" id = "undoshow-button-container">
+            </div> -->
+           <!--  <div class="col-4" id = "undoshow-button-container">
                 <button class='btn btn-secondary btn-sm' (click)="undoShow()">UndoShow</button>
-            </div>
+            </div> -->
         </div>
-        <div class="row" id="third-Row">
+        <!-- <div class="row" id="third-Row">
             <div class="col-12">
                 <p *ngIf="!detail.hasEditor">This page has no CodeMirror Editor</p>
                 <p *ngIf="detail.hasEditor">This page has {{detail.editorNumber}} CodeMirror Editors</p>
                 <p *ngIf="detail.hasEditor && !detail.hasFocus">You are choosing no editor</p>
                 <p *ngIf="detail.hasEditor && detail.hasFocus">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>
             </div>
-        </div>
+        </div> -->
         <div class="row" id="list-row">
             <div class="col-12">
                 <ul class='files nav nav-tabs'>
@@ -58,11 +66,36 @@
             </div>
         </div>
         <div class="row" id="code-editor-row">
-            <div class="col-12" >
+            <div class="col-12">
                 <code-editor [commLayer]='commLayer'
                 (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>
             </div>
         </div>
+
+        <div class="row" id="page-function-row">
+            <div class="col-6" >
+                <div class="btn-group" role="group" aria-label="Basic example">
+                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)="showCode()">ShowCode</button>
+                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)="undoShow()">UndoShow</button>
+                </div>
+            </div>
+            <div class="col-6" id="search-button-container">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    
+                    <button type="button" class="btn btn-outline-dark btn-sm" id='no-boarder-button' (click)="searchUp($event)">⬆︎</button>
+                    
+                    <button type="button" *ngIf="detail.hasEditor" class="btn btn-outline-dark btn-sm" id='no-boarder-button'>{{detail.focusedEditorNumber}}/{{detail.editorNumber}}</button>
+                    
+                    <button type="button" *ngIf="!detail.hasEditor" class="btn btn-outline-dark btn-sm" id='no-boarder-button'>None</button>
+                    
+                    <button type="button" class="btn btn-outline-dark btn-sm" id='no-boarder-button' (click)="searchDown($event)">⬇︎</button>
+
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="row" id="chat-messages-row">
             <div class="col-12">
                 <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>

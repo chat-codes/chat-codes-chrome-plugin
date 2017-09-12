@@ -63,72 +63,6 @@ export class AppComponent implements OnInit{
   //   return title;
   // }
 
-  ngOnInit(){ }
-
-  public detail = {
-    hasEditor: false,
-    editorNumber: -1,
-    hasFocus: false,
-    focusedEditorNumber: -1,
-    content: ''
-  }
-
-  channelGeneratedFlag = false;
-
-  constructor(){
-     this.setName({userValue:"remote",channelValue:123});
-  };
-
-  ngAfterContentInit(){
-    this.requestForCodeMirrorElement();
-  }
-
-  //   //for chrome
-  // requestForCodeMirrorElement(){ 
-  //   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-  //     chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
-  //     });
-  //   });
-  //   chrome.runtime.onMessage.addListener( (message, sender)=>{
-  //     if(message.name == "initialPageInfo"){
-  //       this.detail = message.detail;
-  //       console.log(this.detail);
-  //     }
-  //   });
-  // }
-
-
-   //for test
-  requestForCodeMirrorElement(){ 
-    this.detail = {
-      hasEditor: true,
-      editorNumber: 3,
-      hasFocus: true,
-      focusedEditorNumber: 2,
-      content: 'For test'
-    };
-  }
-
-  @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
-  lastShownContent: String;
-  showCode(){
-    var codeContent = this.editorDisplay.getEditorValue();
-    this.chromeQueryGetOldCodeAndShowCode(codeContent);
-  }
-  undoShow(){
-    if(this.lastShownContent){
-      var codeContent = this.lastShownContent;
-      this.chromeQueryGetOldCodeAndShowCode(codeContent);
-    }
-  }
-  chromeQueryGetOldCodeAndShowCode(codeContent:String){
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
-        this.lastShownContent = response.oldCodeMirrorText;
-      });
-    });
-  }
-
   private message: String;
   @ViewChild('chatinput') private chatinput;
 
@@ -136,23 +70,103 @@ export class AppComponent implements OnInit{
     console.log(data);
   }
 
-  setName(event): void {
-     console.log(event);
-     this.hasName = true;
-     this.name = event.userValue;
-     this.channelName = event.channelValue;
-     this.setNewWebCommunicationService();
+  private commLayer: WebCommunicationService;
+  private at_bottom: boolean = false;
+  
+  getChatURL(): string {
+    return 'chat.codes/' + this.channelName;
   };
+  sendTextMessage(message: string): void {
+    this.commLayer.sendTextMessage(message);
+  };
+  updateTypingStatus(status: string): void {
+    this.commLayer.sendTypingStatus(status);
+  };
+  getActiveEditors() {
+    return this.commLayer.getActiveEditors();
+  }
+  private userName: string;
+  private connected: boolean = false;
+  members: any = false;
+  channelName = 'example_channel';
 
-  setNewWebCommunicationService(){
-      this.commLayer = new WebCommunicationService(this.name, this.channelName, false);
-      this.commLayer.ready().then((channel) => {
-        this.connected = true;
-        this.createNewEditorState();
-      });
+
+
+  ngOnInit(){ }
+
+  detail = {
+    hasEditor: false,
+    editorNumber: -1,
+    hasFocus: false,
+    focusedEditorNumber: -1,
+    content: ''
+  }
+  channelGeneratedFlag = false;
+
+  constructor(){
+    // this.test();
   }
 
-  
+  test(){
+     this.channelGeneratedFlag = true;
+     this.setName("userName", "emirates");
+     this.setNewWebCommunicationService(false);
+  }
+
+  ngAfterContentInit(){
+
+  }
+
+  channelClick(data){
+    console.log(data);
+    this.channelGeneratedFlag = true;
+    this.detail = data.detail;
+    if(data.type=="GoToCreatedChannel"){
+      this.setName(data.userName, data.channelName);
+      this.setNewWebCommunicationService(false);
+    }else if(data.type=="CreatNewChannel"){
+      this.setName(data.userName, data.channelName);
+
+    }
+  }
+
+  setName(userName, channelName): void {
+     this.userName = userName;
+     this.channelName = channelName;
+  };
+
+  setNewWebCommunicationService(createNewChannelFlag){
+      this.commLayer = new WebCommunicationService(this.userName, this.channelName, createNewChannelFlag);
+      this.commLayer.ready().then((channel) => {
+        this.connected = true;
+        // this.createNewEditorState();
+      });
+  }
+   
+
+
+  // @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
+  // lastShownContent: String;
+  // showCode(){
+  //   var codeContent = this.editorDisplay.getEditorValue();
+  //   this.chromeQueryGetOldCodeAndShowCode(codeContent);
+  // }
+  // undoShow(){
+  //   if(this.lastShownContent){
+  //     var codeContent = this.lastShownContent;
+  //     this.chromeQueryGetOldCodeAndShowCode(codeContent);
+  //   }
+  // }
+
+
+  // chromeQueryGetOldCodeAndShowCode(codeContent:String){
+  //   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+  //     chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
+  //       this.lastShownContent = response.oldCodeMirrorText;
+  //     });
+  //   });
+  // }
+
   createNewEditorState(){
     const openDelta =  {
       type: 'open',
@@ -173,27 +187,6 @@ export class AppComponent implements OnInit{
     this.commLayer.channelService.emitEditorChanged(openDelta, false);
   }
 
-
-  private commLayer: WebCommunicationService;
-  private at_bottom: boolean = false;
-  
-  getChatURL(): string {
-    return 'chat.codes/' + this.channelName;
-  };
-  sendTextMessage(message: string): void {
-    this.commLayer.sendTextMessage(message);
-  };
-  updateTypingStatus(status: string): void {
-    this.commLayer.sendTypingStatus(status);
-  };
-  getActiveEditors() {
-    return this.commLayer.getActiveEditors();
-  }
-  private name: string;
-  private hasName: boolean = false;
-  private connected: boolean = false;
-  members: any = false;
-  channelName = 'example_channel';
 }
 
 

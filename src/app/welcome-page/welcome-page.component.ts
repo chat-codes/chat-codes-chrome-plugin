@@ -26,6 +26,8 @@ export class WelcomePage {
 	    focusedEditorNumber: -1,
 	    content: ''
 	}
+	@Output() public channelClick:EventEmitter<any> = new EventEmitter();
+
 
 	constructor(){
 		this.getLastUsedUserName();
@@ -53,14 +55,12 @@ export class WelcomePage {
     getCodeMirrorEditorInfo(){ 
 	    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
 	    	chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
+	    		if(response.name == "initialPageInfo"){
+	    			console.log(response);
+	    			this.detail = response.detail;
+	           		this.setEditorValue(this.detail.content);
+	    		}
 	    	});
-	    });
-	    chrome.runtime.onMessage.addListener( (message, sender)=>{
-	        if(message.name == "initialPageInfo"){
-	            this.detail = message.detail;
-	            this.setEditorValue(this.detail.content);
-	            console.log(this.detail);
-	        }
 	    });
 	}
 
@@ -77,21 +77,37 @@ export class WelcomePage {
 
 	//nav button
 	searchUp(){
-
+		chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+	    	chrome.tabs.sendMessage(tabs[0].id, {name: "SearchUp"}, (response) => {
+	    		if(response.name == "SearchUp"){
+	    			console.log(response);
+	    			this.detail = response.detail;
+	           		this.setEditorValue(this.detail.content);
+	    		}
+	    	});
+	   	});
 	}
 
 	searchDown(){
-
+		chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+	    	chrome.tabs.sendMessage(tabs[0].id, {name: "SearchDown"}, (response) => {
+	    		if(response.name == "SearchDown"){
+	    			console.log(response);
+	    			this.detail = response.detail;
+	           		this.setEditorValue(this.detail.content);
+	    		}
+	    	});
+	    });
 	}
 
 	//editor
 	setEditorValue(value){
 		this.editor.getEditor().setValue(value);
+		this.editor.getEditor().navigateFileEnd();
 	}
 
 	//channelNameInput
 	goButtonClick(data){
-		this.addChannel(this.channelNameInput);
 		this.goToChannel(this.channelNameInput);
 		this.channelNameInput = '';
 	}
@@ -124,11 +140,20 @@ export class WelcomePage {
 	goToChannel(channelName){
 		this.addChannel(channelName);
 		console.log("go to channel "+ channelName);
+		this.channelClick.emit({
+			type: "GoToCreatedChannel",
+			channelName: channelName,
+			detail: this.detail,
+			userName: this.userName
+		});
 	}
 
 	createNewChannel(){
 		console.log("create New Channel");
+		this.channelClick.emit({
+			type: "CreatNewChannel",
+			detail: this.detail,
+			userName: this.userName
+		});
 	}
-
-
 }

@@ -5,7 +5,7 @@
 	</div>
 
 	<div class="col-4" id="page-editor-info-container">
-		<button type="button" *ngIf="detail.hasEditor" class="btn btn-secondary nav-button">{{detail.focusedEditorNumber}}+1/{{detail.editorNumber}}</button>
+		<button type="button" *ngIf="detail.hasEditor" class="btn btn-secondary nav-button">{{detail.focusedEditorNumber}}/{{detail.editorNumber}}</button>
 
 		<button type="button" *ngIf="!detail.hasEditor" class="btn btn-secondary nav-button">None</button>
 
@@ -39,8 +39,8 @@
 </div>
 </div>
 <div class="row" id="recent-channel-row">
-<!-- <span id="recent-channels">Recent Channels</span>
--->
+
+
 <div class="col-12">
 	<span *ngFor="let channel of channelQueue">
 		<button type="button" class="btn btn-sm btn-outline-dark" id="recent-channel-button"

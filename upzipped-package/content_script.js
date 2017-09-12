@@ -1,12 +1,12 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml") {
-            console.log("it is works");
+            
+            //Everytime pop up will run this
             if (request.name == "GetChosenCodeMirrorText") {
                 var codeMirrorContent = 'empty';
-
                 document.addEventListener('GetContent', function(e) {
-                    chrome.runtime.sendMessage({
+                    sendResponse({
                         name: "initialPageInfo",
                         detail: e.detail
                     });
@@ -14,6 +14,40 @@ chrome.runtime.onMessage.addListener(
 
                 var s = document.createElement('script');
                 s.src = chrome.extension.getURL('get_codemirror_script.js');
+                (document.head || document.documentElement).appendChild(s);
+                s.onload = function() {
+                    s.parentNode.removeChild(s);
+                };
+            }
+
+            //SearchUpButton do this
+            if ( request.name == "SearchUp"){
+                document.addEventListener('SearchUp', function(e) {
+                    sendResponse({
+                        name: "SearchUp",
+                        detail: e.detail
+                    });
+                });
+
+                var s = document.createElement('script');
+                s.src = chrome.extension.getURL('search_up_script.js');
+                (document.head || document.documentElement).appendChild(s);
+                s.onload = function() {
+                    s.parentNode.removeChild(s);
+                };
+            }
+
+            //SearchDownButton do this
+            if ( request.name == "SearchDown"){
+                document.addEventListener('SearchDown', function(e) {
+                    sendResponse({
+                        name: "SearchDown",
+                        detail: e.detail
+                    });
+                });
+
+                var s = document.createElement('script');
+                s.src = chrome.extension.getURL('search_down_script.js');
                 (document.head || document.documentElement).appendChild(s);
                 s.onload = function() {
                     s.parentNode.removeChild(s);
@@ -60,8 +94,7 @@ chrome.runtime.onMessage.addListener(
             }
 
         }
-
-
+        return true;
     });
 
 // var codeMirrorElementArray = document.getElementsByClassName("cm-s-default");
