@@ -1,4 +1,11 @@
 <div class="row" id="first-row">
+	
+	<div class="col-12">
+		<div class="alert alert-warning" role="alert" id="alert" >
+  			{{feedback}}
+		</div>
+	</div>
+
 	<div class="input-group col-4" id="user-name-input-container">
 		<input type="text" class="form-control" id= "user-name-input"
 		placeholder="Your name" [(ngModel)]="userName" (ngModelChange)="userNameChange($event)">
@@ -20,21 +27,24 @@
 </div>
 <div class="row" id="editor-Row">
 	<div class="col-12">
-	<ace-editor #editor></ace-editor>
-</div>
+		<ace-editor #editor></ace-editor>
+	</div>
 </div>
 <div class="row" id="input-channel-row">
-<div class="col-12">
-	<div class="input-group">
-		<input type="text" class="form-control" id= "channel-name-input"
-		placeholder="Created Channel"  [(ngModel)]="channelNameInput">
-		<span class="input-group-btn" id="go-button-container">
-			<button class="btn btn-sm btn-secondary" type="button" id = "go-button"
-			(click)="goButtonClick($event)">Go!</button>
-		</span>
-		<span class="input-group-btn" id="create-new-channel-button-container">
-			<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel($event)">Create New Channel</button>
-		</span>
+		<div class="col-6 input-group" id="input-channel-container">
+			<input type="text" class="form-control" id= "channel-name-input"
+			placeholder="Channel Name"  [(ngModel)]="channelNameInput">
+			<span class="input-group-btn" id="check-button-container">
+				<button class="btn btn-sm btn-secondary" type="button" id = "check-button"
+				(click)="goButtonClick($event)">Go!</button>
+			</span>
+			<!-- <span class="input-group-btn" id="create-new-channel-button-container">
+				<button type="button" class="btn btn-secondary btn-sm" id="go-button" (click)="createNewChannel($event)">Create</button>
+			</span> -->
+		</div>
+
+	<div class="col-6" id="create-button-container">
+		<button type="button" class="btn btn-secondary btn-sm" id="create-button" (click)="createNewChannel($event)">Create New Channel</button>
 	</div>
 </div>
 
@@ -42,7 +52,6 @@
 	<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel()">Create New Channel</button>
 </div> -->
 
-</div>
 <div class="row" id="recent-channel-row">
 
 
@@ -54,4 +63,8 @@
 		<!-- <button type="button" class="btn btn-link">#{{channel}}</button> -->
 	</span>
 </div>
+
+
+
+
 </div>

@@ -1,7 +1,7 @@
 console.log("injected");
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        
         if(request.name == "SetWebInfo"){
             console.log("I get something!")
             var userName = request.userName;
@@ -10,11 +10,24 @@ chrome.runtime.onMessage.addListener(
             console.log(content);
             console.log(channelName);
             console.log(userName);
+            var actualCode = [
+                'var content = ' + JSON.stringify(content) + ';',
+                'var channelName = ' + JSON.stringify(channelName) + ';',
+                'var userName = ' + JSON.stringify(userName) + ';',
+
+                'var event = new CustomEvent("SetWebInfo", {detail: {content: content, channelName:channelName, userName: userName}});',
+                'document.dispatchEvent(event);'
+            ].join('\n');
+
+            var script = document.createElement('script');
+            script.textContent = actualCode;
+            (document.head || document.documentElement).appendChild(script);
+            script.remove();
+
             sendResponse({test: "get it"});
         }
 
         if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml") {
-
             //Everytime pop up will run this
             if (request.name == "GetChosenCodeMirrorText") {
                 var codeMirrorContent = 'empty';
@@ -26,7 +39,7 @@ chrome.runtime.onMessage.addListener(
                 });
 
                 var s = document.createElement('script');
-                s.src = chrome.extension.getURL('get_codemirror_script.js');
+                s.src = chrome.extension.getURL('src/get_codemirror_script.js');
                 (document.head || document.documentElement).appendChild(s);
                 s.onload = function() {
                     s.parentNode.removeChild(s);
@@ -43,7 +56,7 @@ chrome.runtime.onMessage.addListener(
                 });
 
                 var s = document.createElement('script');
-                s.src = chrome.extension.getURL('search_up_script.js');
+                s.src = chrome.extension.getURL('src/search_up_script.js');
                 (document.head || document.documentElement).appendChild(s);
                 s.onload = function() {
                     s.parentNode.removeChild(s);
@@ -60,7 +73,7 @@ chrome.runtime.onMessage.addListener(
                 });
 
                 var s = document.createElement('script');
-                s.src = chrome.extension.getURL('search_down_script.js');
+                s.src = chrome.extension.getURL('src/search_down_script.js');
                 (document.head || document.documentElement).appendChild(s);
                 s.onload = function() {
                     s.parentNode.removeChild(s);

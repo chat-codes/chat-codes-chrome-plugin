@@ -1,7 +1,7 @@
 console.log("injected");
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        
         if(request.name == "SetWebInfo"){
             console.log("I get something!")
             var userName = request.userName;
@@ -16,12 +16,8 @@ chrome.runtime.onMessage.addListener(
                 'var userName = ' + JSON.stringify(userName) + ';',
 
                 'var event = new CustomEvent("SetWebInfo", {detail: {content: content, channelName:channelName, userName: userName}});',
-                'document.dispatchEvent(event);',
-                '}',
-                '});',
-                '}'
+                'document.dispatchEvent(event);'
             ].join('\n');
-
 
             var script = document.createElement('script');
             script.textContent = actualCode;
