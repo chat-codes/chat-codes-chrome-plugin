@@ -33,6 +33,7 @@ export class WelcomePage {
 	    content: ''
 	}
 	feedback ='';
+	feedback_success ='';
 	@Output() public channelClick:EventEmitter<any> = new EventEmitter();
 
 	setDetail(detail){
@@ -118,8 +119,10 @@ export class WelcomePage {
 
 	//channelNameInput
 	goButtonClick(data){
-		this.goToChannel(this.channelNameInput);
-		this.channelNameInput = '';
+		if(this.checkInputRegulation(true)){
+			this.goToChannel(this.channelNameInput);
+			this.channelNameInput = '';
+		}
 	}
 
 	//channel Queue
@@ -147,16 +150,14 @@ export class WelcomePage {
 	}
 
 	goToChannel(channelName){
-		if(this.checkInputRegulation(true)){
-			this.addChannel(channelName);
-			console.log("go to channel "+ channelName);
-			this.channelClick.emit({
+		this.addChannel(channelName);
+		console.log("go to channel "+ channelName);
+		this.channelClick.emit({
 			type: "GoToCreatedChannel",
 			channelName: channelName,
 			detail: this.detail,
 			userName: this.userName
-			});
-		}
+		});
 	}
 
 	createNewChannel(){
@@ -164,12 +165,13 @@ export class WelcomePage {
 			console.log("create New Channel");
 			var channelName = wordList[Math.floor(Math.random()*wordList.length)];
 			this.addChannel(channelName);
+			this.feedback_success = "Setting up... Please wait..."
 			this.channelClick.emit({
-			type: "CreatNewChannel",
-			channelName: channelName,
-			detail: this.detail,
-			userName: this.userName,
-			content: this.editor.getEditor().getValue()
+				type: "CreatNewChannel",
+				channelName: channelName,
+				detail: this.detail,
+				userName: this.userName,
+				content: this.editor.getEditor().getValue()
 			});
 		}
 	}
@@ -197,6 +199,7 @@ export class WelcomePage {
         		return false;
         	}
         }
+        this.feedback = '';
         return true;
 	}
 	private MAX_LENGTH = 20;

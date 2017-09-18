@@ -6,6 +6,12 @@
 		</div>
 	</div>
 
+	<div class="col-12">
+		<div class="alert alert-success" role="alert" id="alert" >
+  			{{feedback_success}}
+		</div>
+	</div>
+
 	<div class="input-group col-4" id="user-name-input-container">
 		<input type="text" class="form-control" id= "user-name-input"
 		placeholder="Your name" [(ngModel)]="userName" (ngModelChange)="userNameChange($event)">
@@ -46,6 +52,9 @@
 	<div class="col-6" id="create-button-container">
 		<button type="button" class="btn btn-secondary btn-sm" id="create-button" (click)="createNewChannel($event)">Create New Channel</button>
 	</div>
+
+	
+
 </div>
 
 <!-- <div class="col-6" id="new-channel-container">
@@ -55,7 +64,7 @@
 <div class="row" id="recent-channel-row">
 
 
-<div class="col-12">
+<div class="col-12" id="recent-channel-container">
 	<span *ngFor="let channel of channelQueue">
 		<button type="button" class="btn btn-sm btn-outline-dark" id="recent-channel-button"
 		(click)=goToChannel(channel)>#{{channel}}</button>
