@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "html{\n  /*width: 410px;*/\n}\n\n#no-boarder-button{\n  border: none;\n}\n\n.jumbotron-fluid {\n  padding-top: 5px;\n  padding-bottom: 5px;\n  background: rgb(234,236,239);\n  \n}\n\n#width-controller{\n\twidth: 400px;\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n/*#channel-button{\n  border: 0px;\n  padding:1px 1px 1px 1px;\n  margin-right: 20px;\n}*/\n\n/*#page-function-row{\n  margin-top: 5px;\n}*/\n\n#search-button-container{\n  text-align:right;\n}\n\n\n#code-editor-row{\n\theight: 300px;\n  \n}\n\ncode-editor{\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n\n#chat-messages-row{\n\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 5px;\n}\n\n\n\n\n\n\n\n\n\n\n\n.remoteCursor {\n    position: absolute;\n    z-index: 5;\n    opacity: 0.3;\n}\n\n.remoteCursor.user-1 { background-color: #007bff; }\n.remoteCursor.user-2 { background-color: #dc3545; }\n.remoteCursor.user-3 { background-color: #fd7e14; }\n.remoteCursor.user-4 { background-color: #ffc107; }\n.remoteCursor.user-5 { background-color: #28a745; }\n\n.remoteCursor.carret.user-1 { border-left-color: #007bff; }\n.remoteCursor.carret.user-2 { border-left-color: #dc3545; }\n.remoteCursor.carret.user-3 { border-left-color: #fd7e14; }\n.remoteCursor.carret.user-4 { border-left-color: #ffc107; }\n.remoteCursor.carret.user-5 { border-left-color: #28a745; }\n\n.remoteCursor.carret {\n    position: absolute;\n    border-left-width: 2px;\n    border-left-style: solid;\n    z-index: 6;\n    opacity: 0.9;\n}\n\n\n.d2h-diff-table {\n    position: relative;\n}", ""]);
+exports.push([module.i, "html{\n  /*width: 410px;*/\n}\n\n#no-boarder-button{\n  border: none;\n}\n\n.jumbotron-fluid {\n  padding-top: 5px;\n  padding-bottom: 5px;\n  background: rgb(234,236,239);\n  \n}\n\n#width-controller{\n\twidth: 400px;\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n#channel-button{\n  border: 0px;\n  padding:1px 1px 1px 1px;\n  margin-right: 20px;\n}\n\n/*#page-function-row{\n  margin-top: 5px;\n}*/\n\n#search-button-container{\n  text-align:right;\n}\n\n#list-row{\n  margin-top: 5px;\n}\n\n\n#code-editor-row{\n\theight: 400px;\n  border: 1px;\n}\n\ncode-editor{\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n\n#chat-messages-row{\n\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 5px;\n}\n\n\n\n\n\n\n\n\n\n\n\n.remoteCursor {\n    position: absolute;\n    z-index: 5;\n    opacity: 0.3;\n}\n\n.remoteCursor.user-1 { background-color: #007bff; }\n.remoteCursor.user-2 { background-color: #dc3545; }\n.remoteCursor.user-3 { background-color: #fd7e14; }\n.remoteCursor.user-4 { background-color: #ffc107; }\n.remoteCursor.user-5 { background-color: #28a745; }\n\n.remoteCursor.carret.user-1 { border-left-color: #007bff; }\n.remoteCursor.carret.user-2 { border-left-color: #dc3545; }\n.remoteCursor.carret.user-3 { border-left-color: #fd7e14; }\n.remoteCursor.carret.user-4 { border-left-color: #ffc107; }\n.remoteCursor.carret.user-5 { border-left-color: #28a745; }\n\n.remoteCursor.carret {\n    position: absolute;\n    border-left-width: 2px;\n    border-left-style: solid;\n    z-index: 6;\n    opacity: 0.9;\n}\n\n\n.d2h-diff-table {\n    position: relative;\n}", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div>\n    <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div> -->\n<!-- <div>\n    <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n<!-- <div *ngIf=\"!detail.hasEditor && hasName\">\n    <h1>Has No CodeMirror Editor In This Page...</h1>\n</div>\n<div *ngIf=\"detail.hasEditor && !detail.hasFocus && hasName\">\n    <h1>Selected No CodeMirror Editor...</h1>\n</div> -->\n\n<div class=\"jumbotron-fluid\" >\n    <div *ngIf='!channelGeneratedFlag' class=\"container-fluid\" id=\"width-controller\" >\n        <welcome-page (channelClick)=\"channelClick($event)\"></welcome-page>\n    </div>\n    \n    <div *ngIf='channelGeneratedFlag' class=\"container-fluid\" id=\"width-controller\">\n        <div class=\"row\" id=\"first-Row\">\n            <div class=\"col-12\">\n                <button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"channel-button\">#{{channelName}}</button>\n                <!-- <div id=\"content channel-name-text\">{{channelName}}</div> -->\n            \n         \n                <i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n\n            </div>\n\n            <!-- <div class=\"col-4\" id = \"showcode-button-container\">\n                <button class='btn btn-secondary btn-sm'(click)=\"showCode()\">ShowCode</button>\n            </div> -->\n        </div>\n        <div class=\"row\" id=\"second-Row\">\n            <!-- <div class=\"col-8\">\n                Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n            </div> -->\n           <!--  <div class=\"col-4\" id = \"undoshow-button-container\">\n                <button class='btn btn-secondary btn-sm' (click)=\"undoShow()\">UndoShow</button>\n            </div> -->\n        </div>\n        <!-- <div class=\"row\" id=\"third-Row\">\n            <div class=\"col-12\">\n                <p *ngIf=\"!detail.hasEditor\">This page has no CodeMirror Editor</p>\n                <p *ngIf=\"detail.hasEditor\">This page has {{detail.editorNumber}} CodeMirror Editors</p>\n                <p *ngIf=\"detail.hasEditor && !detail.hasFocus\">You are choosing no editor</p>\n                <p *ngIf=\"detail.hasEditor && detail.hasFocus\">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>\n            </div>\n        </div> -->\n        <div class=\"row\" id=\"list-row\">\n            <div class=\"col-12\">\n                <ul class='files nav nav-tabs'>\n                    <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                        <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);'\n                            (click)=\"codeEditor.selectFile(editorState)\">\n                            {{editorState.getTitle()}}\n                            <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"row\" id=\"code-editor-row\">\n            <div class=\"col-12\">\n                <code-editor [commLayer]='commLayer'\n                (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            </div>\n        </div>\n\n        <div class=\"row\" id=\"page-function-row\">\n            <div class=\"col-6\" >\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"showCode()\">ShowCode</button>\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n            <div class=\"col-6\" id=\"search-button-container\">\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchUp($event)\">⬆︎</button>\n                    \n                    <button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>{{detail.focusedEditorNumber}}/{{detail.editorNumber}}</button>\n                    \n                    <button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>None</button>\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchDown($event)\">⬇︎</button>\n\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"row\" id=\"chat-messages-row\">\n            <div class=\"col-12\">\n                <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n            </div>\n        </div>\n        <div class=\"row\" id='chat-input-row'>\n            <div class=\"col-12\">\n                <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n            </div>\n        </div>\n        \n    </div>\n</div>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div>\n    <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div> -->\n<!-- <div>\n    <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n<!-- <div *ngIf=\"!detail.hasEditor && hasName\">\n    <h1>Has No CodeMirror Editor In This Page...</h1>\n</div>\n<div *ngIf=\"detail.hasEditor && !detail.hasFocus && hasName\">\n    <h1>Selected No CodeMirror Editor...</h1>\n</div> -->\n\n<div class=\"jumbotron-fluid\" id=\"main\">\n    <div *ngIf='!channelGeneratedFlag' class=\"container-fluid\" id=\"width-controller\" >\n        <welcome-page (channelClick)=\"channelClick($event)\"></welcome-page>\n    </div>\n    \n    <div *ngIf='channelGeneratedFlag' class=\"container-fluid\" id=\"width-controller\">\n        <div class=\"row\" id=\"first-Row\">\n            <div class=\"col-12\">\n                <button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"channel-button\">#{{channelName}}</button>\n                <!-- <div id=\"content channel-name-text\">{{channelName}}</div> -->\n            \n         \n                <i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n\n            </div>\n\n            <!-- <div class=\"col-4\" id = \"showcode-button-container\">\n                <button class='btn btn-secondary btn-sm'(click)=\"showCode()\">ShowCode</button>\n            </div> -->\n        </div>\n        <div class=\"row\" id=\"second-Row\">\n            <!-- <div class=\"col-8\">\n                Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n            </div> -->\n           <!--  <div class=\"col-4\" id = \"undoshow-button-container\">\n                <button class='btn btn-secondary btn-sm' (click)=\"undoShow()\">UndoShow</button>\n            </div> -->\n        </div>\n        <!-- <div class=\"row\" id=\"third-Row\">\n            <div class=\"col-12\">\n                <p *ngIf=\"!detail.hasEditor\">This page has no CodeMirror Editor</p>\n                <p *ngIf=\"detail.hasEditor\">This page has {{detail.editorNumber}} CodeMirror Editors</p>\n                <p *ngIf=\"detail.hasEditor && !detail.hasFocus\">You are choosing no editor</p>\n                <p *ngIf=\"detail.hasEditor && detail.hasFocus\">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>\n            </div>\n        </div> -->\n        <div class=\"row\" id=\"list-row\">\n            <div class=\"col-12\">\n                <ul class='files nav nav-tabs'>\n                    <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                        <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' (click)=\"codeEditor.selectFile(editorState)\">\n                            {{editorState.getTitle()}}\n                            <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                        </a>\n                    </li>\n                    <li *ngIf=\"commLayer.channelService.isRoot()\" class='nav-item'>\n                        <a class='nav-link' href='javascript:void(0);' (click)=\"createNewFile()\">\n                            +\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"row\" id=\"code-editor-row\">\n            <div class=\"col-12\">\n                <code-editor [commLayer]='commLayer'\n                (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            </div>\n        </div>\n\n        <div class=\"row\" id=\"page-function-row\">\n            <div class=\"col-6\" >\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"showCode()\">ShowCode</button>\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n            <div class=\"col-6\" id=\"search-button-container\">\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchUp($event)\">⬆︎</button>\n                    \n                    <button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>{{focusedEditorNumber}}/{{detail.editorNumber}}</button>\n                    \n                    <button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>None</button>\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchDown($event)\">⬇︎</button>\n\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"row\" id=\"chat-messages-row\">\n            <div class=\"col-12\">\n            <chat-messages [editorStateTracker]='editorStateTracker' [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n        </div>\n        </div>\n        <div class=\"row\" id='chat-input-row'>\n            <div class=\"col-12\">\n                <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n            </div>\n        </div>\n        \n    </div>\n</div>"
 
 /***/ }),
 
@@ -44,6 +44,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chat_codes_web_src_app_web_communication_service__ = __webpack_require__("../../../../chat-codes-web/src/app/web-communication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chat_codes_web_src_app_editor_editor_component__ = __webpack_require__("../../../../chat-codes-web/src/app/editor/editor.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56,11 +57,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var AppComponent = (function () {
     function AppComponent() {
         this.at_bottom = false;
+        this.userName = '';
+        this.hasName = false;
         this.connected = false;
-        this.members = false;
         this.channelName = 'example_channel';
         this.detail = {
             hasEditor: false,
@@ -70,32 +73,16 @@ var AppComponent = (function () {
             content: ''
         };
         this.channelGeneratedFlag = false;
-        // this.test();
+        setTimeout(function () {
+            document.getElementById('width-controller').style.width = '400px';
+            console.log(document.getElementById('width-controller'));
+        }, 50);
     }
-    // chatinputMessageChanged(message):void{
-    //   this.message = message;
-    // }
+    AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.editorCursorSelectionChanged = function (data) {
         this.chatinput.onEditorCursorSelectionChanged(data);
-        // var startRow = data.newRange.start[0]; var startCol = data.newRange.start[1];
-        // var endRow = data.newRange.end[0]; var endCol = data.newRange.end[1];
-        // if( startRow==endRow && startCol==endCol ){
-        //   var message = this.getTypeMessage(this.message);
-        //   if(message == "This is a link!"){
-        //     this.message = undefined
-        //   }else{
-        //     this.message = message;
-        //   }
-        // }else{
-        //   this.message = this.getTypeMessage(this.message);
-        // //   console.log(this.getActiveEditors());
-        //   var messageTemp = "["+this.message+"]("+this.getOpenFileTitle()+":L"+startRow+","+startCol+"-L"+endRow+","+endCol+")";
-        //   this.message = messageTemp;
-        // }
     };
-    AppComponent.prototype.navBarChooseFile = function (data) {
-        console.log(data);
-    };
+    ;
     AppComponent.prototype.getChatURL = function () {
         return 'chat.codes/' + this.channelName;
     };
@@ -111,24 +98,67 @@ var AppComponent = (function () {
     AppComponent.prototype.getActiveEditors = function () {
         return this.commLayer.getActiveEditors();
     };
-    AppComponent.prototype.ngOnInit = function () { };
+    ;
+    AppComponent.prototype.navBarChooseFile = function (data) {
+        console.log(data);
+    };
+    AppComponent.prototype.createNewFile = function () {
+        var _this = this;
+        this.commLayer.ready().then(function () {
+            var id = guid();
+            var title = 'file-' + editorTitle;
+            editorTitle++;
+            _this.commLayer.channelService.emitEditorOpened({
+                id: id
+            });
+            var openDelta = {
+                type: 'open',
+                id: id,
+                contents: '',
+                grammarName: 'None',
+                title: title,
+                modified: false
+            };
+            _this.commLayer.channelService.emitEditorChanged(openDelta);
+        });
+    };
+    ;
     AppComponent.prototype.test = function () {
         this.channelGeneratedFlag = true;
         this.setName("userName", "emirates");
-        this.setNewWebCommunicationService(false);
+        this.setNewWebCommunicationService();
     };
     AppComponent.prototype.ngAfterContentInit = function () {
     };
     AppComponent.prototype.channelClick = function (data) {
         console.log(data);
-        this.channelGeneratedFlag = true;
-        this.detail = data.detail;
+        this.setDetail(data.detail);
         if (data.type == "GoToCreatedChannel") {
+            this.channelGeneratedFlag = true;
             this.setName(data.userName, data.channelName);
-            this.setNewWebCommunicationService(false);
+            this.setNewWebCommunicationService();
         }
         else if (data.type == "CreatNewChannel") {
-            this.setName(data.userName, data.channelName);
+            // this.setName(data.userName, data.channelName);
+            // this.setNewWebCommunicationService();
+            // this.channelGeneratedFlag = true;
+            var newURL = "http://chat.codes/" + data.channelName;
+            chrome.tabs.create({ url: newURL, active: false }, function (tab1) {
+                // chrome.tabs.executeScript(tab1.id, {
+                //   file: 'content_script.js'
+                // });
+                setTimeout(function () {
+                    console.log("send message");
+                    chrome.tabs.sendMessage(tab1.id, {
+                        name: "SetWebInfo",
+                        userName: data.userName,
+                        channelName: data.channelName,
+                        content: data.content
+                    }, function (response) {
+                        console.log(response);
+                    });
+                }, 2000);
+            });
         }
     };
     AppComponent.prototype.setName = function (userName, channelName) {
@@ -136,50 +166,58 @@ var AppComponent = (function () {
         this.channelName = channelName;
     };
     ;
-    AppComponent.prototype.setNewWebCommunicationService = function (createNewChannelFlag) {
+    AppComponent.prototype.setNewWebCommunicationService = function () {
         var _this = this;
-        this.commLayer = new __WEBPACK_IMPORTED_MODULE_1_chat_codes_web_src_app_web_communication_service__["a" /* WebCommunicationService */](this.userName, this.channelName, createNewChannelFlag);
+        this.commLayer = new __WEBPACK_IMPORTED_MODULE_1_chat_codes_web_src_app_web_communication_service__["a" /* WebCommunicationService */](this.userName, this.channelName);
+        this.editorStateTracker = this.commLayer.getEditorStateTracker();
         this.commLayer.ready().then(function (channel) {
             _this.connected = true;
             // this.createNewEditorState();
         });
     };
-    // @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
-    // lastShownContent: String;
-    // showCode(){
-    //   var codeContent = this.editorDisplay.getEditorValue();
-    //   this.chromeQueryGetOldCodeAndShowCode(codeContent);
-    // }
-    // undoShow(){
-    //   if(this.lastShownContent){
-    //     var codeContent = this.lastShownContent;
-    //     this.chromeQueryGetOldCodeAndShowCode(codeContent);
-    //   }
-    // }
-    // chromeQueryGetOldCodeAndShowCode(codeContent:String){
-    //   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    //     chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
-    //       this.lastShownContent = response.oldCodeMirrorText;
-    //     });
-    //   });
-    // }
-    AppComponent.prototype.createNewEditorState = function () {
-        var openDelta = {
-            type: 'open',
-            id: 12,
-            contents: this.detail.content,
-            //contents:'   asdf',
-            grammarName: "Null Grammar",
-            title: 'WebsiteCode',
-            modified: false
-        };
-        this.commLayer.channelService.emitEditorOpened({
-            id: 12
+    AppComponent.prototype.showCode = function () {
+        var codeContent = this.editorDisplay.getEditorInstance().getValue();
+        this.chromeQueryGetOldCodeAndShowCode(codeContent);
+    };
+    AppComponent.prototype.undoShow = function () {
+        if (this.lastShownContent) {
+            var codeContent = this.lastShownContent;
+            this.chromeQueryGetOldCodeAndShowCode(codeContent);
+        }
+    };
+    AppComponent.prototype.chromeQueryGetOldCodeAndShowCode = function (codeContent) {
+        var _this = this;
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { name: "GetOldCodeAndShowNewCode", content: codeContent }, function (response) {
+                _this.lastShownContent = response.oldCodeMirrorText;
+            });
         });
-        this.commLayer.channelService.editorStateTracker.onEditorOpened({
-            id: 12
-        }, false);
-        this.commLayer.channelService.emitEditorChanged(openDelta, false);
+    };
+    AppComponent.prototype.searchUp = function () {
+        var _this = this;
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { name: "SearchUp" }, function (response) {
+                if (response.name == "SearchUp") {
+                    console.log(response);
+                    _this.setDetail(response.detail);
+                }
+            });
+        });
+    };
+    AppComponent.prototype.searchDown = function () {
+        var _this = this;
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { name: "SearchDown" }, function (response) {
+                if (response.name == "SearchDown") {
+                    console.log(response);
+                    _this.setDetail(response.detail);
+                }
+            });
+        });
+    };
+    AppComponent.prototype.setDetail = function (detail) {
+        this.detail = detail;
+        this.focusedEditorNumber = this.detail.focusedEditorNumber + 1;
     };
     return AppComponent;
 }());
@@ -187,6 +225,14 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('chatinput'),
     __metadata("design:type", Object)
 ], AppComponent.prototype, "chatinput", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('codeEditor'),
+    __metadata("design:type", Object)
+], AppComponent.prototype, "codeEditor", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_2_chat_codes_web_src_app_editor_editor_component__["a" /* EditorDisplay */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_chat_codes_web_src_app_editor_editor_component__["a" /* EditorDisplay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_chat_codes_web_src_app_editor_editor_component__["a" /* EditorDisplay */]) === "function" && _a || Object)
+], AppComponent.prototype, "editorDisplay", void 0);
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
@@ -197,6 +243,17 @@ AppComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], AppComponent);
 
+var editorTitle = 1;
+function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+}
+var _a;
 // import { ViewChild, Component, OnInit, AfterContentInit } from '@angular/core';
 // import { WebCommunicationService } from 'chat-codes-web/src/app/web-communication.service';
 // import { NameEntry } from 'chat-codes-web/src/app/name-entry/name-entry.component';
@@ -288,10 +345,11 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timestamp_timestamp_component__ = __webpack_require__("../../../../chat-codes-web/src/app/timestamp/timestamp.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__name_channel_entry_name_channel_entry_component__ = __webpack_require__("../../../../../src/app/name-channel-entry/name-channel-entry.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__welcome_page_welcome_page_component__ = __webpack_require__("../../../../../src/app/welcome-page/welcome-page.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor__ = __webpack_require__("../../../../ng2-ace-editor/ng2-ace-editor.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_moment__ = __webpack_require__("../../../../angular2-moment/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_angular2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_chat_codes_web_src_app_chat_messages_connection_message_component__ = __webpack_require__("../../../../chat-codes-web/src/app/chat-messages/connection-message.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_ng2_ace_editor__ = __webpack_require__("../../../../ng2-ace-editor/ng2-ace-editor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_ng2_ace_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_ng2_ace_editor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_moment__ = __webpack_require__("../../../../angular2-moment/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_angular2_moment__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -299,6 +357,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -331,13 +390,14 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9_chat_codes_web_src_app_chat_input_chat_input_component__["a" /* ChatInput */],
             __WEBPACK_IMPORTED_MODULE_10_chat_codes_web_src_app_timestamp_timestamp_component__["a" /* TimestampDisplay */],
             __WEBPACK_IMPORTED_MODULE_11__name_channel_entry_name_channel_entry_component__["a" /* NameChannelEntry */],
-            __WEBPACK_IMPORTED_MODULE_12__welcome_page_welcome_page_component__["a" /* WelcomePage */]
+            __WEBPACK_IMPORTED_MODULE_12__welcome_page_welcome_page_component__["a" /* WelcomePage */],
+            __WEBPACK_IMPORTED_MODULE_13_chat_codes_web_src_app_chat_messages_connection_message_component__["a" /* ConnectionMessageDisplay */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_14_angular2_moment__["MomentModule"],
-            __WEBPACK_IMPORTED_MODULE_13_ng2_ace_editor__["AceEditorModule"]
+            __WEBPACK_IMPORTED_MODULE_15_angular2_moment__["MomentModule"],
+            __WEBPACK_IMPORTED_MODULE_14_ng2_ace_editor__["AceEditorModule"]
         ],
         providers: [],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
@@ -458,7 +518,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/welcome-page/welcome-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" id=\"first-row\">\n\t<div class=\"input-group col-4\" id=\"user-name-input-container\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"user-name-input\"\n\t\tplaceholder=\"Your name\" [(ngModel)]=\"userName\" (ngModelChange)=\"userNameChange($event)\">\n\t</div>\n\n\t<div class=\"col-4\" id=\"page-editor-info-container\">\n\t\t<button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-secondary nav-button\">{{detail.focusedEditorNumber}}/{{detail.editorNumber}}</button>\n\n\t\t<button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-secondary nav-button\">None</button>\n\n\t</div>\n\t\n\t<div class=\"col-4\" id=\"nav-button-container\">\n\t\t<div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchUp($event)\">⬆︎</button>\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchDown($event)\">⬇︎</button>\n\t\t</div>\n\t</div>\n</div>\n<div class=\"row\" id=\"editor-Row\">\n\t<div class=\"col-12\">\n\t<ace-editor #editor></ace-editor>\n</div>\n</div>\n<div class=\"row\" id=\"input-channel-row\">\n<div class=\"col-6\">\n\t<div class=\"input-group\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"channel-name-input\"\n\t\tplaceholder=\"Created Channel\"  [(ngModel)]=\"channelNameInput\">\n\t\t<span class=\"input-group-btn\" id=\"go-button-container\">\n\t\t\t<button class=\"btn btn-sm btn-secondary\" type=\"button\" id = \"go-button\"\n\t\t\t(click)=\"goButtonClick($event)\">Go!</button>\n\t\t</span>\n\t</div>\n</div>\n<div class=\"col-6\" id=\"new-channel-container\">\n\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"create-new-channel-button\" (click)=\"createNewChannel()\">Create New Channel</button>\n</div>\n</div>\n<div class=\"row\" id=\"recent-channel-row\">\n\n\n<div class=\"col-12\">\n\t<span *ngFor=\"let channel of channelQueue\">\n\t\t<button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"recent-channel-button\"\n\t\t(click)=goToChannel(channel)>#{{channel}}</button>\n\t\t<!-- <a class=\"btn btn-link\" href=\"#\" role=\"button\">#{{channel}}</a> -->\n\t\t<!-- <button type=\"button\" class=\"btn btn-link\">#{{channel}}</button> -->\n\t</span>\n</div>\n</div>"
+module.exports = "<div class=\"row\" id=\"first-row\">\n\t<div class=\"input-group col-4\" id=\"user-name-input-container\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"user-name-input\"\n\t\tplaceholder=\"Your name\" [(ngModel)]=\"userName\" (ngModelChange)=\"userNameChange($event)\">\n\t</div>\n\n\t<div class=\"col-4\" id=\"page-editor-info-container\">\n\t\t<button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-secondary nav-button\">{{focusedEditorNumber}}/{{detail.editorNumber}}</button>\n\n\t\t<button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-secondary nav-button\">None</button>\n\n\t</div>\n\t\n\t<div class=\"col-4\" id=\"nav-button-container\">\n\t\t<div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchUp($event)\">⬆︎</button>\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchDown($event)\">⬇︎</button>\n\t\t</div>\n\t</div>\n</div>\n<div class=\"row\" id=\"editor-Row\">\n\t<div class=\"col-12\">\n\t<ace-editor #editor></ace-editor>\n</div>\n</div>\n<div class=\"row\" id=\"input-channel-row\">\n<div class=\"col-12\">\n\t<div class=\"input-group\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"channel-name-input\"\n\t\tplaceholder=\"Created Channel\"  [(ngModel)]=\"channelNameInput\">\n\t\t<span class=\"input-group-btn\" id=\"go-button-container\">\n\t\t\t<button class=\"btn btn-sm btn-secondary\" type=\"button\" id = \"go-button\"\n\t\t\t(click)=\"goButtonClick($event)\">Go!</button>\n\t\t</span>\n\t\t<span class=\"input-group-btn\" id=\"create-new-channel-button-container\">\n\t\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"create-new-channel-button\" (click)=\"createNewChannel($event)\">Create New Channel</button>\n\t\t</span>\n\t</div>\n</div>\n\n<!-- <div class=\"col-6\" id=\"new-channel-container\">\n\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"create-new-channel-button\" (click)=\"createNewChannel()\">Create New Channel</button>\n</div> -->\n\n</div>\n<div class=\"row\" id=\"recent-channel-row\">\n\n\n<div class=\"col-12\">\n\t<span *ngFor=\"let channel of channelQueue\">\n\t\t<button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"recent-channel-button\"\n\t\t(click)=goToChannel(channel)>#{{channel}}</button>\n\t\t<!-- <a class=\"btn btn-link\" href=\"#\" role=\"button\">#{{channel}}</a> -->\n\t\t<!-- <button type=\"button\" class=\"btn btn-link\">#{{channel}}</button> -->\n\t</span>\n</div>\n</div>"
 
 /***/ }),
 
@@ -491,6 +551,10 @@ var WelcomePage = (function () {
         this.getLastUsedUserName();
         this.getLastUsedChannalQueue();
     }
+    WelcomePage.prototype.setDetail = function (detail) {
+        this.detail = detail;
+        this.focusedEditorNumber = this.detail.focusedEditorNumber + 1;
+    };
     WelcomePage.prototype.ngAfterViewInit = function () {
         this.editor.setTheme("chrome");
         this.getCodeMirrorEditorInfo();
@@ -512,7 +576,7 @@ var WelcomePage = (function () {
             chrome.tabs.sendMessage(tabs[0].id, { name: "GetChosenCodeMirrorText" }, function (response) {
                 if (response.name == "initialPageInfo") {
                     console.log(response);
-                    _this.detail = response.detail;
+                    _this.setDetail(response.detail);
                     _this.setEditorValue(_this.detail.content);
                 }
             });
@@ -535,7 +599,7 @@ var WelcomePage = (function () {
             chrome.tabs.sendMessage(tabs[0].id, { name: "SearchUp" }, function (response) {
                 if (response.name == "SearchUp") {
                     console.log(response);
-                    _this.detail = response.detail;
+                    _this.setDetail(response.detail);
                     _this.setEditorValue(_this.detail.content);
                 }
             });
@@ -547,7 +611,7 @@ var WelcomePage = (function () {
             chrome.tabs.sendMessage(tabs[0].id, { name: "SearchDown" }, function (response) {
                 if (response.name == "SearchDown") {
                     console.log(response);
-                    _this.detail = response.detail;
+                    _this.setDetail(response.detail);
                     _this.setEditorValue(_this.detail.content);
                 }
             });
@@ -597,11 +661,15 @@ var WelcomePage = (function () {
         });
     };
     WelcomePage.prototype.createNewChannel = function () {
+        // this.addChannel(channelName);
         console.log("create New Channel");
+        this.addChannel(this.channelNameInput);
         this.channelClick.emit({
             type: "CreatNewChannel",
+            channelName: this.channelNameInput,
             detail: this.detail,
-            userName: this.userName
+            userName: this.userName,
+            content: this.editor.getEditor().getValue()
         });
     };
     return WelcomePage;

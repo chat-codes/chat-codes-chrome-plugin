@@ -19,6 +19,7 @@ export class WelcomePage {
 	userName: string;
 	channelNameInput: string;
 	channelQueue;
+	focusedEditorNumber;
 	public detail = {
     	hasEditor: false,
     	editorNumber: -1,
@@ -27,6 +28,11 @@ export class WelcomePage {
 	    content: ''
 	}
 	@Output() public channelClick:EventEmitter<any> = new EventEmitter();
+
+	setDetail(detail){
+		this.detail = detail;
+		this.focusedEditorNumber = this.detail.focusedEditorNumber+1;
+	}
 
 
 	constructor(){
@@ -57,7 +63,7 @@ export class WelcomePage {
 	    	chrome.tabs.sendMessage(tabs[0].id, {name: "GetChosenCodeMirrorText"}, (response) => {
 	    		if(response.name == "initialPageInfo"){
 	    			console.log(response);
-	    			this.detail = response.detail;
+	    			this.setDetail(response.detail);
 	           		this.setEditorValue(this.detail.content);
 	    		}
 	    	});
@@ -81,7 +87,7 @@ export class WelcomePage {
 	    	chrome.tabs.sendMessage(tabs[0].id, {name: "SearchUp"}, (response) => {
 	    		if(response.name == "SearchUp"){
 	    			console.log(response);
-	    			this.detail = response.detail;
+	    			this.setDetail(response.detail);
 	           		this.setEditorValue(this.detail.content);
 	    		}
 	    	});
@@ -93,7 +99,7 @@ export class WelcomePage {
 	    	chrome.tabs.sendMessage(tabs[0].id, {name: "SearchDown"}, (response) => {
 	    		if(response.name == "SearchDown"){
 	    			console.log(response);
-	    			this.detail = response.detail;
+	    			this.setDetail(response.detail);
 	           		this.setEditorValue(this.detail.content);
 	    		}
 	    	});
@@ -149,11 +155,16 @@ export class WelcomePage {
 	}
 
 	createNewChannel(){
+		// this.addChannel(channelName);
 		console.log("create New Channel");
+		
+		this.addChannel(this.channelNameInput);
 		this.channelClick.emit({
 			type: "CreatNewChannel",
+			channelName: this.channelNameInput,
 			detail: this.detail,
-			userName: this.userName
+			userName: this.userName,
+			content: this.editor.getEditor().getValue()
 		});
 	}
 }

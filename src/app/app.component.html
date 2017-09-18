@@ -12,7 +12,7 @@
     <h1>Selected No CodeMirror Editor...</h1>
 </div> -->
 
-<div class="jumbotron-fluid" >
+<div class="jumbotron-fluid" id="main">
     <div *ngIf='!channelGeneratedFlag' class="container-fluid" id="width-controller" >
         <welcome-page (channelClick)="channelClick($event)"></welcome-page>
     </div>
@@ -56,10 +56,14 @@
             <div class="col-12">
                 <ul class='files nav nav-tabs'>
                     <li class='nav-item' *ngFor="let editorState of getActiveEditors()">
-                        <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);'
-                            (click)="codeEditor.selectFile(editorState)">
+                        <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);' (click)="codeEditor.selectFile(editorState)">
                             {{editorState.getTitle()}}
                             <span class='modifiedFlag' [ngClass]="{'modified':editorState.getIsModified()}"></span>
+                        </a>
+                    </li>
+                    <li *ngIf="commLayer.channelService.isRoot()" class='nav-item'>
+                        <a class='nav-link' href='javascript:void(0);' (click)="createNewFile()">
+                            +
                         </a>
                     </li>
                 </ul>
@@ -84,7 +88,7 @@
                     
                     <button type="button" class="btn btn-outline-dark btn-sm" id='no-boarder-button' (click)="searchUp($event)">⬆︎</button>
                     
-                    <button type="button" *ngIf="detail.hasEditor" class="btn btn-outline-dark btn-sm" id='no-boarder-button'>{{detail.focusedEditorNumber}}/{{detail.editorNumber}}</button>
+                    <button type="button" *ngIf="detail.hasEditor" class="btn btn-outline-dark btn-sm" id='no-boarder-button'>{{focusedEditorNumber}}/{{detail.editorNumber}}</button>
                     
                     <button type="button" *ngIf="!detail.hasEditor" class="btn btn-outline-dark btn-sm" id='no-boarder-button'>None</button>
                     
@@ -98,8 +102,8 @@
 
         <div class="row" id="chat-messages-row">
             <div class="col-12">
-                <chat-messages [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>
-            </div>
+            <chat-messages [editorStateTracker]='editorStateTracker' [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>
+        </div>
         </div>
         <div class="row" id='chat-input-row'>
             <div class="col-12">

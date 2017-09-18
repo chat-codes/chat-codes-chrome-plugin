@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { EditorDisplay } from 'chat-codes-web/src/app/editor/editor.component';
 import { ChatInput } from 'chat-codes-web/src/app/chat-input/chat-input.component';
 import { AceEditorModule } from 'ng2-ace-editor';
+import {EditorStateTracker} from 'chat-codes-services/src/editor-state-tracker';
 import * as _ from 'underscore';
 import * as $ from 'jquery';
 import * as showdown from 'showdown';
@@ -18,81 +19,75 @@ declare let ace: any;
 })
 
 export class AppComponent implements OnInit{
-  // chatinputMessageChanged(message):void{
-  //   this.message = message;
-  // }
-  editorCursorSelectionChanged(data) {
-    this.chatinput.onEditorCursorSelectionChanged(data);
-    // var startRow = data.newRange.start[0]; var startCol = data.newRange.start[1];
-    // var endRow = data.newRange.end[0]; var endCol = data.newRange.end[1];
-    // if( startRow==endRow && startCol==endCol ){
-    //   var message = this.getTypeMessage(this.message);
-    //   if(message == "This is a link!"){
-    //     this.message = undefined
-    //   }else{
-    //     this.message = message;
-    //   }
-    // }else{
-    //   this.message = this.getTypeMessage(this.message);
-    // //   console.log(this.getActiveEditors());
-    //   var messageTemp = "["+this.message+"]("+this.getOpenFileTitle()+":L"+startRow+","+startCol+"-L"+endRow+","+endCol+")";
-    //   this.message = messageTemp;
-    // }
-  }
-  // getTypeMessage(message):String{
-  //   if(message != undefined){
-  //     var start = message.indexOf("[");
-  //     var end = message.indexOf("]");
-  //     if(start!=-1 && end!=-1 && start<end){
-  //       return message.substring(start+1, end);
-  //     }else{
-  //       return message;
-  //     }
-  //   }else{
-  //     return("This is a link!")
-  //   }
-  // }
-  // getOpenFileTitle():String{
-  //   var editorStates = this.getActiveEditors();
-  //   var title;
-  //   _.each(editorStates, (editorstate)=>{
-  //     if(editorstate.selected == true){
-  //       title = editorstate.title;
-  //     }
-  //   })
-  //   return title;
-  // }
+   ngOnInit() { }
 
-  private message: String;
-  @ViewChild('chatinput') private chatinput;
+   private message: String;
+   @ViewChild('chatinput') private chatinput;
+
+   editorCursorSelectionChanged(data) {
+       this.chatinput.onEditorCursorSelectionChanged(data);
+   }
+
+   constructor() {
+     setTimeout(function(){
+      document.getElementById('width-controller').style.width = '400px';
+      console.log(document.getElementById('width-controller'));
+    },50);
+      
+   };
+
+    public editorStateTracker;
+    public commLayer: WebCommunicationService;
+    private at_bottom: boolean = false;
+
+
+    public getChatURL(): string {
+        return 'chat.codes/' + this.channelName;
+    };
+    sendTextMessage(message: string): void {
+        this.commLayer.sendTextMessage(message);
+    };
+    updateTypingStatus(status: string): void {
+        this.commLayer.sendTypingStatus(status);
+    };
+    getActiveEditors() {
+        return this.commLayer.getActiveEditors();
+    };
+
+
+
 
   navBarChooseFile(data){
     console.log(data);
   }
 
-  private commLayer: WebCommunicationService;
-  private at_bottom: boolean = false;
   
-  getChatURL(): string {
-    return 'chat.codes/' + this.channelName;
-  };
-  sendTextMessage(message: string): void {
-    this.commLayer.sendTextMessage(message);
-  };
-  updateTypingStatus(status: string): void {
-    this.commLayer.sendTypingStatus(status);
-  };
-  getActiveEditors() {
-    return this.commLayer.getActiveEditors();
-  }
-  private userName: string;
-  private connected: boolean = false;
-  members: any = false;
-  channelName = 'example_channel';
+  public createNewFile() {
+        this.commLayer.ready().then(() => {
+            const id:string = guid();
+            const title:string = 'file-'+editorTitle;
+            editorTitle++;
+            this.commLayer.channelService.emitEditorOpened({
+                id: id
+            });
+        const openDelta =  {
+          type: 'open',
+          id: id,
+          contents: '',
+          grammarName: 'None',
+          title: title,
+          modified: false
+        };
+            this.commLayer.channelService.emitEditorChanged(openDelta);
+        });
+    };
 
+    private userName:string = '';
+    public hasName: boolean = false;
+    public connected: boolean = false;
+    private channelName:string = 'example_channel';
+    @ViewChild('codeEditor') codeEditor;
 
-
-  ngOnInit(){ }
 
   detail = {
     hasEditor: false,
@@ -102,15 +97,13 @@ export class AppComponent implements OnInit{
     content: ''
   }
   channelGeneratedFlag = false;
+  focusedEditorNumber;
 
-  constructor(){
-    // this.test();
-  }
 
   test(){
      this.channelGeneratedFlag = true;
      this.setName("userName", "emirates");
-     this.setNewWebCommunicationService(false);
+     this.setNewWebCommunicationService();
   }
 
   ngAfterContentInit(){
@@ -119,14 +112,33 @@ export class AppComponent implements OnInit{
 
   channelClick(data){
     console.log(data);
-    this.channelGeneratedFlag = true;
-    this.detail = data.detail;
+    this.setDetail(data.detail);
     if(data.type=="GoToCreatedChannel"){
+      this.channelGeneratedFlag = true;
       this.setName(data.userName, data.channelName);
-      this.setNewWebCommunicationService(false);
+      this.setNewWebCommunicationService();
     }else if(data.type=="CreatNewChannel"){
-      this.setName(data.userName, data.channelName);
-
+      // this.setName(data.userName, data.channelName);
+      // this.setNewWebCommunicationService();
+      // this.channelGeneratedFlag = true;
+      var newURL = "http://chat.codes/"+data.channelName;
+      chrome.tabs.create({ url: newURL, active: false }, function(tab1){
+        // chrome.tabs.executeScript(tab1.id, {
+        //   file: 'content_script.js'
+        // });
+        setTimeout(function(){
+          console.log("send message");
+          chrome.tabs.sendMessage(tab1.id, {
+                name: "SetWebInfo", 
+                userName:data.userName, 
+                channelName: data.channelName,
+                content: data.content
+              },(response)=>{
+                console.log(response);
+              });
+        }, 2000);
+              
+      });
     }
   }
 
@@ -135,8 +147,10 @@ export class AppComponent implements OnInit{
      this.channelName = channelName;
   };
 
-  setNewWebCommunicationService(createNewChannelFlag){
-      this.commLayer = new WebCommunicationService(this.userName, this.channelName, createNewChannelFlag);
+
+  setNewWebCommunicationService(){
+      this.commLayer = new WebCommunicationService(this.userName, this.channelName);
+      this.editorStateTracker = this.commLayer.getEditorStateTracker();
       this.commLayer.ready().then((channel) => {
         this.connected = true;
         // this.createNewEditorState();
@@ -145,52 +159,69 @@ export class AppComponent implements OnInit{
    
 
 
-  // @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
-  // lastShownContent: String;
-  // showCode(){
-  //   var codeContent = this.editorDisplay.getEditorValue();
-  //   this.chromeQueryGetOldCodeAndShowCode(codeContent);
-  // }
-  // undoShow(){
-  //   if(this.lastShownContent){
-  //     var codeContent = this.lastShownContent;
-  //     this.chromeQueryGetOldCodeAndShowCode(codeContent);
-  //   }
-  // }
+  @ViewChild(EditorDisplay) editorDisplay: EditorDisplay;
+  lastShownContent: String;
+
+  showCode(){
+    var codeContent = this.editorDisplay.getEditorInstance().getValue();
+    this.chromeQueryGetOldCodeAndShowCode(codeContent);
+  }
+  undoShow(){
+    if(this.lastShownContent){
+      var codeContent = this.lastShownContent;
+      this.chromeQueryGetOldCodeAndShowCode(codeContent);
+    }
+  }
 
 
-  // chromeQueryGetOldCodeAndShowCode(codeContent:String){
-  //   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-  //     chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
-  //       this.lastShownContent = response.oldCodeMirrorText;
-  //     });
-  //   });
-  // }
-
-  createNewEditorState(){
-    const openDelta =  {
-      type: 'open',
-      id: 12,
-      contents: this.detail.content,
-      //contents:'   asdf',
-      grammarName:  "Null Grammar",
-      title: 'WebsiteCode',
-      modified: false
-    };
-    this.commLayer.channelService.emitEditorOpened({
-      id: 12
+  chromeQueryGetOldCodeAndShowCode(codeContent:String){
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {name: "GetOldCodeAndShowNewCode", content: codeContent},(response)=>{
+        this.lastShownContent = response.oldCodeMirrorText;
+      });
     });
-    this.commLayer.channelService.editorStateTracker.onEditorOpened({
-      id: 12
-    }, false);
+  }
 
-    this.commLayer.channelService.emitEditorChanged(openDelta, false);
+
+  searchUp(){
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {name: "SearchUp"}, (response) => {
+          if(response.name == "SearchUp"){
+            console.log(response);
+            this.setDetail(response.detail);
+          }
+        });
+       });
+  }
+
+  searchDown(){
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {name: "SearchDown"}, (response) => {
+          if(response.name == "SearchDown"){
+            console.log(response);
+            this.setDetail(response.detail);
+          }
+        });
+      });
+  }
+
+  setDetail(detail){
+    this.detail = detail;
+    this.focusedEditorNumber = this.detail.focusedEditorNumber+1;
   }
 
 }
 
-
-
+let editorTitle:number = 1;
+function guid():string {
+    function s4():string {
+        return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+}
 
 
 // import { ViewChild, Component, OnInit, AfterContentInit } from '@angular/core';

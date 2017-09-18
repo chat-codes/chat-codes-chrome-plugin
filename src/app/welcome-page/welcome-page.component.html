@@ -5,7 +5,7 @@
 	</div>
 
 	<div class="col-4" id="page-editor-info-container">
-		<button type="button" *ngIf="detail.hasEditor" class="btn btn-secondary nav-button">{{detail.focusedEditorNumber}}/{{detail.editorNumber}}</button>
+		<button type="button" *ngIf="detail.hasEditor" class="btn btn-secondary nav-button">{{focusedEditorNumber}}/{{detail.editorNumber}}</button>
 
 		<button type="button" *ngIf="!detail.hasEditor" class="btn btn-secondary nav-button">None</button>
 
@@ -24,7 +24,7 @@
 </div>
 </div>
 <div class="row" id="input-channel-row">
-<div class="col-6">
+<div class="col-12">
 	<div class="input-group">
 		<input type="text" class="form-control" id= "channel-name-input"
 		placeholder="Created Channel"  [(ngModel)]="channelNameInput">
@@ -32,11 +32,16 @@
 			<button class="btn btn-sm btn-secondary" type="button" id = "go-button"
 			(click)="goButtonClick($event)">Go!</button>
 		</span>
+		<span class="input-group-btn" id="create-new-channel-button-container">
+			<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel($event)">Create New Channel</button>
+		</span>
 	</div>
 </div>
-<div class="col-6" id="new-channel-container">
+
+<!-- <div class="col-6" id="new-channel-container">
 	<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel()">Create New Channel</button>
-</div>
+</div> -->
+
 </div>
 <div class="row" id="recent-channel-row">
 

@@ -12,6 +12,7 @@ import { ChatInput } from 'chat-codes-web/src/app/chat-input/chat-input.componen
 import { TimestampDisplay } from 'chat-codes-web/src/app/timestamp/timestamp.component';
 import { NameChannelEntry } from './name-channel-entry/name-channel-entry.component';
 import { WelcomePage } from './welcome-page/welcome-page.component';
+import { ConnectionMessageDisplay } from 'chat-codes-web/src/app/chat-messages/connection-message.component';
 
 import { AceEditorModule } from 'ng2-ace-editor';
 import { MomentModule } from 'angular2-moment';
@@ -28,7 +29,8 @@ import { MomentModule } from 'angular2-moment';
     ChatInput,
     TimestampDisplay,
     NameChannelEntry,
-    WelcomePage
+    WelcomePage,
+    ConnectionMessageDisplay
   ],
   imports: [
     BrowserModule,

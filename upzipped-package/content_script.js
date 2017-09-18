@@ -1,7 +1,38 @@
+console.log("injected");
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        
+        if(request.name == "SetWebInfo"){
+            console.log("I get something!")
+            var userName = request.userName;
+            var channelName = request.channelName;
+            var content = request.content;
+            console.log(content);
+            console.log(channelName);
+            console.log(userName);
+            var actualCode = [
+                'var content = ' + JSON.stringify(content) + ';',
+                'var channelName = ' + JSON.stringify(channelName) + ';',
+                'var userName = ' + JSON.stringify(userName) + ';',
+
+                'var event = new CustomEvent("SetWebInfo", {detail: {content: content, channelName:channelName, userName: userName}});',
+                'document.dispatchEvent(event);',
+                '}',
+                '});',
+                '}'
+            ].join('\n');
+
+
+            var script = document.createElement('script');
+            script.textContent = actualCode;
+            (document.head || document.documentElement).appendChild(script);
+            script.remove();
+
+            sendResponse({test: "get it"});
+        }
+
         if (document.documentElement.getAttribute("xmlns") == "http://www.w3.org/1999/xhtml") {
-            
+
             //Everytime pop up will run this
             if (request.name == "GetChosenCodeMirrorText") {
                 var codeMirrorContent = 'empty';
