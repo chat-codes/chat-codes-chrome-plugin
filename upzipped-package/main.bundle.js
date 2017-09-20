@@ -75,7 +75,7 @@ var AppComponent = (function () {
         this.channelGeneratedFlag = false;
         setTimeout(function () {
             document.getElementById('width-controller').style.width = '400px';
-        }, 50);
+        }, 60);
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.editorCursorSelectionChanged = function (data) {
@@ -150,7 +150,7 @@ var AppComponent = (function () {
                     });
                     chrome.tabs.update(tab1.id, { "active": true, "highlighted": true }, function (tab) {
                     });
-                }, 1000);
+                }, 2000);
             });
         }
     };
@@ -5936,7 +5936,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "ace-editor{\n\theight: 400px;\n\tbox-shadow: 0px 0px 3px #888888;\n}\n\nspan{\n\theight: 50px;\n\twidth: 50px;\n}\n\n#alert{\n\tmargin-bottom: 0px;\n\tpadding: 0px;\n\tborder: 0px;\n\ttext-align: center;\n}\n\n#first-row{\n\tpadding-top: 0px;\n\tmargin-bottom: 4px;\n}\n\n#user-name-input-container{\n\t/*padding: 6px default;*/\n}\n\n#user-name-input{\n\tborder: 0px;\n\tpadding: 0px 1px;\n\tbackground: rgb(234,236,239);\n}\n\n#page-editor-info-container{\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n}\n\n.nav-button{\n\tborder: 0px;\n\t/*margin-top: 6px;*/\n\tpadding: 2px 6px ;\n\tcolor: rgb(134,142,150);\n\tbackground: rgb(234,236,239);\n}\n\n#nav-button-container{\n\ttext-align: right;\n\t/*padding-right: 0px;*/\n}\n\n#input-channel-container{\n\tpadding-right: 5px;\n}\n\n#create-button-container{\n\tpadding-left: 5px;\n}\n\n#input-channel-row{\n\tmargin-top: 8px;\n}\n\n#channel-name-input{\n\tpadding: 8px 8px 8px;\n\twidth: 50px;\n\theight: 31px;\n}\n\n#check-button-container{\n\twidth: 41.08px;\n\theight: 31px;\n}\n\n#create-button{\n\twidth: 100%;\n\theight: 31px;\n}\n\n\n#new-channel-container{\n\t/*padding-left: 0px;*/\n}\n\n#create-new-channel-button{\n\t/*width: 170px;*/\n\t/*padding: 4px 7px 4px;*/\n}\n\n#recent-channel-row{\n\tpadding-top: 3px;\n}\n\n#recent-channel-button{\n\tborder: 0px;\n\tpadding:1px 1px 1px 1px;\n\tmargin-right: 10px;\n}\n\n", ""]);
+exports.push([module.i, "ace-editor{\n\theight: 400px;\n\tbox-shadow: 0px 0px 3px #888888;\n}\n\nspan{\n\theight: 50px;\n\twidth: 50px;\n}\n\n#alert{\n\tmargin-bottom: 0px;\n\tpadding: 0px;\n\tborder: 0px;\n\ttext-align: center;\n}\n\n#first-row{\n\tpadding-top: 0px;\n\tmargin-bottom: 4px;\n}\n\n#user-name-input-container{\n\t/*padding: 6px default;*/\n}\n\n#user-name-input{\n\tborder: 0px;\n\tpadding: 0px 1px;\n\tbackground: rgb(234,236,239);\n}\n\n#page-editor-info-container{\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n}\n\n.nav-button{\n\tborder: 0px;\n\t/*margin-top: 6px;*/\n\tpadding: 2px 6px ;\n\tcolor: rgb(134,142,150);\n\tbackground: rgb(234,236,239);\n}\n\n#nav-button-container{\n\ttext-align: right;\n\t/*padding-right: 0px;*/\n}\n\n#input-channel-container{\n\tpadding-right: 5px;\n}\n\n#create-button-container{\n\tpadding-left: 5px;\n}\n\n#input-channel-row{\n\tmargin-top: 8px;\n}\n\n#channel-name-input{\n\tpadding: 8px 8px 8px;\n\twidth: 50px;\n\theight: 31px;\n}\n\n#check-button-container{\n\twidth: 41.08px;\n\theight: 31px;\n}\n\n#create-button{\n\twidth: 100%;\n\theight: 31px;\n}\n\n\n#new-channel-container{\n\t/*padding-left: 0px;*/\n}\n\n#create-new-channel-button{\n\t/*width: 170px;*/\n\t/*padding: 4px 7px 4px;*/\n}\n\n#recent-channel-row{\n\tpadding-top: 3px;\n}\n\n#recent-channel-button{\n\tborder: 0px;\n\tpadding:1px 1px 1px 1px;\n\tmargin-right: 10px;\n\t/*background-color: rgb(115,123,131);\n\tcolor: white;*/\n}\n\n", ""]);
 
 // exports
 

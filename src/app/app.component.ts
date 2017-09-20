@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     constructor() {
         setTimeout(function() {
             document.getElementById('width-controller').style.width = '400px';
-        }, 50); 
+        }, 60); 
     };
     public editorStateTracker;
     public commLayer: WebCommunicationService;
@@ -87,6 +87,7 @@ export class AppComponent implements OnInit {
         this.setNewWebCommunicationService();
     }
     ngAfterContentInit() {}
+
     channelClick(data) {
         this.setDetail(data.detail);
         if (data.type == "GoToCreatedChannel") {
@@ -108,7 +109,7 @@ export class AppComponent implements OnInit {
                     });
                     chrome.tabs.update(tab1.id,{"active":true,"highlighted":true},function (tab){
                     });
-            	},1000);
+            	},2000);
             });
             
         }

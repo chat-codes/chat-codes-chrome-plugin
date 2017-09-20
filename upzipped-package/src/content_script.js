@@ -103,6 +103,13 @@ chrome.runtime.onMessage.addListener(
                     'codeMirrorEditor = codeMirrorElement.CodeMirror;',
                     //if has focus
                     'if(codeMirrorEditor.hasFocus()){',
+                    //highlight
+                    'codeMirrorElement.style.backgroundColor = "rgb(234,236,239)";',
+                    'setTimeout(function(){',
+                    '    codeMirrorElement.style.backgroundColor = "white";',
+                    '    console.log("set");',
+                    '},1500)',
+
                     'oldContent = codeMirrorEditor.getValue();',
                     //send content by Event
                     'var event = new CustomEvent("GetContent", {detail: {content: oldContent}});',

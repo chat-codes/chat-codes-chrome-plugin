@@ -13,6 +13,7 @@ console.log(codeMirrorElementArray);
 
 //check which one is focused
 for (var i = 0; i < detail.editorNumber; i++) {
+    codeMirrorElementArray[i].style.backgroundColor = 'white';
     codeMirrorEditor = codeMirrorElementArray[i].CodeMirror;
     if (codeMirrorEditor.hasFocus()) {
         detail.hasFocus = true;
@@ -35,7 +36,12 @@ detail.content = codeMirrorEditor.getValue();
 var rec = codeMirrorElementArray[detail.focusedEditorNumber].getBoundingClientRect();
 window.scrollTo( rec.left + window.scrollX, rec.top + window.scrollY-123);
 
-
+//highlight
+codeMirrorElementArray[detail.focusedEditorNumber].style.backgroundColor = "rgb(234,236,239)";
+setTimeout(function(){
+    codeMirrorElementArray[detail.focusedEditorNumber].style.backgroundColor = 'white';
+    console.log("set");
+},1500)
 
 
 // console.log(detail);
