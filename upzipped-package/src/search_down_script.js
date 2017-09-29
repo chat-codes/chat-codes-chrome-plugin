@@ -19,14 +19,11 @@ for (var i = 0; i < detail.editorNumber; i++) {
     if (codeMirrorEditor.hasFocus()) {
         detail.hasFocus = true;
         //search down
-        // console.log(i);
         if(i<detail.editorNumber-1){
             detail.focusedEditorNumber = i+1;
         }else{
             detail.focusedEditorNumber = i;
         }
-        // console.log(i<detail.editorNumber-1);
-        // console.log(detail.focusedEditorNumber);
     }
 }
 
@@ -34,8 +31,6 @@ for (var i = 0; i < detail.editorNumber; i++) {
 codeMirrorEditor = codeMirrorElementArray[detail.focusedEditorNumber].CodeMirror;
 codeMirrorEditor.focus();
 detail.content = codeMirrorEditor.getValue();
-
-// console.log(detail.content);
 
 //move the page
 var rec = codeMirrorElementArray[detail.focusedEditorNumber].getBoundingClientRect();
@@ -48,8 +43,7 @@ setTimeout(function(){
     console.log("set");
 },1500)
 
-
-// console.log(detail);
+//set Event
 var event = new CustomEvent("SearchDown", {
     detail: detail
 });

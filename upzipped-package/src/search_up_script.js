@@ -41,7 +41,6 @@ window.scrollTo( rec.left + window.scrollX, rec.top + window.scrollY-123);
 codeMirrorElementArray[detail.focusedEditorNumber].style.backgroundColor = "rgb(234,236,239)";
 setTimeout(function(){
     codeMirrorElementArray[detail.focusedEditorNumber].style.backgroundColor = 'white';
-    console.log("set");
 },1500)
 
 
