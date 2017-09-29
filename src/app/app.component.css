@@ -1,3 +1,6 @@
+#nav-link-for-chrome {padding: 3px 6px;}
+
+
 html{
   /*width: 410px;*/
 }
@@ -18,10 +21,13 @@ html{
   /*box-shadow: 0px 0px 10px #888888;*/
 }
 
+#go-back-button{
+  border: 0px;
+}
+
 #channel-button{
   border: 0px;
-  padding:1px 1px 1px 1px;
-  margin-right: 20px;
+  padding:1px 6px 1px 1px;
 }
 
 /*#page-function-row{
@@ -33,7 +39,7 @@ html{
 }
 
 #list-row{
-  margin-top: 5px;
+  margin-top: 0px;
 }
 
 
@@ -61,16 +67,52 @@ code-editor{
 
 
 
+.modifiedFlag.modified {
+    border-radius: 5px;
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    background-color: #AAA;
+}
 
-
-
-
+ul.members {
+    list-style: none;
+    padding: 0px;
+    display: inline-block;
+}
+li.member {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.message {
+    color: #333;
+}
+.message p {
+    margin: 0px;
+    line-height: normal;
+}
 
 .remoteCursor {
     position: absolute;
     z-index: 5;
     opacity: 0.3;
 }
+
+.header .time {
+    color: #888;
+}
+.header .sender {
+    /*color: #333;*/
+    /*font-weight: bold;*/
+}
+
+.user-1 { color: #007bff; } /* blue */
+.user-2 { color: #dc3545; } /* red */
+.user-3 { color: #fd7e14; } /* orange */
+.user-4 { color: #ffc107; } /* yellow */
+.user-5 { color: #28a745; } /* green */
+
 
 .remoteCursor.user-1 { background-color: #007bff; }
 .remoteCursor.user-2 { background-color: #dc3545; }
@@ -83,6 +125,7 @@ code-editor{
 .remoteCursor.carret.user-3 { border-left-color: #fd7e14; }
 .remoteCursor.carret.user-4 { border-left-color: #ffc107; }
 .remoteCursor.carret.user-5 { border-left-color: #28a745; }
+
 
 .remoteCursor.carret {
     position: absolute;

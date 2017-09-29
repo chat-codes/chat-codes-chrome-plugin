@@ -13,21 +13,22 @@
 </div> -->
 
 <div class="jumbotron-fluid" id="main">
-    <div *ngIf='!channelGeneratedFlag' class="container-fluid" id="width-controller" >
+    <div *ngIf='!ifShowChatCode' class="container-fluid" id="width-controller" >
         <welcome-page (channelClick)="channelClick($event)"></welcome-page>
     </div>
     
-    <div *ngIf='channelGeneratedFlag' class="container-fluid" id="width-controller">
+    <div *ngIf='ifShowChatCode' class="container-fluid" id="width-controller">
         <div class="row" id="first-Row">
             <div class="col-12">
-                <button type="button" class="btn btn-sm btn-outline-dark" id="channel-button">#{{channelName}}</button>
+                <button type="button" class="btn btn-sm btn-outline-dark" id="go-back-button" (click)="goBackPage()">⤺</button>
+
+                <button type="button" class="btn btn-sm btn-outline-dark" id="channel-button" disabled>#{{channelName}}</button>
                 <!-- <div id="content channel-name-text">{{channelName}}</div> -->
             
          
                 <i class='member' *ngFor="let user of commLayer.userList.activeUsers">
                 <user-display [user]='user'></user-display>
                 </i>
-
             </div>
 
             <!-- <div class="col-4" id = "showcode-button-container">
@@ -52,17 +53,18 @@
                 <p *ngIf="detail.hasEditor && detail.hasFocus">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>
             </div>
         </div> -->
+
         <div class="row" id="list-row">
             <div class="col-12">
                 <ul class='files nav nav-tabs'>
                     <li class='nav-item' *ngFor="let editorState of getActiveEditors()">
-                        <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);' (click)="codeEditor.selectFile(editorState)">
+                        <a [ngClass]="{'active': editorState.selected}" class='nav-link' href='javascript:void(0);' id='nav-link-for-chrome' (click)="codeEditor.selectFile(editorState)">
                             {{editorState.getTitle()}}
                             <span class='modifiedFlag' [ngClass]="{'modified':editorState.getIsModified()}"></span>
                         </a>
                     </li>
                     <li *ngIf="commLayer.channelService.isRoot()" class='nav-item'>
-                        <a class='nav-link' href='javascript:void(0);' (click)="createNewFile()">
+                        <a class='nav-link' href='javascript:void(0);' id='nav-link-for-chrome' (click)="createNewFile()">
                             +
                         </a>
                     </li>
@@ -76,7 +78,7 @@
             </div>
         </div>
 
-        <div class="row" id="page-function-row">
+        <!-- <div class="row" id="page-function-row">
             <div class="col-6" >
                 <div class="btn-group" role="group" aria-label="Basic example">
                      <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)="showCode()">ShowCode</button>
@@ -96,7 +98,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 

@@ -21,7 +21,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "html{\n  /*width: 410px;*/\n}\n\n#no-boarder-button{\n  border: none;\n}\n\n.jumbotron-fluid {\n  padding-top: 5px;\n  padding-bottom: 5px;\n  background: rgb(234,236,239);\n  \n}\n\n#width-controller{\n\twidth: 400px;\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n#channel-button{\n  border: 0px;\n  padding:1px 1px 1px 1px;\n  margin-right: 20px;\n}\n\n/*#page-function-row{\n  margin-top: 5px;\n}*/\n\n#search-button-container{\n  text-align:right;\n}\n\n#list-row{\n  margin-top: 5px;\n}\n\n\n#code-editor-row{\n\theight: 400px;\n  border: 1px;\n}\n\ncode-editor{\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n\n#chat-messages-row{\n\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 5px;\n}\n\n\n\n\n\n\n\n\n\n\n\n.remoteCursor {\n    position: absolute;\n    z-index: 5;\n    opacity: 0.3;\n}\n\n.remoteCursor.user-1 { background-color: #007bff; }\n.remoteCursor.user-2 { background-color: #dc3545; }\n.remoteCursor.user-3 { background-color: #fd7e14; }\n.remoteCursor.user-4 { background-color: #ffc107; }\n.remoteCursor.user-5 { background-color: #28a745; }\n\n.remoteCursor.carret.user-1 { border-left-color: #007bff; }\n.remoteCursor.carret.user-2 { border-left-color: #dc3545; }\n.remoteCursor.carret.user-3 { border-left-color: #fd7e14; }\n.remoteCursor.carret.user-4 { border-left-color: #ffc107; }\n.remoteCursor.carret.user-5 { border-left-color: #28a745; }\n\n.remoteCursor.carret {\n    position: absolute;\n    border-left-width: 2px;\n    border-left-style: solid;\n    z-index: 6;\n    opacity: 0.9;\n}\n\n\n.d2h-diff-table {\n    position: relative;\n}", ""]);
+exports.push([module.i, "#nav-link-for-chrome {padding: 3px 6px;}\n\n\nhtml{\n  /*width: 410px;*/\n}\n\n#no-boarder-button{\n  border: none;\n}\n\n.jumbotron-fluid {\n  padding-top: 5px;\n  padding-bottom: 5px;\n  background: rgb(234,236,239);\n  \n}\n\n#width-controller{\n\twidth: 400px;\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n#go-back-button{\n  border: 0px;\n}\n\n#channel-button{\n  border: 0px;\n  padding:1px 6px 1px 1px;\n}\n\n/*#page-function-row{\n  margin-top: 5px;\n}*/\n\n#search-button-container{\n  text-align:right;\n}\n\n#list-row{\n  margin-top: 0px;\n}\n\n\n#code-editor-row{\n\theight: 400px;\n  border: 1px;\n}\n\ncode-editor{\n  /*box-shadow: 0px 0px 10px #888888;*/\n}\n\n\n#chat-messages-row{\n\n}\n\n#chat-input-row{\n\theight: 48px;\n\tmargin-bottom: 5px;\n}\n\n\n\n\n\n\n.modifiedFlag.modified {\n    border-radius: 5px;\n    height: 10px;\n    width: 10px;\n    display: inline-block;\n    background-color: #AAA;\n}\n\nul.members {\n    list-style: none;\n    padding: 0px;\n    display: inline-block;\n}\nli.member {\n    display: inline-block;\n    margin-left: 5px;\n    margin-right: 5px;\n}\n.message {\n    color: #333;\n}\n.message p {\n    margin: 0px;\n    line-height: normal;\n}\n\n.remoteCursor {\n    position: absolute;\n    z-index: 5;\n    opacity: 0.3;\n}\n\n.header .time {\n    color: #888;\n}\n.header .sender {\n    /*color: #333;*/\n    /*font-weight: bold;*/\n}\n\n.user-1 { color: #007bff; } /* blue */\n.user-2 { color: #dc3545; } /* red */\n.user-3 { color: #fd7e14; } /* orange */\n.user-4 { color: #ffc107; } /* yellow */\n.user-5 { color: #28a745; } /* green */\n\n\n.remoteCursor.user-1 { background-color: #007bff; }\n.remoteCursor.user-2 { background-color: #dc3545; }\n.remoteCursor.user-3 { background-color: #fd7e14; }\n.remoteCursor.user-4 { background-color: #ffc107; }\n.remoteCursor.user-5 { background-color: #28a745; }\n\n.remoteCursor.carret.user-1 { border-left-color: #007bff; }\n.remoteCursor.carret.user-2 { border-left-color: #dc3545; }\n.remoteCursor.carret.user-3 { border-left-color: #fd7e14; }\n.remoteCursor.carret.user-4 { border-left-color: #ffc107; }\n.remoteCursor.carret.user-5 { border-left-color: #28a745; }\n\n\n.remoteCursor.carret {\n    position: absolute;\n    border-left-width: 2px;\n    border-left-style: solid;\n    z-index: 6;\n    opacity: 0.9;\n}\n\n\n.d2h-diff-table {\n    position: relative;\n}", ""]);
 
 // exports
 
@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div>\n    <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div> -->\n<!-- <div>\n    <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n<!-- <div *ngIf=\"!detail.hasEditor && hasName\">\n    <h1>Has No CodeMirror Editor In This Page...</h1>\n</div>\n<div *ngIf=\"detail.hasEditor && !detail.hasFocus && hasName\">\n    <h1>Selected No CodeMirror Editor...</h1>\n</div> -->\n\n<div class=\"jumbotron-fluid\" id=\"main\">\n    <div *ngIf='!channelGeneratedFlag' class=\"container-fluid\" id=\"width-controller\" >\n        <welcome-page (channelClick)=\"channelClick($event)\"></welcome-page>\n    </div>\n    \n    <div *ngIf='channelGeneratedFlag' class=\"container-fluid\" id=\"width-controller\">\n        <div class=\"row\" id=\"first-Row\">\n            <div class=\"col-12\">\n                <button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"channel-button\">#{{channelName}}</button>\n                <!-- <div id=\"content channel-name-text\">{{channelName}}</div> -->\n            \n         \n                <i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n\n            </div>\n\n            <!-- <div class=\"col-4\" id = \"showcode-button-container\">\n                <button class='btn btn-secondary btn-sm'(click)=\"showCode()\">ShowCode</button>\n            </div> -->\n        </div>\n        <div class=\"row\" id=\"second-Row\">\n            <!-- <div class=\"col-8\">\n                Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n            </div> -->\n           <!--  <div class=\"col-4\" id = \"undoshow-button-container\">\n                <button class='btn btn-secondary btn-sm' (click)=\"undoShow()\">UndoShow</button>\n            </div> -->\n        </div>\n        <!-- <div class=\"row\" id=\"third-Row\">\n            <div class=\"col-12\">\n                <p *ngIf=\"!detail.hasEditor\">This page has no CodeMirror Editor</p>\n                <p *ngIf=\"detail.hasEditor\">This page has {{detail.editorNumber}} CodeMirror Editors</p>\n                <p *ngIf=\"detail.hasEditor && !detail.hasFocus\">You are choosing no editor</p>\n                <p *ngIf=\"detail.hasEditor && detail.hasFocus\">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>\n            </div>\n        </div> -->\n        <div class=\"row\" id=\"list-row\">\n            <div class=\"col-12\">\n                <ul class='files nav nav-tabs'>\n                    <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                        <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' (click)=\"codeEditor.selectFile(editorState)\">\n                            {{editorState.getTitle()}}\n                            <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                        </a>\n                    </li>\n                    <li *ngIf=\"commLayer.channelService.isRoot()\" class='nav-item'>\n                        <a class='nav-link' href='javascript:void(0);' (click)=\"createNewFile()\">\n                            +\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"row\" id=\"code-editor-row\">\n            <div class=\"col-12\">\n                <code-editor [commLayer]='commLayer'\n                (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            </div>\n        </div>\n\n        <div class=\"row\" id=\"page-function-row\">\n            <div class=\"col-6\" >\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"showCode()\">ShowCode</button>\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n            <div class=\"col-6\" id=\"search-button-container\">\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchUp($event)\">⬆︎</button>\n                    \n                    <button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>{{focusedEditorNumber}}/{{detail.editorNumber}}</button>\n                    \n                    <button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>None</button>\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchDown($event)\">⬇︎</button>\n\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"row\" id=\"chat-messages-row\">\n            <div class=\"col-12\">\n            <chat-messages [editorStateTracker]='editorStateTracker' [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n        </div>\n        </div>\n        <div class=\"row\" id='chat-input-row'>\n            <div class=\"col-12\">\n                <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n            </div>\n        </div>\n        \n    </div>\n</div>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div>\n    <name-channel-entry *ngIf=\"!hasName\" (channelOnEnter)=\"setName($event)\"></name-channel-entry>\n</div> -->\n<!-- <div>\n    <channel-entry *ngIf=\"!hasName && !hasChannelName\" (onEnter)=\"setChannelName($event)\"></channel-entry>\n</div> -->\n<!-- <div *ngIf=\"!detail.hasEditor && hasName\">\n    <h1>Has No CodeMirror Editor In This Page...</h1>\n</div>\n<div *ngIf=\"detail.hasEditor && !detail.hasFocus && hasName\">\n    <h1>Selected No CodeMirror Editor...</h1>\n</div> -->\n\n<div class=\"jumbotron-fluid\" id=\"main\">\n    <div *ngIf='!ifShowChatCode' class=\"container-fluid\" id=\"width-controller\" >\n        <welcome-page (channelClick)=\"channelClick($event)\"></welcome-page>\n    </div>\n    \n    <div *ngIf='ifShowChatCode' class=\"container-fluid\" id=\"width-controller\">\n        <div class=\"row\" id=\"first-Row\">\n            <div class=\"col-12\">\n                <button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"go-back-button\" (click)=\"goBackPage()\">⤺</button>\n\n                <button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"channel-button\" disabled>#{{channelName}}</button>\n                <!-- <div id=\"content channel-name-text\">{{channelName}}</div> -->\n            \n         \n                <i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n            </div>\n\n            <!-- <div class=\"col-4\" id = \"showcode-button-container\">\n                <button class='btn btn-secondary btn-sm'(click)=\"showCode()\">ShowCode</button>\n            </div> -->\n        </div>\n        <div class=\"row\" id=\"second-Row\">\n            <!-- <div class=\"col-8\">\n                Members:<i class='member' *ngFor=\"let user of commLayer.userList.activeUsers\">\n                <user-display [user]='user'></user-display>\n                </i>\n            </div> -->\n           <!--  <div class=\"col-4\" id = \"undoshow-button-container\">\n                <button class='btn btn-secondary btn-sm' (click)=\"undoShow()\">UndoShow</button>\n            </div> -->\n        </div>\n        <!-- <div class=\"row\" id=\"third-Row\">\n            <div class=\"col-12\">\n                <p *ngIf=\"!detail.hasEditor\">This page has no CodeMirror Editor</p>\n                <p *ngIf=\"detail.hasEditor\">This page has {{detail.editorNumber}} CodeMirror Editors</p>\n                <p *ngIf=\"detail.hasEditor && !detail.hasFocus\">You are choosing no editor</p>\n                <p *ngIf=\"detail.hasEditor && detail.hasFocus\">You are choosing editor No.{{detail.focusedEditorNumber+1}}</p>\n            </div>\n        </div> -->\n\n        <div class=\"row\" id=\"list-row\">\n            <div class=\"col-12\">\n                <ul class='files nav nav-tabs'>\n                    <li class='nav-item' *ngFor=\"let editorState of getActiveEditors()\">\n                        <a [ngClass]=\"{'active': editorState.selected}\" class='nav-link' href='javascript:void(0);' id='nav-link-for-chrome' (click)=\"codeEditor.selectFile(editorState)\">\n                            {{editorState.getTitle()}}\n                            <span class='modifiedFlag' [ngClass]=\"{'modified':editorState.getIsModified()}\"></span>\n                        </a>\n                    </li>\n                    <li *ngIf=\"commLayer.channelService.isRoot()\" class='nav-item'>\n                        <a class='nav-link' href='javascript:void(0);' id='nav-link-for-chrome' (click)=\"createNewFile()\">\n                            +\n                        </a>\n                    </li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"row\" id=\"code-editor-row\">\n            <div class=\"col-12\">\n                <code-editor [commLayer]='commLayer'\n                (cursorSelectionChanged)='editorCursorSelectionChanged($event)' #codeEditor></code-editor>\n            </div>\n        </div>\n\n        <!-- <div class=\"row\" id=\"page-function-row\">\n            <div class=\"col-6\" >\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"showCode()\">ShowCode</button>\n                     <button class='btn btn-outline-dark btn-sm' id='no-boarder-button' (click)=\"undoShow()\">UndoShow</button>\n                </div>\n            </div>\n            <div class=\"col-6\" id=\"search-button-container\">\n                <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchUp($event)\">⬆︎</button>\n                    \n                    <button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>{{focusedEditorNumber}}/{{detail.editorNumber}}</button>\n                    \n                    <button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button'>None</button>\n                    \n                    <button type=\"button\" class=\"btn btn-outline-dark btn-sm\" id='no-boarder-button' (click)=\"searchDown($event)\">⬇︎</button>\n\n                </div>\n            </div>\n        </div> -->\n\n\n\n        <div class=\"row\" id=\"chat-messages-row\">\n            <div class=\"col-12\">\n            <chat-messages [editorStateTracker]='editorStateTracker' [commLayer]='commLayer' [editor]='codeEditor'></chat-messages>\n        </div>\n        </div>\n        <div class=\"row\" id='chat-input-row'>\n            <div class=\"col-12\">\n                <chat-input  [message]=\"message\" (send)='sendTextMessage($event)'\n                (typing)='updateTypingStatus($event)'  #chatinput></chat-input>\n            </div>\n        </div>\n        \n    </div>\n</div>"
 
 /***/ }),
 
@@ -59,9 +59,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AppComponent = (function () {
+    //get rid of the constructor code in web/app.component.ts
+    //channelName is not set here in Chrome extension 
     function AppComponent() {
         this.at_bottom = false;
-        this.userName = '';
+        this.name = '';
         this.hasName = false;
         this.connected = false;
         this.channelName = 'example_channel';
@@ -72,16 +74,17 @@ var AppComponent = (function () {
             focusedEditorNumber: -1,
             content: ''
         };
-        this.channelGeneratedFlag = false;
-        setTimeout(function () {
-            document.getElementById('width-controller').style.width = '400px';
-        }, 60);
+        this.ifShowChatCode = false;
+        // this.setChannelandUserForTest();
+        // this.createNewFile();
     }
+    //here are the code in web/app.component.ts
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.editorCursorSelectionChanged = function (data) {
         this.chatinput.onEditorCursorSelectionChanged(data);
     };
     ;
+    //setName is not needed
     AppComponent.prototype.getChatURL = function () {
         return 'chat.codes/' + this.channelName;
     };
@@ -122,8 +125,14 @@ var AppComponent = (function () {
         });
     };
     ;
+    //all the code below are only for chrome extension
+    AppComponent.prototype.setChannelandUserForTest = function () {
+        this.ifShowChatCode = true;
+        this.setName("Andy", "FirstChannel1");
+        this.setNewWebCommunicationService();
+    };
     AppComponent.prototype.test = function () {
-        this.channelGeneratedFlag = true;
+        this.ifShowChatCode = true;
         this.setName("userName", "emirates");
         this.setNewWebCommunicationService();
     };
@@ -131,97 +140,26 @@ var AppComponent = (function () {
     AppComponent.prototype.channelClick = function (data) {
         this.setDetail(data.detail);
         if (data.type == "GoToCreatedChannel") {
-            this.channelGeneratedFlag = true;
+            this.ifShowChatCode = true;
             this.setName(data.userName, data.channelName);
             this.setNewWebCommunicationService();
         }
-        else if (data.type == "CreatNewChannel") {
-            var newURL = "http://localhost:4200/" + data.channelName;
-            chrome.tabs.create({ url: newURL, active: false }, function (tab1) {
-                setTimeout(function () {
-                    console.log("send message");
-                    chrome.tabs.sendMessage(tab1.id, {
-                        name: "SetWebInfo",
-                        userName: data.userName,
-                        channelName: data.channelName,
-                        content: data.content
-                    }, function (response) {
-                        console.log(response);
-                    });
-                    chrome.tabs.update(tab1.id, { "active": true, "highlighted": true }, function (tab) {
-                    });
-                }, 2000);
-            });
-        }
+    };
+    AppComponent.prototype.goBackPage = function () {
+        this.ifShowChatCode = false;
     };
     AppComponent.prototype.setName = function (userName, channelName) {
-        this.userName = userName;
+        this.name = userName;
         this.channelName = channelName;
     };
     ;
     AppComponent.prototype.setNewWebCommunicationService = function () {
         var _this = this;
-        this.commLayer = new __WEBPACK_IMPORTED_MODULE_1_chat_codes_web_src_app_web_communication_service__["a" /* WebCommunicationService */](this.userName, this.channelName);
+        this.commLayer = new __WEBPACK_IMPORTED_MODULE_1_chat_codes_web_src_app_web_communication_service__["a" /* WebCommunicationService */](this.name, this.channelName);
         this.editorStateTracker = this.commLayer.getEditorStateTracker();
         this.commLayer.ready().then(function (channel) {
             _this.connected = true;
             // this.createNewEditorState();
-        });
-    };
-    AppComponent.prototype.showCode = function () {
-        var codeContent = this.editorDisplay.getEditorInstance().getValue();
-        this.chromeQueryGetOldCodeAndShowCode(codeContent);
-    };
-    AppComponent.prototype.undoShow = function () {
-        if (this.lastShownContent) {
-            var codeContent = this.lastShownContent;
-            this.chromeQueryGetOldCodeAndShowCode(codeContent);
-        }
-    };
-    AppComponent.prototype.chromeQueryGetOldCodeAndShowCode = function (codeContent) {
-        var _this = this;
-        chrome.tabs.query({
-            active: true,
-            currentWindow: true
-        }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-                name: "GetOldCodeAndShowNewCode",
-                content: codeContent
-            }, function (response) {
-                _this.lastShownContent = response.oldCodeMirrorText;
-            });
-        });
-    };
-    AppComponent.prototype.searchUp = function () {
-        var _this = this;
-        chrome.tabs.query({
-            active: true,
-            currentWindow: true
-        }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-                name: "SearchUp"
-            }, function (response) {
-                if (response.name == "SearchUp") {
-                    console.log(response);
-                    _this.setDetail(response.detail);
-                }
-            });
-        });
-    };
-    AppComponent.prototype.searchDown = function () {
-        var _this = this;
-        chrome.tabs.query({
-            active: true,
-            currentWindow: true
-        }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-                name: "SearchDown"
-            }, function (response) {
-                if (response.name == "SearchDown") {
-                    console.log(response);
-                    _this.setDetail(response.detail);
-                }
-            });
         });
     };
     AppComponent.prototype.setDetail = function (detail) {
@@ -252,6 +190,7 @@ AppComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], AppComponent);
 
+//This is the function from web/app.component.ts
 var editorTitle = 1;
 function guid() {
     function s4() {
@@ -5936,7 +5875,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "ace-editor{\n\theight: 400px;\n\tbox-shadow: 0px 0px 3px #888888;\n}\n\nspan{\n\theight: 50px;\n\twidth: 50px;\n}\n\n#alert{\n\tmargin-bottom: 0px;\n\tpadding: 0px;\n\tborder: 0px;\n\ttext-align: center;\n}\n\n#first-row{\n\tpadding-top: 0px;\n\tmargin-bottom: 4px;\n}\n\n#user-name-input-container{\n\t/*padding: 6px default;*/\n}\n\n#user-name-input{\n\tborder: 0px;\n\tpadding: 0px 1px;\n\tbackground: rgb(234,236,239);\n}\n\n#page-editor-info-container{\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n}\n\n.nav-button{\n\tborder: 0px;\n\t/*margin-top: 6px;*/\n\tpadding: 2px 6px ;\n\tcolor: rgb(134,142,150);\n\tbackground: rgb(234,236,239);\n}\n\n#nav-button-container{\n\ttext-align: right;\n\t/*padding-right: 0px;*/\n}\n\n#input-channel-container{\n\tpadding-right: 0px;\n}\n\n#create-button-container{\n\tpadding-left: 3px;\n}\n\n#input-channel-row{\n\tmargin-top: 8px;\n}\n\n#channel-name-input{\n\tpadding: 8px 8px 8px;\n\twidth: 50px;\n\theight: 31px;\n}\n\n#check-button-container{\n\twidth: 59.78px;\n\theight: 31px;\n}\n\n#create-button{\n\twidth: 100%;\n\theight: 31px;\n}\n\n\n#new-channel-container{\n\t/*padding-left: 0px;*/\n}\n\n#create-new-channel-button{\n\t/*width: 170px;*/\n\t/*padding: 4px 7px 4px;*/\n}\n\n#recent-channel-row{\n\tpadding-top: 3px;\n}\n\n#recent-channel-button{\n\tborder: 0px;\n\tpadding:1px 1px 1px 1px;\n\tmargin-right: 10px;\n\t/*background-color: rgb(115,123,131);\n\tcolor: white;*/\n}\n\n", ""]);
+exports.push([module.i, "ace-editor{\n\theight: 400px;\n\tbox-shadow: 0px 0px 3px #888888;\n}\n\nspan{\n\theight: 50px;\n\twidth: 50px;\n}\n\n#alert{\n\tmargin-bottom: 0px;\n\tpadding: 0px;\n\tborder: 0px;\n\ttext-align: center;\n}\n\n#first-row{\n\tpadding-top: 0px;\n\tmargin-bottom: 4px;\n}\n\n#user-name-input{\n\tborder: 0px;\n\tpadding: 0px 1px;\n\tbackground: rgb(234,236,239);\n}\n\n#page-editor-info-container{\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n}\n\n.nav-button{\n\tborder: 0px;\n\tpadding: 2px 6px ;\n\tcolor: rgb(134,142,150);\n\tbackground: rgb(234,236,239);\n}\n\n#nav-button-container{\n\ttext-align: right;\n}\n\n#input-channel-container{\n\tpadding-right: 0px;\n}\n\n#channel-row{\n\tmargin-top: 8px;\n}\n\n#channel-button{\n\twidth: 100%;\n\theight: 31px;\n}\n\n\n/*#channel-name-input{\n\tpadding: 8px 8px 8px;\n\twidth: 50px;\n\theight: 31px;\n}*/\n\n/*#check-button-container{\n\twidth: 59.78px;\n\theight: 31px;\n}*/\n\n\n\n\n/*#recent-channel-row{\n\tpadding-top: 3px;\n}\n\n#recent-channel-button{\n\tborder: 0px;\n\tpadding:1px 1px 1px 1px;\n\tmargin-right: 10px;\n\tbackground-color: rgb(115,123,131);\n\tcolor: white;\n}*/\n\n", ""]);
 
 // exports
 
@@ -5949,7 +5888,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/welcome-page/welcome-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" id=\"first-row\">\n\t\n\t<div class=\"col-12\">\n\t\t<div class=\"alert alert-warning\" role=\"alert\" id=\"alert\" >\n  \t\t\t{{feedback}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"col-12\">\n\t\t<div class=\"alert alert-success\" role=\"alert\" id=\"alert\" >\n  \t\t\t{{feedback_success}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"input-group col-4\" id=\"user-name-input-container\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"user-name-input\"\n\t\tplaceholder=\"Your name\" [(ngModel)]=\"userName\" (ngModelChange)=\"userNameChange($event)\">\n\t</div>\n\n\t<div class=\"col-4\" id=\"page-editor-info-container\">\n\t\t<button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-secondary nav-button\">{{focusedEditorNumber}}/{{detail.editorNumber}}</button>\n\n\t\t<button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-secondary nav-button\">None</button>\n\n\t</div>\n\t\n\t<div class=\"col-4\" id=\"nav-button-container\">\n\t\t<div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchUp($event)\">⬆︎</button>\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchDown($event)\">⬇︎</button>\n\t\t</div>\n\t</div>\n</div>\n<div class=\"row\" id=\"editor-Row\">\n\t<div class=\"col-12\">\n\t\t<ace-editor #editor></ace-editor>\n\t</div>\n</div>\n<div class=\"row\" id=\"input-channel-row\">\n\t\t<div class=\"col-6 input-group\" id=\"input-channel-container\">\n\t\t\t<input type=\"text\" class=\"form-control\" id= \"channel-name-input\"\n\t\t\tplaceholder=\"ChannelName\"  [(ngModel)]=\"channelNameInput\">\n\t\t\t<span class=\"input-group-btn\" id=\"check-button-container\">\n\t\t\t\t<button class=\"btn btn-sm btn-secondary\" type=\"button\" id = \"check-button\"\n\t\t\t\t(click)=\"goButtonClick($event)\">Check</button>\n\t\t\t</span>\n\t\t\t<!-- <span class=\"input-group-btn\" id=\"create-new-channel-button-container\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"go-button\" (click)=\"createNewChannel($event)\">Create</button>\n\t\t\t</span> -->\n\t\t</div>\n\n\t<div class=\"col-6\" id=\"create-button-container\">\n\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"create-button\" (click)=\"createNewChannel($event)\">Create New Channel</button>\n\t</div>\n\n\t\n\n</div>\n\n<!-- <div class=\"col-6\" id=\"new-channel-container\">\n\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"create-new-channel-button\" (click)=\"createNewChannel()\">Create New Channel</button>\n</div> -->\n\n<div class=\"row\" id=\"recent-channel-row\">\n\n\n<div class=\"col-12\" id=\"recent-channel-container\">\n\t<span *ngFor=\"let channel of channelQueue\">\n\t\t<button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"recent-channel-button\"\n\t\t(click)=goToChannel(channel)>#{{channel}}</button>\n\t\t<!-- <a class=\"btn btn-link\" href=\"#\" role=\"button\">#{{channel}}</a> -->\n\t\t<!-- <button type=\"button\" class=\"btn btn-link\">#{{channel}}</button> -->\n\t</span>\n</div>\n\n\n\n\n</div>"
+module.exports = "<div class=\"row\" id=\"first-row\">\n\t<div class=\"col-12\">\n\t\t<div class=\"alert alert-warning\" role=\"alert\" id=\"alert\" >\n\t\t\t{{feedback}}\n\t\t</div>\n\t</div>\n\t<div class=\"col-12\">\n\t\t<div class=\"alert alert-success\" role=\"alert\" id=\"alert\" >\n\t\t\t{{feedback_success}}\n\t\t</div>\n\t</div>\n\t<div class=\"input-group col-4\" id=\"user-name-input-container\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"user-name-input\"\n\t\tplaceholder=\"Your name\" [(ngModel)]=\"userName\" (ngModelChange)=\"userNameChange($event)\">\n\t</div>\n\t<div class=\"col-4\" id=\"page-editor-info-container\">\n\t\t<button type=\"button\" *ngIf=\"detail.hasEditor\" class=\"btn btn-secondary nav-button\">{{focusedEditorNumber}}/{{detail.editorNumber}}</button>\n\t\t<button type=\"button\" *ngIf=\"!detail.hasEditor\" class=\"btn btn-secondary nav-button\">None</button>\n\t</div>\n\t\n\t<div class=\"col-4\" id=\"nav-button-container\">\n\t\t<div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchUp($event)\">⬆︎</button>\n\t\t\t<button type=\"button\" class=\"btn btn-secondary nav-button\" (click)=\"searchDown($event)\">⬇︎</button>\n\t\t</div>\n\t</div>\n</div>\n\n\n<div class=\"row\" id=\"editor-Row\">\n\t<div class=\"col-12\">\n\t\t<ace-editor #editor></ace-editor>\n\t</div>\n</div>\n\n\n<div class=\"row\" id=\"channel-row\">\n<!-- \t\t<div class=\"col-6 input-group\" id=\"input-channel-container\">\n\t\t<input type=\"text\" class=\"form-control\" id= \"channel-name-input\"\n\t\tplaceholder=\"ChannelName\"  [(ngModel)]=\"channelNameInput\">\n\t\t<span class=\"input-group-btn\" id=\"check-button-container\">\n\t\t\t\t<button class=\"btn btn-sm btn-secondary\" type=\"button\" id = \"check-button\"\n\t\t\t\t(click)=\"goButtonClick($event)\">Check</button>\n\t</span> -->\n\t<!-- <span class=\"input-group-btn\" id=\"create-new-channel-button-container\">\n\t\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"go-button\" (click)=\"createNewChannel($event)\">Create</button>\n\t</span> -->\n\t<!-- </div> -->\n\t<div class=\"col-12\" id=\"create-button-container\">\n\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"channel-button\" (click)=\"createNewChannel($event)\" *ngIf=\"!channelCreated && detail.hasEditor\">Create New Channel</button>\n\t</div>\n\t<div class=\"col-12\" id=\"create-button-container\">\n\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"channel-button\" (click)=\"goToCreatedChannel($event)\" *ngIf=\"channelCreated && detail.hasEditor\">Check Created Channel</button>\n\t</div>\n</div>\n<!-- <div class=\"col-6\" id=\"new-channel-container\">\n\t\t<button type=\"button\" class=\"btn btn-secondary btn-sm\" id=\"create-new-channel-button\" (click)=\"createNewChannel()\">Create New Channel</button>\n</div> -->\n<!-- <div class=\"row\" id=\"recent-channel-row\">\n\t<div class=\"col-12\" id=\"recent-channel-container\">\n\t\t\t<span *ngFor=\"let channel of channelQueue\">\n\t\t\t\t\t<button type=\"button\" class=\"btn btn-sm btn-outline-dark\" id=\"recent-channel-button\"\n\t\t\t\t\t(click)=goToChannel(channel)>#{{channel}}</button>\n\t\t\t\t\t\n\t\t\t</span>\n\t</div>\n\t<a class=\"btn btn-link\" href=\"#\" role=\"button\">#{{channel}}</a>\n\t\t\t<button type=\"button\" class=\"btn btn-link\">#{{channel}}</button>\n</div> -->"
 
 /***/ }),
 
@@ -5973,41 +5912,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import {wordList} from './google-10000-english-usa-no-swears-medium.js';
 
 var WelcomePage = (function () {
+    //constructor
     function WelcomePage() {
+        this.userName = '';
         this.channelNameInput = '';
+        this.feedback = '';
+        this.feedback_success = '';
+        this.channelClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.channelCreated = false;
+        //detail has all the information of the current page
         this.detail = {
             hasEditor: false,
             editorNumber: -1,
             hasFocus: false,
             focusedEditorNumber: -1,
-            content: ''
+            content: '',
+            pageTitle: ''
         };
-        this.feedback = '';
-        this.feedback_success = '';
-        this.channelClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.MAX_LENGTH = 20;
         this.getLastUsedUserName();
-        this.getLastUsedChannalQueue();
+        // this.getLastUsedChannalQueue();
+        setTimeout(function () {
+            document.getElementById('width-controller').style.width = '400px';
+        }, 1);
     }
     WelcomePage.prototype.setDetail = function (detail) {
+        // console.log(detail);
         this.detail = detail;
         this.focusedEditorNumber = this.detail.focusedEditorNumber + 1;
+        this.checkEditorURL();
+        if (!this.detail.hasEditor) {
+            console.log("none");
+            this.feedback = "This extension only works ";
+        }
     };
     WelcomePage.prototype.ngAfterViewInit = function () {
         this.editor.setTheme("chrome");
         this.getCodeMirrorEditorInfo();
     };
-    //  //for test
-    // getCodeMirrorEditorInfo(){ 
-    //     this.detail = {
-    // 	    hasEditor: true,
-    // 	    editorNumber: 3,
-    // 	    hasFocus: true,
-    // 	    focusedEditorNumber: 2,
-    // 	    content: 'For test'
-    //     };
-    // }
-    //for chrome
+    //Get initial info. Make the first editor focused if no editor is chosen
     WelcomePage.prototype.getCodeMirrorEditorInfo = function () {
         var _this = this;
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -6020,9 +5963,25 @@ var WelcomePage = (function () {
             });
         });
     };
+    //Everytime when one editor is focused, check if user has created the channel for this code block
+    WelcomePage.prototype.checkEditorURL = function () {
+        var editorURL = this.detail.pageTitle + this.detail.focusedEditorNumber;
+        if (localStorage.getItem(editorURL) == null) {
+            this.channelCreated = false;
+        }
+        else {
+            this.channelNameInput = localStorage.getItem(editorURL);
+            this.channelCreated = true;
+        }
+    };
     //userName Function
     WelcomePage.prototype.getLastUsedUserName = function () {
-        this.userName = localStorage.getItem("userName");
+        if (localStorage.getItem("userName")) {
+            this.userName = localStorage.getItem("userName");
+        }
+        else {
+            this.userName = '';
+        }
     };
     WelcomePage.prototype.saveLastUsedUserName = function () {
         localStorage.setItem("userName", this.userName);
@@ -6036,7 +5995,7 @@ var WelcomePage = (function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { name: "SearchUp" }, function (response) {
                 if (response.name == "SearchUp") {
-                    console.log(response);
+                    // console.log(response);
                     _this.setDetail(response.detail);
                     _this.setEditorValue(_this.detail.content);
                 }
@@ -6048,7 +6007,7 @@ var WelcomePage = (function () {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { name: "SearchDown" }, function (response) {
                 if (response.name == "SearchDown") {
-                    console.log(response);
+                    // console.log(response);
                     _this.setDetail(response.detail);
                     _this.setEditorValue(_this.detail.content);
                 }
@@ -6060,38 +6019,42 @@ var WelcomePage = (function () {
         this.editor.getEditor().setValue(value);
         this.editor.getEditor().navigateFileEnd();
     };
+    WelcomePage.prototype.getEditorValue = function () {
+        return this.editor.getEditor().getValue();
+    };
+    // channelQueue;
+    // //channel Queue
+    // getLastUsedChannalQueue(){
+    // 	//console.log(localStorage.channelQueue);
+    // 	if(localStorage.channelQueue != undefined){
+    // 		this.channelQueue = localStorage.channelQueue.split(',');	
+    // 	}
+    // }
+    // addChannel(channelName : string){
+    // 	var channelQueueTemp = [channelName];
+    // 	if(this.channelQueue!==undefined){
+    // 		if(this.channelQueue.length !== 0){
+    // 			while(this.channelQueue.length>0 && channelQueueTemp.length<5){
+    // 				var channelNameTemp = this.channelQueue.shift();
+    // 				if(channelNameTemp!=channelName){
+    // 					channelQueueTemp.push(channelNameTemp);
+    // 				}
+    // 			}
+    // 		}
+    // 	}
+    // 	this.channelQueue = channelQueueTemp;
+    // 	localStorage.channelQueue = this.channelQueue;
+    // }
     //channelNameInput
-    WelcomePage.prototype.goButtonClick = function (data) {
+    WelcomePage.prototype.goToCreatedChannel = function (data) {
         if (this.checkInputRegulation(true)) {
             this.goToChannel(this.channelNameInput);
             this.channelNameInput = '';
         }
     };
-    //channel Queue
-    WelcomePage.prototype.getLastUsedChannalQueue = function () {
-        //console.log(localStorage.channelQueue);
-        if (localStorage.channelQueue != undefined) {
-            this.channelQueue = localStorage.channelQueue.split(',');
-        }
-    };
-    WelcomePage.prototype.addChannel = function (channelName) {
-        var channelQueueTemp = [channelName];
-        if (this.channelQueue !== undefined) {
-            if (this.channelQueue.length !== 0) {
-                while (this.channelQueue.length > 0 && channelQueueTemp.length < 5) {
-                    var channelNameTemp = this.channelQueue.shift();
-                    if (channelNameTemp != channelName) {
-                        channelQueueTemp.push(channelNameTemp);
-                    }
-                }
-            }
-        }
-        this.channelQueue = channelQueueTemp;
-        localStorage.channelQueue = this.channelQueue;
-    };
     WelcomePage.prototype.goToChannel = function (channelName) {
-        this.addChannel(channelName);
-        console.log("go to channel " + channelName);
+        // this.addChannel(channelName);
+        // console.log("go to channel "+ channelName);
         this.channelClick.emit({
             type: "GoToCreatedChannel",
             channelName: channelName,
@@ -6101,24 +6064,35 @@ var WelcomePage = (function () {
     };
     WelcomePage.prototype.createNewChannel = function () {
         if (this.checkInputRegulation(false)) {
-            console.log("create New Channel");
-            var channelName = __WEBPACK_IMPORTED_MODULE_1__google_10000_english_usa_no_swears_medium__["a" /* wordList */][Math.floor(Math.random() * __WEBPACK_IMPORTED_MODULE_1__google_10000_english_usa_no_swears_medium__["a" /* wordList */].length)];
-            this.addChannel(channelName);
             this.feedback_success = "Setting up... Please wait...";
-            this.channelClick.emit({
-                type: "CreatNewChannel",
-                channelName: channelName,
-                detail: this.detail,
-                userName: this.userName,
-                content: this.editor.getEditor().getValue()
+            var channelName = __WEBPACK_IMPORTED_MODULE_1__google_10000_english_usa_no_swears_medium__["a" /* wordList */][Math.floor(Math.random() * __WEBPACK_IMPORTED_MODULE_1__google_10000_english_usa_no_swears_medium__["a" /* wordList */].length)];
+            var newURL = "http://localhost:4200/" + channelName;
+            var editorURL = this.detail.pageTitle + this.detail.focusedEditorNumber;
+            var content = this.getEditorValue();
+            var userName = this.userName;
+            localStorage.setItem(editorURL, channelName);
+            // console.log(editorURL);
+            // console.log(localStorage.getItem(editorURL));
+            chrome.tabs.create({ url: newURL, active: false }, function (tab1) {
+                setTimeout(function () {
+                    // console.log("send message");
+                    chrome.tabs.sendMessage(tab1.id, {
+                        name: "SetWebInfo",
+                        userName: userName,
+                        channelName: channelName,
+                        content: content
+                    }, function (response) {
+                        // console.log(response);
+                    });
+                    chrome.tabs.update(tab1.id, { "active": true, "highlighted": true }, function (tab) {
+                    });
+                }, 2000);
             });
         }
     };
     WelcomePage.prototype.checkInputRegulation = function (checkChannelNameFlag) {
         var userName = this.userName;
         var channelName = this.channelNameInput;
-        console.log(channelName);
-        console.log(userName.length);
         if (userName.length === 0) {
             this.feedback = 'User name must be more than 0 characters';
             return false;

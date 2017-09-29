@@ -5,7 +5,8 @@ var detail = {
     editorNumber: codeMirrorElementArray.length - 1,
     hasFocus: false,
     focusedEditorNumber: -1,
-    content: ''
+    content: '',
+    pageTitle: document.title
 };
 
 

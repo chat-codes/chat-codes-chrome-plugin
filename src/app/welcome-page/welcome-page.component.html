@@ -1,27 +1,21 @@
 <div class="row" id="first-row">
-	
 	<div class="col-12">
 		<div class="alert alert-warning" role="alert" id="alert" >
-  			{{feedback}}
+			{{feedback}}
 		</div>
 	</div>
-
 	<div class="col-12">
 		<div class="alert alert-success" role="alert" id="alert" >
-  			{{feedback_success}}
+			{{feedback_success}}
 		</div>
 	</div>
-
 	<div class="input-group col-4" id="user-name-input-container">
 		<input type="text" class="form-control" id= "user-name-input"
 		placeholder="Your name" [(ngModel)]="userName" (ngModelChange)="userNameChange($event)">
 	</div>
-
 	<div class="col-4" id="page-editor-info-container">
 		<button type="button" *ngIf="detail.hasEditor" class="btn btn-secondary nav-button">{{focusedEditorNumber}}/{{detail.editorNumber}}</button>
-
 		<button type="button" *ngIf="!detail.hasEditor" class="btn btn-secondary nav-button">None</button>
-
 	</div>
 	
 	<div class="col-4" id="nav-button-container">
@@ -31,49 +25,45 @@
 		</div>
 	</div>
 </div>
+
+
 <div class="row" id="editor-Row">
 	<div class="col-12">
 		<ace-editor #editor></ace-editor>
 	</div>
 </div>
-<div class="row" id="input-channel-row">
-		<div class="col-6 input-group" id="input-channel-container">
-			<input type="text" class="form-control" id= "channel-name-input"
-			placeholder="ChannelName"  [(ngModel)]="channelNameInput">
-			<span class="input-group-btn" id="check-button-container">
+
+
+<div class="row" id="channel-row">
+<!-- 		<div class="col-6 input-group" id="input-channel-container">
+		<input type="text" class="form-control" id= "channel-name-input"
+		placeholder="ChannelName"  [(ngModel)]="channelNameInput">
+		<span class="input-group-btn" id="check-button-container">
 				<button class="btn btn-sm btn-secondary" type="button" id = "check-button"
 				(click)="goButtonClick($event)">Check</button>
-			</span>
-			<!-- <span class="input-group-btn" id="create-new-channel-button-container">
-				<button type="button" class="btn btn-secondary btn-sm" id="go-button" (click)="createNewChannel($event)">Create</button>
-			</span> -->
-		</div>
-
-	<div class="col-6" id="create-button-container">
-		<button type="button" class="btn btn-secondary btn-sm" id="create-button" (click)="createNewChannel($event)">Create New Channel</button>
+	</span> -->
+	<!-- <span class="input-group-btn" id="create-new-channel-button-container">
+			<button type="button" class="btn btn-secondary btn-sm" id="go-button" (click)="createNewChannel($event)">Create</button>
+	</span> -->
+	<!-- </div> -->
+	<div class="col-12" id="create-button-container">
+		<button type="button" class="btn btn-secondary btn-sm" id="channel-button" (click)="createNewChannel($event)" *ngIf="!channelCreated && detail.hasEditor">Create New Channel</button>
 	</div>
-
-	
-
+	<div class="col-12" id="create-button-container">
+		<button type="button" class="btn btn-secondary btn-sm" id="channel-button" (click)="goToCreatedChannel($event)" *ngIf="channelCreated && detail.hasEditor">Check Created Channel</button>
+	</div>
 </div>
-
 <!-- <div class="col-6" id="new-channel-container">
-	<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel()">Create New Channel</button>
+		<button type="button" class="btn btn-secondary btn-sm" id="create-new-channel-button" (click)="createNewChannel()">Create New Channel</button>
 </div> -->
-
-<div class="row" id="recent-channel-row">
-
-
-<div class="col-12" id="recent-channel-container">
-	<span *ngFor="let channel of channelQueue">
-		<button type="button" class="btn btn-sm btn-outline-dark" id="recent-channel-button"
-		(click)=goToChannel(channel)>#{{channel}}</button>
-		<!-- <a class="btn btn-link" href="#" role="button">#{{channel}}</a> -->
-		<!-- <button type="button" class="btn btn-link">#{{channel}}</button> -->
-	</span>
-</div>
-
-
-
-
-</div>
+<!-- <div class="row" id="recent-channel-row">
+	<div class="col-12" id="recent-channel-container">
+			<span *ngFor="let channel of channelQueue">
+					<button type="button" class="btn btn-sm btn-outline-dark" id="recent-channel-button"
+					(click)=goToChannel(channel)>#{{channel}}</button>
+					
+			</span>
+	</div>
+	<a class="btn btn-link" href="#" role="button">#{{channel}}</a>
+			<button type="button" class="btn btn-link">#{{channel}}</button>
+</div> -->
